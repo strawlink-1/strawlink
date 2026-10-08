@@ -17,6 +17,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <span>Sangrur block · demo</span>
         </NavLink>
         <nav className="nav" aria-label="Screens">
+          <NavLink to={`/live${keep}`}>Live 3D</NavLink>
           <NavLink to={`/operator${keep}`}>Operator</NavLink>
           <NavLink to={`/factory${keep}`}>Factory</NavLink>
           <NavLink to={`/farmer${keep}`}>Farmer</NavLink>

@@ -188,7 +188,28 @@ Lambda on python3.12 (ortools needs AL2023 glibc) instead of the spec's containe
 
 ---
 
-## 6. NEW UI BRIEF — "watch the season like a movie" (top priority)
+## 6. 3D "movie" UI — BUILT (route `/live`, default page)
+
+Status (8 Oct evening): implemented in `app/web/src/movie/` with three.js + @react-three/fiber (renderer
+bridge only; every model, shader, label and control is hand-written). Everything is driven by the API:
+- `model.ts` turns `/fields`, `/plan`, `/routes`, `/machines`, `/plants/supply` into per-machine legs
+  (drive / work in serpentine passes / load / unload) on the plan's real arrive/depart times.
+- `roadnet.ts`: OpenStreetMap roads (`app/web/public/osm/roads.geojson`, made by
+  `app/tools/load_osm.py --roads-only`) + A* routing at tractor speeds; Amazon Location geometry wins when
+  `/routes` returns it. `useWorld.ts` polls every 5 s; re-plans/rain/confirmations rebuild the film,
+  machines glide to new routes, changed fields pulse cyan, toasts summarise the change.
+- Scene: `Fields.tsx` (MeshStandardMaterial + injected crop shader, work front synced to machine progress),
+  `Grass.tsx` (instanced wind-swaying paddy/stubble/wheat sprouts/plot crops near the camera, LOD),
+  `vehicles.ts` (procedural tractor+baler, Super Seeder, tractor-trolley), `Machines.tsx` (poses, rings,
+  dust, bales), `Sites.tsx` (plants with growing bale yards + steam, rain + clouds over wet villages),
+  `Environment.tsx` (sun/sky by sim clock, farmland, OSM road ribbons, villages, trees),
+  `Labels.tsx` (DOM labels projected per frame with declutter), `CameraRig.tsx` (intro / free / chase / focus),
+  `Timeline.tsx` (Gantt of real legs, scrub), `MovieScreen.tsx` (HUD, title card, inspector).
+- Dev tips: the in-app browser pane pauses rAF when hidden; verify with headless Chrome
+  (puppeteer-core against /Applications/Google Chrome). `?step=1` + `window.__step(n)` steps frames in dev.
+
+Original brief (kept for reference):
+## 6b. NEW UI BRIEF — "watch the season like a movie"
 
 Yash: the current UI is too plain. Build an **impressive, animated, 3D** experience with
 **three.js** that feels like watching a film of machines and trucks clearing fields, and that
