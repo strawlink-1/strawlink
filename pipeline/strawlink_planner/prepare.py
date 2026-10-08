@@ -1,4 +1,4 @@
-"""Dry flag, fair-queue priority, village clustering and route chooser.
+"""Dry flag, fair-queue priority, village clustering (DBSCAN-equivalent) and route chooser.
 
 priority = straw_t × exp(−days_left / urgency_tau_days) × (1 + bonus) × dry
 bonus    = loyalty_bonus if burned_last_season is False else 0
@@ -11,11 +11,8 @@ import math
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 
-import numpy as np
-from sklearn.cluster import DBSCAN
-
 from .models import FieldIn, PlannerInput
-from .travel import EARTH_R_KM, haversine_km
+from .travel import haversine_km
 
 
 @dataclass
@@ -91,6 +88,32 @@ def _day_cap_t(state: PlannerInput, params: dict) -> float:
     return min(caps) * float(params.get("cluster_max_day_frac", 0.8))
 
 
+def connected_components(points: list[tuple[float, float]], eps_km: float) -> list[int]:
+    """DBSCAN with min_samples=1 == connected components of the 'within eps' graph (haversine).
+
+    Labels are numbered by first appearance, so they are deterministic for a given input order.
+    """
+    n = len(points)
+    parent = list(range(n))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if haversine_km(points[i], points[j]) <= eps_km:
+                ri, rj = find(i), find(j)
+                if ri != rj:
+                    parent[max(ri, rj)] = min(ri, rj)
+    labels, seen = [], {}
+    for i in range(n):
+        labels.append(seen.setdefault(find(i), len(seen)))
+    return labels
+
+
 def _split_cluster(members: list[FieldPrep], cap_t: float) -> list[list[FieldPrep]]:
     """Greedy split so each group has a non-empty window and fits one machine-day."""
     members = sorted(members, key=lambda x: (x.ready, x.f.field_id))
@@ -139,7 +162,7 @@ def prepare(state: PlannerInput) -> Prepared:
 
     # --- clustering of candidate (dry, in-horizon) fields, per village
     cap_t = _day_cap_t(state, p)
-    eps_rad = float(p["cluster_radius_m"]) / 1000.0 / EARTH_R_KM
+    eps_km = float(p["cluster_radius_m"]) / 1000.0
     clusters: list[Cluster] = []
     by_village: dict[str, list[FieldPrep]] = {}
     for fp in fields.values():
@@ -147,8 +170,7 @@ def prepare(state: PlannerInput) -> Prepared:
             by_village.setdefault(fp.f.village_id, []).append(fp)
     for vid in sorted(by_village):
         members = by_village[vid]
-        coords = np.radians([[fp.f.centroid[1], fp.f.centroid[0]] for fp in members])
-        labels = DBSCAN(eps=eps_rad, min_samples=1, metric="haversine").fit(coords).labels_
+        labels = connected_components([tuple(fp.f.centroid) for fp in members], eps_km)
         groups: dict[int, list[FieldPrep]] = {}
         for lab, fp in zip(labels, members):
             groups.setdefault(int(lab), []).append(fp)

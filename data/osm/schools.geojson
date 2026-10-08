@@ -1,0 +1,550 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "© OpenStreetMap contributors",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5466062,
+     30.3752945
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1239003780",
+    "kind": "school",
+    "name": "PTU Learning Center",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6968019,
+     30.2175722
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956735",
+    "kind": "school",
+    "name": "Old Electrical Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6966913,
+     30.2166939
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956747",
+    "kind": "school",
+    "name": "New Electrical Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.696934,
+     30.2180906
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956748",
+    "kind": "school",
+    "name": "Computer Science Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7013558,
+     30.2194893
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956749",
+    "kind": "school",
+    "name": "Management And Tranning & Placement Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6980904,
+     30.2160432
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956752",
+    "kind": "school",
+    "name": "Central Library",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6994038,
+     30.2187641
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956788",
+    "kind": "school",
+    "name": "Science Block",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6979541,
+     30.21873
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956791",
+    "kind": "school",
+    "name": "Chemical & Food Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6994566,
+     30.2181944
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956792",
+    "kind": "school",
+    "name": "Mechincal Department",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6982624,
+     30.2163218
+    ]
+   },
+   "properties": {
+    "osm_id": "node/13415956794",
+    "kind": "school",
+    "name": "Study Centre",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8819249,
+     30.514547
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1462910941",
+    "kind": "school",
+    "name": "Al-Falah Public school",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8385694,
+     30.3093282
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1463005839",
+    "kind": "school",
+    "name": "Vasant Valley Public School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8327253,
+     30.2450398
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1683377991",
+    "kind": "school",
+    "name": "BBC Academy",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8469931,
+     30.2372493
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1683429069",
+    "kind": "school",
+    "name": "Ranbir College",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6510581,
+     30.5194207
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2456463141",
+    "kind": "school",
+    "name": "guru gobind singh pablic school kurar",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.548539,
+     30.382456
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2597236956",
+    "kind": "school",
+    "name": "Sandhu Patti School Junior",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8490037,
+     30.3393471
+    ]
+   },
+   "properties": {
+    "osm_id": "node/307442661",
+    "kind": "school",
+    "name": "Govt. High School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8281463,
+     30.3145366
+    ]
+   },
+   "properties": {
+    "osm_id": "node/4515293490",
+    "kind": "school",
+    "name": "Saint Kabir Public School Ladda",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5490301,
+     30.3815114
+    ]
+   },
+   "properties": {
+    "osm_id": "node/802009201",
+    "kind": "school",
+    "name": "New Horizon School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5527856,
+     30.3763034
+    ]
+   },
+   "properties": {
+    "osm_id": "node/802242439",
+    "kind": "school",
+    "name": "Kanya High School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5391736,
+     30.3719254
+    ]
+   },
+   "properties": {
+    "osm_id": "node/835661331",
+    "kind": "school",
+    "name": "Sarvhitkari Sen. Sr. School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5311128,
+     30.3632046
+    ]
+   },
+   "properties": {
+    "osm_id": "node/871754550",
+    "kind": "school",
+    "name": "Baba Ala Singh School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5412846,
+     30.3767233
+    ]
+   },
+   "properties": {
+    "osm_id": "node/919729584",
+    "kind": "school",
+    "name": "Y.S. Public School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5520147,
+     30.3521437
+    ]
+   },
+   "properties": {
+    "osm_id": "way/1222936630",
+    "kind": "school",
+    "name": "FootBall Ground/ Runing Track",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9351463,
+     30.239083
+    ]
+   },
+   "properties": {
+    "osm_id": "way/135264100",
+    "kind": "school",
+    "name": "Primary School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9307664,
+     30.2412456
+    ]
+   },
+   "properties": {
+    "osm_id": "way/135265163",
+    "kind": "school",
+    "name": "Senior secondary school",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.916552,
+     30.2501669
+    ]
+   },
+   "properties": {
+    "osm_id": "way/135265743",
+    "kind": "school",
+    "name": "Everest Public School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9169833,
+     30.2491318
+    ]
+   },
+   "properties": {
+    "osm_id": "way/135265764",
+    "kind": "school",
+    "name": "National Public school",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8749921,
+     30.2471093
+    ]
+   },
+   "properties": {
+    "osm_id": "way/1552514512",
+    "kind": "school",
+    "name": "",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8641628,
+     30.2462173
+    ]
+   },
+   "properties": {
+    "osm_id": "way/187897317",
+    "kind": "school",
+    "name": "General Gurnam Singh Public School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9103601,
+     30.2488439
+    ]
+   },
+   "properties": {
+    "osm_id": "way/642938770",
+    "kind": "school",
+    "name": "Golden Earth Public School",
+    "name_pa": "",
+    "place": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5822642,
+     30.2822311
+    ]
+   },
+   "properties": {
+    "osm_id": "way/712606514",
+    "kind": "school",
+    "name": "GSSS Dhanaula",
+    "name_pa": "",
+    "place": ""
+   }
+  }
+ ]
+}

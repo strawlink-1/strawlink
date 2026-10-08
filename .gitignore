@@ -1,0 +1,14 @@
+.env
+.DS_Store
+**/.venv/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+pipeline/.s3/
+app/.aws-sam/
+app/backend/shared/
+app/backend/planner_fn/strawlink_planner/
+app/web/node_modules/
+app/web/dist/
+outputs/backtest/plans/
+outputs/logs/

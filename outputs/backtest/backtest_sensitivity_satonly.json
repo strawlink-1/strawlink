@@ -1,0 +1,2270 @@
+[
+  {
+    "fleet_scale": 0.75,
+    "policy": "strawlink",
+    "reach_rate": 0.2865,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 53,
+    "tonnes_cleared_in_time": 486.42,
+    "window_coverage": 0.4303,
+    "village_volume_mape": 1.2424,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 10,
+        "cleared_t": 72.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 18,
+        "cleared_t": 130.68,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 26,
+        "cleared_t": 188.76,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 34,
+        "cleared_t": 246.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 42,
+        "cleared_t": 304.92,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 50,
+        "cleared_t": 363.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 67,
+        "cleared_t": 486.42,
+        "at_risk": 1
+      }
+    ]
+  },
+  {
+    "fleet_scale": 0.75,
+    "policy": "baseline",
+    "reach_rate": 0.3784,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 70,
+    "tonnes_cleared_in_time": 609.84,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 10,
+        "cleared_t": 72.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 18,
+        "cleared_t": 130.68,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 28,
+        "cleared_t": 203.28,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 36,
+        "cleared_t": 261.36,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 51,
+        "cleared_t": 370.26,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 72,
+        "cleared_t": 522.72,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 80,
+        "cleared_t": 580.8,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 1
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.0,
+    "policy": "strawlink",
+    "reach_rate": 0.3297,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 61,
+    "tonnes_cleared_in_time": 544.5,
+    "window_coverage": 0.4303,
+    "village_volume_mape": 1.2424,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 14,
+        "cleared_t": 101.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 32,
+        "cleared_t": 232.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 44,
+        "cleared_t": 319.44,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 44,
+        "cleared_t": 319.44,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 56,
+        "cleared_t": 406.56,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 61,
+        "cleared_t": 442.86,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 73,
+        "cleared_t": 529.98,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 75,
+        "cleared_t": 544.5,
+        "at_risk": 1
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.0,
+    "policy": "baseline",
+    "reach_rate": 0.4,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 74,
+    "tonnes_cleared_in_time": 638.88,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 14,
+        "cleared_t": 101.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 32,
+        "cleared_t": 232.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 55,
+        "cleared_t": 399.3,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 60,
+        "cleared_t": 435.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 60,
+        "cleared_t": 435.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 60,
+        "cleared_t": 435.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 60,
+        "cleared_t": 435.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 60,
+        "cleared_t": 435.6,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 72,
+        "cleared_t": 522.72,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 84,
+        "cleared_t": 609.84,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 88,
+        "cleared_t": 638.88,
+        "at_risk": 1
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.25,
+    "policy": "strawlink",
+    "reach_rate": 0.3676,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 68,
+    "tonnes_cleared_in_time": 595.32,
+    "window_coverage": 0.4303,
+    "village_volume_mape": 1.2424,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 18,
+        "cleared_t": 130.68,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 36,
+        "cleared_t": 261.36,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 59,
+        "cleared_t": 428.34,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 64,
+        "cleared_t": 464.64,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 80,
+        "cleared_t": 580.8,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 82,
+        "cleared_t": 595.32,
+        "at_risk": 1
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.25,
+    "policy": "baseline",
+    "reach_rate": 0.4162,
+    "burned_fields_total": 185,
+    "burned_fields_reached": 77,
+    "tonnes_cleared_in_time": 660.66,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-02",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-03",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-04",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-05",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-06",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-07",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-08",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-09",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-10",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-12",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-13",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-14",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-15",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-16",
+        "cleared_fields": 2,
+        "cleared_t": 14.52,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-17",
+        "cleared_fields": 18,
+        "cleared_t": 130.68,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-18",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-19",
+        "cleared_fields": 20,
+        "cleared_t": 145.2,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-20",
+        "cleared_fields": 36,
+        "cleared_t": 261.36,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-22",
+        "cleared_fields": 43,
+        "cleared_t": 312.18,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-23",
+        "cleared_fields": 59,
+        "cleared_t": 428.34,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-24",
+        "cleared_fields": 63,
+        "cleared_t": 457.38,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-25",
+        "cleared_fields": 63,
+        "cleared_t": 457.38,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-26",
+        "cleared_fields": 63,
+        "cleared_t": 457.38,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-27",
+        "cleared_fields": 63,
+        "cleared_t": 457.38,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-28",
+        "cleared_fields": 63,
+        "cleared_t": 457.38,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-29",
+        "cleared_fields": 79,
+        "cleared_t": 573.54,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-30",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-01",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-02",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-03",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-04",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-05",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-06",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-07",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-08",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-09",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-11",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-12",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-13",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-14",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-15",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-16",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-17",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-18",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-19",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-21",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-22",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-23",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-24",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-25",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-26",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-27",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-28",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-29",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 91,
+        "cleared_t": 660.66,
+        "at_risk": 1
+      }
+    ]
+  }
+]

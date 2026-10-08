@@ -1,0 +1,260 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: StrawLink — paddy straw clearance planner (API, planner, loaders, data)
+
+Parameters:
+  BedrockModelId:
+    Type: String
+    Default: in.anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: Any Bedrock text model enabled in the account (inference profile id)
+  PublicWebUrl:
+    Type: String
+    Default: http://localhost:5173
+    Description: Web app URL (used in certificate QR codes)
+  CorsOrigins:
+    Type: String
+    Default: "*"
+  DemoDate:
+    Type: String
+    Default: ""
+    Description: Optional fixed planning date (YYYY-MM-DD) for the demo; empty = today (IST)
+  LocationRegion:
+    Type: String
+    Default: ap-south-1
+
+Globals:
+  Function:
+    Architectures: [arm64]
+    Timeout: 60
+    MemorySize: 1024
+    Environment:
+      Variables:
+        STRAWLINK_BUCKET: !Sub strawlink-${AWS::AccountId}-${AWS::Region}
+        FIELDS_TABLE: !Ref FieldsTable
+        PLANS_TABLE: !Ref PlansTable
+        EVENTS_TABLE: !Ref EventsTable
+        CERTIFICATES_TABLE: !Ref CertificatesTable
+        MACHINES_TABLE: !Ref MachinesTable
+        MESSAGES_TABLE: !Ref MessagesTable
+        BEDROCK_MODEL_ID: !Ref BedrockModelId
+        PUBLIC_WEB_URL: !Ref PublicWebUrl
+        CORS_ORIGINS: !Ref CorsOrigins
+        DEMO_DATE: !Ref DemoDate
+        LOCATION_REGION: !Ref LocationRegion
+        PLANNER_TIME_LIMIT_S: "12"
+
+Resources:
+  DataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub strawlink-${AWS::AccountId}-${AWS::Region}
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: {SSEAlgorithm: AES256}
+
+  FieldsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{AttributeName: field_id, AttributeType: S}]
+      KeySchema: [{AttributeName: field_id, KeyType: HASH}]
+  PlansTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: date, AttributeType: S}
+        - {AttributeName: plan_id, AttributeType: S}
+      KeySchema:
+        - {AttributeName: date, KeyType: HASH}
+        - {AttributeName: plan_id, KeyType: RANGE}
+  EventsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: field_id, AttributeType: S}
+        - {AttributeName: ts, AttributeType: S}
+      KeySchema:
+        - {AttributeName: field_id, KeyType: HASH}
+        - {AttributeName: ts, KeyType: RANGE}
+  CertificatesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: cert_id, AttributeType: S}
+        - {AttributeName: field_id, AttributeType: S}
+      KeySchema: [{AttributeName: cert_id, KeyType: HASH}]
+      GlobalSecondaryIndexes:
+        - IndexName: by_field
+          KeySchema: [{AttributeName: field_id, KeyType: HASH}]
+          Projection: {ProjectionType: ALL}
+  MachinesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{AttributeName: machine_id, AttributeType: S}]
+      KeySchema: [{AttributeName: machine_id, KeyType: HASH}]
+  MessagesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: phone, AttributeType: S}
+        - {AttributeName: ts, AttributeType: S}
+      KeySchema:
+        - {AttributeName: phone, KeyType: HASH}
+        - {AttributeName: ts, KeyType: RANGE}
+
+  # Zip package (strawlink_planner + ortools/numpy/pydantic, ~150 MB unzipped). The container
+  # build in backend/planner_fn/Dockerfile is equivalent if the zip ever outgrows 250 MB.
+  PlannerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/planner_fn/
+      Handler: app.handler
+      Runtime: python3.12
+      MemorySize: 3008
+      Timeout: 60
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: api.main.handler
+      Runtime: python3.11
+      MemorySize: 1536
+      Timeout: 30
+      Environment:
+        Variables:
+          PLANNER_FUNCTION: !Ref PlannerFunction
+      Policies:
+        - DynamoDBCrudPolicy: {TableName: !Ref FieldsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref EventsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref CertificatesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MachinesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MessagesTable}
+        - S3CrudPolicy: {BucketName: !Sub "strawlink-${AWS::AccountId}-${AWS::Region}"}
+        - LambdaInvokePolicy: {FunctionName: !Ref PlannerFunction}
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:InvokeModelWithResponseStream, bedrock:Converse, bedrock:ConverseStream]
+              Resource: "*"
+            - Effect: Allow
+              Action: [ssm:GetParameter]
+              Resource: !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/strawlink/*
+            - Effect: Allow
+              Action: [kms:Decrypt]
+              Resource: "*"
+            - Effect: Allow
+              Action: [geo-routes:CalculateRoutes]
+              Resource: "*"
+      Events:
+        Root:
+          Type: HttpApi
+          Properties: {Path: /, Method: ANY, ApiId: !Ref HttpApi}
+        Proxy:
+          Type: HttpApi
+          Properties: {Path: "/{proxy+}", Method: ANY, ApiId: !Ref HttpApi}
+
+  DailyReplanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: api.jobs.daily
+      Runtime: python3.11
+      Timeout: 120
+      Environment:
+        Variables:
+          PLANNER_FUNCTION: !Ref PlannerFunction
+          PLANNER_TIME_LIMIT_S: "40"
+      Policies:
+        - DynamoDBCrudPolicy: {TableName: !Ref FieldsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref EventsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref CertificatesTable}
+        - DynamoDBReadPolicy: {TableName: !Ref MachinesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MessagesTable}
+        - S3CrudPolicy: {BucketName: !Sub "strawlink-${AWS::AccountId}-${AWS::Region}"}
+        - LambdaInvokePolicy: {FunctionName: !Ref PlannerFunction}
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:Converse]
+              Resource: "*"
+            - Effect: Allow
+              Action: [ssm:GetParameter]
+              Resource: !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/strawlink/*
+            - Effect: Allow
+              Action: [kms:Decrypt]
+              Resource: "*"
+      Events:
+        Daily:
+          Type: ScheduleV2
+          Properties:
+            ScheduleExpression: cron(0 6 * * ? *)
+            ScheduleExpressionTimezone: Asia/Kolkata
+
+  LoaderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: loaders.handler.handler
+      Runtime: python3.11
+      Timeout: 300
+      Policies:
+        - DynamoDBCrudPolicy: {TableName: !Ref FieldsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref CertificatesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MachinesTable}
+        - S3CrudPolicy: {BucketName: !Sub "strawlink-${AWS::AccountId}-${AWS::Region}"}
+      Events:
+        Fields:
+          Type: S3
+          Properties:
+            Bucket: !Ref DataBucket
+            Events: s3:ObjectCreated:*
+            Filter: {S3Key: {Rules: [{Name: prefix, Value: data/fields/}]}}
+        Synthetic:
+          Type: S3
+          Properties:
+            Bucket: !Ref DataBucket
+            Events: s3:ObjectCreated:*
+            Filter: {S3Key: {Rules: [{Name: prefix, Value: config/}]}}
+        Live:
+          Type: S3
+          Properties:
+            Bucket: !Ref DataBucket
+            Events: s3:ObjectCreated:*
+            Filter: {S3Key: {Rules: [{Name: prefix, Value: outputs/live/}, {Name: suffix, Value: .json}]}}
+
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: ["*"]
+        AllowMethods: ["*"]
+        AllowHeaders: ["*"]
+
+  MapsApiKey:
+    Type: AWS::Location::APIKey
+    Properties:
+      KeyName: !Sub strawlink-maps-${AWS::Region}
+      NoExpiry: true
+      Restrictions:
+        AllowActions: ["geo-maps:GetTile", "geo-maps:GetStaticMap"]
+        AllowResources: [!Sub "arn:aws:geo-maps:${LocationRegion}::provider/default"]
+
+Outputs:
+  ApiUrl:
+    Value: !Sub https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+  BucketName:
+    Value: !Ref DataBucket
+  MapsApiKeyName:
+    Value: !Sub strawlink-maps-${AWS::Region}

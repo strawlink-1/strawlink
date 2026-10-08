@@ -1,0 +1,3055 @@
+{
+  "plan_id": "strawlink-2026-10-08-1b5d18d9",
+  "date": "2026-10-08",
+  "policy": "strawlink",
+  "synthetic": true,
+  "fields": [
+    {
+      "field_id": "F0001",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0002",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0003",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0004",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0005",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0006",
+      "priority": 0.04005,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.005517,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-20; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 26,
+      "dry": true
+    },
+    {
+      "field_id": "F0007",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0008",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0009",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0010",
+      "priority": 0.000221,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 3e-05,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "bale: P01 is 16 km away with room for 7 t",
+      "cluster_id": "V01-C00",
+      "days_left": 52,
+      "dry": true
+    },
+    {
+      "field_id": "F0011",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0012",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0013",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0014",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0015",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0016",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0017",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0018",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0019",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0020",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0021",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0022",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0023",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0024",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0025",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0026",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0027",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0028",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0029",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0030",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0031",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0032",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0033",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0034",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0035",
+      "priority": 0.071698,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0036",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0037",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0038",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0039",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0040",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0041",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0042",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0043",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0044",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0045",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0046",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0047",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0048",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0049",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0050",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0051",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0052",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0053",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0054",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0055",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0056",
+      "priority": 0.132972,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.018316,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-26; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 20,
+      "dry": true
+    },
+    {
+      "field_id": "F0057",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0058",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0059",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0060",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0061",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0062",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0063",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0064",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0065",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0066",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0067",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0068",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0069",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0070",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0071",
+      "priority": 0.071698,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0072",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0073",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0074",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0075",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0076",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0077",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0078",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0079",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0080",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0081",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0082",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0083",
+      "priority": 0.04005,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.005517,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-20; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 26,
+      "dry": true
+    },
+    {
+      "field_id": "F0084",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0085",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0086",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0087",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0088",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0089",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0090",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0091",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0092",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0093",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0094",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0095",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0096",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0097",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0098",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (15 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0099",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0100",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0101",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0102",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0103",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0104",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0105",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0106",
+      "priority": 0.048917,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.006738,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-21; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 25,
+      "dry": true
+    },
+    {
+      "field_id": "F0107",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0108",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0109",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0110",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0111",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0112",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0113",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0114",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0115",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0116",
+      "priority": 0.130641,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0117",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0118",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0119",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0120",
+      "priority": 0.087572,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0121",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0122",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0123",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0124",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0125",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0126",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0127",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0128",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0129",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0130",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0131",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0132",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0133",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0134",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0135",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0136",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0137",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0138",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0139",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0140",
+      "priority": 0.048917,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.006738,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-21; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 25,
+      "dry": true
+    },
+    {
+      "field_id": "F0141",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0142",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0143",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (14 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0144",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0145",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0146",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (12 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0147",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0148",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0149",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (11 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0150",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (11 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0151",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0152",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0153",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0154",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0155",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0156",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0157",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0158",
+      "priority": 0.10696,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0159",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0160",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0161",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0162",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0163",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0164",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0165",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0166",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0167",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0168",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0169",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (18 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0170",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0171",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0172",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0173",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0174",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0175",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0176",
+      "priority": 0.087572,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0177",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0178",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0179",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0180",
+      "priority": 0.071698,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0181",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0182",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0183",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0184",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0185",
+      "priority": 0.108868,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-25; tentatively bale to P01 (18 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": true
+    },
+    {
+      "field_id": "F0186",
+      "priority": 0.072976,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.010052,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-23; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 23,
+      "dry": true
+    },
+    {
+      "field_id": "F0187",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0188",
+      "priority": 0.19837,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.027324,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0189",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0190",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0191",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0192",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0193",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0194",
+      "priority": 0.059748,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.00823,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-22; tentatively bale to P01 (16 km)",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0195",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0196",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0197",
+      "priority": 0.048917,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.006738,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-21; tentatively bale to P01 (18 km)",
+      "cluster_id": null,
+      "days_left": 25,
+      "dry": true
+    },
+    {
+      "field_id": "F0198",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (18 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0199",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P02 (16 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    },
+    {
+      "field_id": "F0200",
+      "priority": 0.089133,
+      "priority_parts": {
+        "tonnes": 7.26,
+        "urgency": 0.012277,
+        "bonus": 0.0,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-24; tentatively bale to P01 (17 km)",
+      "cluster_id": null,
+      "days_left": 22,
+      "dry": true
+    }
+  ],
+  "assignments": [
+    {
+      "machine_id": "BA01",
+      "type": "baler_set",
+      "stops": [
+        {
+          "field_id": "F0010",
+          "arrive": "2026-10-08T08:03:00+05:30",
+          "depart": "2026-10-08T10:08:00+05:30",
+          "tonnes": 7.26,
+          "method": "bale"
+        }
+      ],
+      "deliveries": []
+    },
+    {
+      "machine_id": "TR01",
+      "type": "truck",
+      "stops": [
+        {
+          "field_id": "F0010",
+          "arrive": "2026-10-08T10:08:00+05:30",
+          "depart": "2026-10-08T10:08:00+05:30",
+          "tonnes": 7.26,
+          "method": "bale"
+        }
+      ],
+      "deliveries": [
+        {
+          "plant_id": "P01",
+          "tonnes": 7.26,
+          "arrive": "2026-10-08T10:58:00+05:30"
+        }
+      ]
+    }
+  ],
+  "unassigned": [],
+  "totals": {
+    "tonnes_planned": 7.26,
+    "fields_planned": 1,
+    "fields_at_risk": 0
+  },
+  "solver": {
+    "status": "bale:ok;seed:empty",
+    "runtime_s": 0.014,
+    "objective": 3.0
+  }
+}

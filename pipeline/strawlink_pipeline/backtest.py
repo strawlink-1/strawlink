@@ -96,6 +96,7 @@ def simulate(job: dict) -> dict:
     truth: Truth = job["truth"]
     gdf, days, fcs, rain = job["gdf"], job["days"], job["forecasts"], job["rain"]
     confirm_rate = job.get("confirm_rate", 0.0)
+    bookings_parity = job.get("bookings_parity", True)
     machines, plants, _ = fleet(scale, gdf)
     plant_fill = {pl["plant_id"]: float(pl["fill_t"]) for pl in plants}
     rng = np.random.default_rng(int(p["random_seed"]))
@@ -103,7 +104,8 @@ def simulate(job: dict) -> dict:
     chosen = {f for f in ids if rng.random() < confirm_rate}
     burned_last = job["burned_last"]
     thr = float(p["rain_wet_threshold_mm"])
-    plan_dir = OUTPUTS / "backtest" / "plans" / (policy if not confirm_rate else f"{policy}_confirm{confirm_rate}") / str(scale)
+    variant = policy + (f"_confirm{confirm_rate}" if confirm_rate else "") + ("" if bookings_parity else "_satonly")
+    plan_dir = OUTPUTS / "backtest" / "plans" / variant / str(scale)
     plan_dir.mkdir(parents=True, exist_ok=True)
 
     cleared: dict[str, date] = {}
@@ -115,16 +117,16 @@ def simulate(job: dict) -> dict:
                 burned[fid] = b
         rain3 = sum(rain.get(d - timedelta(days=k), 0.0) for k in range(3))
         wet_today = rain3 >= thr
-        if policy == "strawlink":
-            fc = _confirmed(fcs[d], truth, d, chosen, 2) if chosen else fcs[d]
-        else:
-            # first-come: a field is known only once actually harvested (books the day after)
-            fc = []
-            for r in fcs[d]:
-                h = truth.harvest.get(r["field_id"])
-                if h and h < d:
-                    r = {**r, "p10": h.isoformat(), "p50": h.isoformat(), "p90": h.isoformat(), "source": "confirmed"}
-                fc.append(r)
+        # Both policies receive the same farmer bookings: a field is booked the day after its actual
+        # harvest. StrawLink additionally sees satellite forecasts for fields not yet booked.
+        fc = []
+        for r in fcs[d]:
+            h = truth.harvest.get(r["field_id"])
+            if h and h < d and (policy == "baseline" or bookings_parity):
+                r = {**r, "p10": h.isoformat(), "p50": h.isoformat(), "p90": h.isoformat(), "source": "confirmed"}
+            fc.append(r)
+        if policy == "strawlink" and chosen:
+            fc = _confirmed(fc, truth, d, chosen, 2)
         fc = [r for r in fc if r["field_id"] not in burned]
         status = {f: "cleared" for f in cleared}
         pls = [{**pl, "fill_t": round(min(pl["depot_capacity_t"], plant_fill[pl["plant_id"]]), 3)} for pl in plants]
@@ -152,6 +154,15 @@ def simulate(job: dict) -> dict:
                       "cleared_t": round(sum(truth.straw[f] for f in cleared), 2),
                       "at_risk": int(plan["totals"]["fields_at_risk"])})
 
+    replay_dir = OUTPUTS / "backtest" / "replay" / variant
+    replay_dir.mkdir(parents=True, exist_ok=True)
+    replay = {"policy": policy, "fleet_scale": scale, "dates": [d.isoformat() for d in days],
+              "cleared": {f: c.isoformat() for f, c in sorted(cleared.items())},
+              "burned": {f: b.isoformat() for f, b in sorted(burned.items())},
+              "harvest": {f: h.isoformat() for f, h in sorted(truth.harvest.items())}, "synthetic_fleet": True}
+    (replay_dir / f"{scale}.json").write_text(json.dumps(replay))
+    upload(replay_dir / f"{scale}.json", f"outputs/backtest/replay/{replay_dir.name}/{scale}.json")
+
     burned_truth = sorted(truth.burn)
     reached = [f for f in burned_truth if f in cleared and cleared[f] < truth.burn[f]]
     in_time = sum(truth.straw[f] for f, c in cleared.items()
@@ -164,6 +175,7 @@ def simulate(job: dict) -> dict:
         "window_coverage": job.get("window_coverage") if policy == "strawlink" else None,
         "village_volume_mape": job.get("village_mape") if policy == "strawlink" else None,
         "daily": daily, **({"confirm_rate": confirm_rate} if confirm_rate else {}),
+        **({} if bookings_parity else {"variant": "satellite_only"}),
     }
 
 
@@ -215,6 +227,8 @@ def main() -> None:
     ap.add_argument("--fields", default=str(DATA / "fields" / "fields.geojson"))
     ap.add_argument("--every", type=int, default=1, help="simulate every n-th day (speed)")
     ap.add_argument("--confirm-rate", type=float, default=0.0, help="sensitivity run, reported separately")
+    ap.add_argument("--satellite-only", action="store_true",
+                    help="StrawLink without farmer bookings (information handicap vs baseline); reported separately")
     a = ap.parse_args()
     p = params()
     season = a.season
@@ -240,15 +254,17 @@ def main() -> None:
     scales = [float(x) for x in a.scales.split(",")]
     jobs = [{"policy": pol, "scale": s, "season": season, "truth": truth, "gdf": gdf, "days": days,
              "forecasts": fcs, "rain": rain, "burned_last": burned_last, "confirm_rate": a.confirm_rate,
-             "window_coverage": cov, "village_mape": mape}
+             "window_coverage": cov, "village_mape": mape,
+             "bookings_parity": not a.satellite_only}
             for s in scales for pol in ("strawlink", "baseline")]
     with ProcessPoolExecutor(max_workers=max(1, min(a.workers, len(jobs)))) as ex:
         results = list(ex.map(simulate, jobs))
 
-    name = "backtest_result.json" if not a.confirm_rate else f"backtest_sensitivity_confirm{a.confirm_rate}.json"
+    name = ("backtest_result.json" if not (a.confirm_rate or a.satellite_only)
+            else f"backtest_sensitivity_{'satonly' if a.satellite_only else f'confirm{a.confirm_rate}'}.json")
     out = OUTPUTS / "backtest" / name
     out.parent.mkdir(parents=True, exist_ok=True)
-    if not a.confirm_rate:
+    if not (a.confirm_rate or a.satellite_only):
         jsonschema.validate(results, schema("backtest_result"))
     out.write_text(json.dumps(results, indent=2))
     upload(out, f"outputs/backtest/{name}")

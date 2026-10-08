@@ -1,0 +1,3355 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "© OpenStreetMap contributors",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7300573,
+     30.4619919
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1375592891",
+    "kind": "village",
+    "name": "Ramnagar Chhanna",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8816588,
+     30.1909854
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1422665903",
+    "kind": "village",
+    "name": "Kheri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8496797,
+     30.3341292
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1463003674",
+    "kind": "village",
+    "name": "Benra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8242112,
+     30.3162131
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1463006945",
+    "kind": "village",
+    "name": "Ladda Khothi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9338075,
+     30.2376011
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1485704210",
+    "kind": "village",
+    "name": "Kaloudi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7514217,
+     30.182621
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1492189504",
+    "kind": "village",
+    "name": "Namol",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8435894,
+     30.167962
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1514218702",
+    "kind": "village",
+    "name": "Nakte Pind",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8358123,
+     30.2432006
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1596081362",
+    "kind": "village",
+    "name": "Sangrur",
+    "name_pa": "ਸੰਗਰੂਰ",
+    "place": "town"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7992416,
+     30.1984103
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1667064874",
+    "kind": "village",
+    "name": "Chatha",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8220736,
+     30.211651
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1667064977",
+    "kind": "village",
+    "name": "Upli",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7746725,
+     30.2120404
+    ]
+   },
+   "properties": {
+    "osm_id": "node/1667082391",
+    "kind": "village",
+    "name": "Ubhawal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8480233,
+     30.2201424
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2615926535",
+    "kind": "village",
+    "name": "Ramnagar Sibian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5329075,
+     30.4716743
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2643248120",
+    "kind": "village",
+    "name": "Chaunke Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5498467,
+     30.4736486
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2643249067",
+    "kind": "village",
+    "name": "Chaunke Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.665541,
+     30.5067916
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2795763687",
+    "kind": "village",
+    "name": "Manal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.609322,
+     30.5131422
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2812840312",
+    "kind": "village",
+    "name": "Khiali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5514195,
+     30.4936553
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817272677",
+    "kind": "village",
+    "name": "Sehjra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5844367,
+     30.493335
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817460065",
+    "kind": "village",
+    "name": "Sahour",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5628226,
+     30.3992158
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817465469",
+    "kind": "village",
+    "name": "Sanghera",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7055605,
+     30.4403774
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817474758",
+    "kind": "village",
+    "name": "Sherpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7452922,
+     30.448693
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817474768",
+    "kind": "village",
+    "name": "Katron",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6968221,
+     30.4869381
+    ]
+   },
+   "properties": {
+    "osm_id": "node/2817487701",
+    "kind": "village",
+    "name": "Tibba",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6798604,
+     30.1942109
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5284831326",
+    "kind": "village",
+    "name": "Laungowal",
+    "name_pa": "ਲੌਂਗੋਵਾਲ",
+    "place": "town"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6303549,
+     30.2178756
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5284831774",
+    "kind": "village",
+    "name": "Loha Khera",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6644833,
+     30.2535879
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5284891146",
+    "kind": "village",
+    "name": "Badbar",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8427,
+     30.1811557
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5999925417",
+    "kind": "village",
+    "name": "Tung",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8553386,
+     30.165694
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5999925418",
+    "kind": "village",
+    "name": "Kular Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8204698,
+     30.1792637
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5999925419",
+    "kind": "village",
+    "name": "Bharur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8108139,
+     30.1595625
+    ]
+   },
+   "properties": {
+    "osm_id": "node/5999925420",
+    "kind": "village",
+    "name": "Lakhmirwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.600357,
+     30.2996858
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332066",
+    "kind": "village",
+    "name": "Dan Singhwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7272577,
+     30.3724309
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332439",
+    "kind": "village",
+    "name": "Alal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7121944,
+     30.365007
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332440",
+    "kind": "village",
+    "name": "Sultanpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7431792,
+     30.360508
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332441",
+    "kind": "village",
+    "name": "Mulowal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6885909,
+     30.3619151
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332442",
+    "kind": "village",
+    "name": "Rangian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6455038,
+     30.3585084
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332443",
+    "kind": "village",
+    "name": "Sekha",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7726192,
+     30.3085781
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332444",
+    "kind": "village",
+    "name": "Kanjhla",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7247256,
+     30.3192479
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332445",
+    "kind": "village",
+    "name": "Kila",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6788492,
+     30.308152
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332446",
+    "kind": "village",
+    "name": "Balian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5952072,
+     30.3345094
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332494",
+    "kind": "village",
+    "name": "Rajgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5770969,
+     30.3373985
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332495",
+    "kind": "village",
+    "name": "Pharwai",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6336593,
+     30.3087263
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332496",
+    "kind": "village",
+    "name": "Kattu",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6127918,
+     30.323795
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332497",
+    "kind": "village",
+    "name": "Upli",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6201839,
+     30.2381585
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332549",
+    "kind": "village",
+    "name": "Bhure",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5923318,
+     30.2148347
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332550",
+    "kind": "village",
+    "name": "Buggar",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6063222,
+     30.2322631
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332551",
+    "kind": "village",
+    "name": "Kubba",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5976319,
+     30.2445353
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332646",
+    "kind": "village",
+    "name": "Atar Singhwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5394171,
+     30.237417
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332665",
+    "kind": "village",
+    "name": "Kaloke",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.632286,
+     30.2913115
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332709",
+    "kind": "village",
+    "name": "Bhatlan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5725479,
+     30.2844558
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6016332736",
+    "kind": "village",
+    "name": "Dhanaula",
+    "name_pa": "ਧਨੌਲਾ",
+    "place": "town"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5984687,
+     30.1781508
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799527",
+    "kind": "village",
+    "name": "Rattoke",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5874824,
+     30.1811929
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799528",
+    "kind": "village",
+    "name": "Sahuke",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6134032,
+     30.1762216
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799529",
+    "kind": "village",
+    "name": "Takpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.589199,
+     30.1707307
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799530",
+    "kind": "village",
+    "name": "Dhadrian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5870532,
+     30.2007785
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799531",
+    "kind": "village",
+    "name": "Mander Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6397533,
+     30.1792638
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044799532",
+    "kind": "village",
+    "name": "Mander Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9195184,
+     30.227517
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927537",
+    "kind": "village",
+    "name": "Batwahar Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9051417,
+     30.237417
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927538",
+    "kind": "village",
+    "name": "Khurani",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.906515,
+     30.2446837
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927539",
+    "kind": "village",
+    "name": "Khurana",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8691787,
+     30.2314845
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927540",
+    "kind": "village",
+    "name": "Sohian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8546734,
+     30.1926924
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927541",
+    "kind": "village",
+    "name": "Kanai",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8759594,
+     30.2094943
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927542",
+    "kind": "village",
+    "name": "Kamboh Majra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8939409,
+     30.2052663
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927543",
+    "kind": "village",
+    "name": "Ilwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9100341,
+     30.1950293
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927544",
+    "kind": "village",
+    "name": "Gaggarpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9249258,
+     30.1844574
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6044927545",
+    "kind": "village",
+    "name": "Sajurna",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9338093,
+     30.3289348
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6046182828",
+    "kind": "village",
+    "name": "Palasaur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.855789,
+     30.3992338
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237198",
+    "kind": "village",
+    "name": "Daulatpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.888233,
+     30.3979013
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237199",
+    "kind": "village",
+    "name": "Bararwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9160422,
+     30.4098937
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237201",
+    "kind": "village",
+    "name": "Banganwali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9126089,
+     30.3981974
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237202",
+    "kind": "village",
+    "name": "Dhandra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8842848,
+     30.3462135
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237203",
+    "kind": "village",
+    "name": "Manwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8885763,
+     30.3559903
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237204",
+    "kind": "village",
+    "name": "Dhura",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9405897,
+     30.3802801
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051237205",
+    "kind": "village",
+    "name": "jakhlan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7474708,
+     30.4061184
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358107",
+    "kind": "village",
+    "name": "Ghanauri Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7220648,
+     30.4072288
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358108",
+    "kind": "village",
+    "name": "Didargarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7239531,
+     30.4180358
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358109",
+    "kind": "village",
+    "name": "Kala Bula",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7105635,
+     30.3941996
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358110",
+    "kind": "village",
+    "name": "Herike",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5712604,
+     30.4584404
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358111",
+    "kind": "village",
+    "name": "Bazidka Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5757236,
+     30.4667264
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358112",
+    "kind": "village",
+    "name": "Bazidka Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5722044,
+     30.4283976
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358113",
+    "kind": "village",
+    "name": "Amla Singh Wala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6207415,
+     30.3705706
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358114",
+    "kind": "village",
+    "name": "Harbanspura",
+    "name_pa": "",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7630919,
+     30.4455661
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358115",
+    "kind": "village",
+    "name": "Changli",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7941894,
+     30.4507549
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358116",
+    "kind": "village",
+    "name": "Kaleran",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8171652,
+     30.474716
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358117",
+    "kind": "village",
+    "name": "Chung",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7938193,
+     30.4707213
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358118",
+    "kind": "village",
+    "name": "Pharwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.770645,
+     30.4733844
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358119",
+    "kind": "village",
+    "name": "Rurgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7872961,
+     30.4915804
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358120",
+    "kind": "village",
+    "name": "Isapur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7515906,
+     30.4994199
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358121",
+    "kind": "village",
+    "name": "Mahmadpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7059287,
+     30.4946867
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358122",
+    "kind": "village",
+    "name": "Gurbakhshpura",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6072234,
+     30.4668744
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358123",
+    "kind": "village",
+    "name": "Hamidi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6455039,
+     30.4856633
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358124",
+    "kind": "village",
+    "name": "Thulliwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7076453,
+     30.4693897
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358125",
+    "kind": "village",
+    "name": "Bhari",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6881618,
+     30.4568867
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358126",
+    "kind": "village",
+    "name": "Gobindpura",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6394099,
+     30.4494137
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358127",
+    "kind": "village",
+    "name": "Gurram",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6607818,
+     30.454889
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358128",
+    "kind": "village",
+    "name": "Gumti",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6791495,
+     30.445418
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358129",
+    "kind": "village",
+    "name": "Bhagtanwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6937408,
+     30.414779
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358130",
+    "kind": "village",
+    "name": "Ina Bajwar",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6828403,
+     30.4209964
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358131",
+    "kind": "village",
+    "name": "Kheri Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6829261,
+     30.433726
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358132",
+    "kind": "village",
+    "name": "Kheri Chahlan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6091975,
+     30.4138167
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358133",
+    "kind": "village",
+    "name": "Karamgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6570911,
+     30.4209223
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358134",
+    "kind": "village",
+    "name": "Thullewal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6465339,
+     30.424919
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358135",
+    "kind": "village",
+    "name": "Nangal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6570052,
+     30.3944216
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358136",
+    "kind": "village",
+    "name": "Jhalur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6802653,
+     30.3317685
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358138",
+    "kind": "village",
+    "name": "Kumbarwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7580709,
+     30.3565087
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358139",
+    "kind": "village",
+    "name": "Ranike",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7572126,
+     30.3400653
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358140",
+    "kind": "village",
+    "name": "Hasanpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7784556,
+     30.287754
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358141",
+    "kind": "village",
+    "name": "Lidran",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7927035,
+     30.2855305
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358142",
+    "kind": "village",
+    "name": "Changal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.822401,
+     30.2910891
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358143",
+    "kind": "village",
+    "name": "Banganwali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8115005,
+     30.2931643
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358144",
+    "kind": "village",
+    "name": "Khilarian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7967376,
+     30.3273235
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358145",
+    "kind": "village",
+    "name": "Puhnawal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7216357,
+     30.313765
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358146",
+    "kind": "village",
+    "name": "Batuha",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7423209,
+     30.3036134
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358147",
+    "kind": "village",
+    "name": "Kanjali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7188892,
+     30.3433986
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358148",
+    "kind": "village",
+    "name": "Dhandiwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7423209,
+     30.3950139
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358149",
+    "kind": "village",
+    "name": "Salempur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7709884,
+     30.3902756
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358150",
+    "kind": "village",
+    "name": "Badshahpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8057498,
+     30.3480651
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358151",
+    "kind": "village",
+    "name": "Pedihni Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7848071,
+     30.3565087
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358152",
+    "kind": "village",
+    "name": "Bugra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8346747,
+     30.3679137
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358153",
+    "kind": "village",
+    "name": "Kakarwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8181094,
+     30.3911641
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358154",
+    "kind": "village",
+    "name": "Jahangir",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8314132,
+     30.3916823
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358155",
+    "kind": "village",
+    "name": "Kaheru",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9424781,
+     30.4375371
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358159",
+    "kind": "village",
+    "name": "Isra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9365129,
+     30.4201082
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358163",
+    "kind": "village",
+    "name": "Isri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8865594,
+     30.464322
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358164",
+    "kind": "village",
+    "name": "Sangala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8937692,
+     30.4663565
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358165",
+    "kind": "village",
+    "name": "Sangali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9058713,
+     30.4672073
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358166",
+    "kind": "village",
+    "name": "Bhaini Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9011077,
+     30.4568866
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358167",
+    "kind": "village",
+    "name": "Rustamgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9173727,
+     30.4528172
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358168",
+    "kind": "village",
+    "name": "Banbhauri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8941555,
+     30.4374631
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358169",
+    "kind": "village",
+    "name": "Bhasaur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8214568,
+     30.4513375
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358170",
+    "kind": "village",
+    "name": "Hathan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.858407,
+     30.4464724
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358171",
+    "kind": "village",
+    "name": "Faizgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8445882,
+     30.4337999
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358172",
+    "kind": "village",
+    "name": "Jati Mazra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8381724,
+     30.4341699
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358173",
+    "kind": "village",
+    "name": "Dugni",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.871582,
+     30.4185538
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358174",
+    "kind": "village",
+    "name": "Babbanpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8496952,
+     30.4122252
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358175",
+    "kind": "village",
+    "name": "Mallu Mazra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.824933,
+     30.4197751
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358176",
+    "kind": "village",
+    "name": "Bamal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8128738,
+     30.4201082
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358177",
+    "kind": "village",
+    "name": "Ghanaur Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7951498,
+     30.4256591
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358178",
+    "kind": "village",
+    "name": "Ghanaur Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7789707,
+     30.4199601
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051358179",
+    "kind": "village",
+    "name": "Ghanauri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7970808,
+     30.3725791
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469056",
+    "kind": "village",
+    "name": "Rajo Mazra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9371862,
+     30.2681219
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469876",
+    "kind": "village",
+    "name": "Ghabdan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.713911,
+     30.2462778
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469960",
+    "kind": "village",
+    "name": "Kunran",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7338666,
+     30.2464632
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469961",
+    "kind": "village",
+    "name": "Duggan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7552385,
+     30.2427929
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469962",
+    "kind": "village",
+    "name": "Bhamandaddi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7449388,
+     30.2573621
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469963",
+    "kind": "village",
+    "name": "Bahadurpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9041118,
+     30.301279
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469964",
+    "kind": "village",
+    "name": "Rupaheri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8934259,
+     30.3173955
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469965",
+    "kind": "village",
+    "name": "Saron",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9237885,
+     30.3445837
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469966",
+    "kind": "village",
+    "name": "Bhojowali",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9259986,
+     30.3653959
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469967",
+    "kind": "village",
+    "name": "Mirheri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9034251,
+     30.3654699
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469968",
+    "kind": "village",
+    "name": "Harshandpura",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8503818,
+     30.2828993
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469969",
+    "kind": "village",
+    "name": "Thales",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8430862,
+     30.2849005
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469970",
+    "kind": "village",
+    "name": "Akoi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8712385,
+     30.254619
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469971",
+    "kind": "village",
+    "name": "Mangwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.933938,
+     30.2899403
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469975",
+    "kind": "village",
+    "name": "Laddi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9424781,
+     30.2509119
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469976",
+    "kind": "village",
+    "name": "Gurdaspura",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9143257,
+     30.2665177
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469977",
+    "kind": "village",
+    "name": "Bhindran",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9004157,
+     30.260777
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469978",
+    "kind": "village",
+    "name": "Najwala",
+    "name_pa": "",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8738565,
+     30.2808981
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469979",
+    "kind": "village",
+    "name": "Zulmgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8995628,
+     30.2798233
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469980",
+    "kind": "village",
+    "name": "Balian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8714532,
+     30.3080965
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469981",
+    "kind": "village",
+    "name": "Chhannan Bahadur Singh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8637714,
+     30.299871
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051469982",
+    "kind": "village",
+    "name": "Baragraon",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7327079,
+     30.209754
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603600",
+    "kind": "village",
+    "name": "Kila Bharian",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8414984,
+     30.2601051
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603601",
+    "kind": "village",
+    "name": "Khazan Singhwala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8205557,
+     30.2449988
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603602",
+    "kind": "village",
+    "name": "Baguana",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8130026,
+     30.2699277
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603603",
+    "kind": "village",
+    "name": "Andheri",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7749367,
+     30.2657393
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603604",
+    "kind": "village",
+    "name": "Mastuana",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7906436,
+     30.252024
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051603605",
+    "kind": "village",
+    "name": "Badru Khan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.725498,
+     30.2891623
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051604403",
+    "kind": "village",
+    "name": "Nat",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6348608,
+     30.2654429
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051604404",
+    "kind": "village",
+    "name": "Harigarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6827543,
+     30.2818988
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051604405",
+    "kind": "village",
+    "name": "Bhaini Mahraj",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.819354,
+     30.4858667
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851795",
+    "kind": "village",
+    "name": "Faridpur Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8256197,
+     30.4813732
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851796",
+    "kind": "village",
+    "name": "Faridpur Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8299112,
+     30.5002333
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851797",
+    "kind": "village",
+    "name": "Rurka",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8583641,
+     30.4884
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851798",
+    "kind": "village",
+    "name": "Naudharani",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8409404,
+     30.4950934
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851799",
+    "kind": "village",
+    "name": "Ahnon",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9276294,
+     30.4953523
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851802",
+    "kind": "village",
+    "name": "Uppoki",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9117615,
+     30.4849976
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851803",
+    "kind": "village",
+    "name": "Manak Mazra",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.9320497,
+     30.4723117
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851806",
+    "kind": "village",
+    "name": "Darogewala",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8753585,
+     30.4849606
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851807",
+    "kind": "village",
+    "name": "Adamwal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.893383,
+     30.4839991
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851808",
+    "kind": "village",
+    "name": "Muhammadnagar",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.861454,
+     30.4671703
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851809",
+    "kind": "village",
+    "name": "Saddopur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8739423,
+     30.4622505
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851810",
+    "kind": "village",
+    "name": "Muhammadgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8652842,
+     30.4553236
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851812",
+    "kind": "village",
+    "name": "Lachcha Baddi",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8508968,
+     30.4545375
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851813",
+    "kind": "village",
+    "name": "Dalelgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8430648,
+     30.4779706
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851814",
+    "kind": "village",
+    "name": "Burj",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8489455,
+     30.4304407
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6051851815",
+    "kind": "village",
+    "name": "Balamgarh",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5385679,
+     30.2039501
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6700099573",
+    "kind": "village",
+    "name": "Aspal Kalan",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5447263,
+     30.2071583
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6700099574",
+    "kind": "village",
+    "name": "Aspal Khurd",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5779472,
+     30.2441692
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6700106950",
+    "kind": "village",
+    "name": "Pindi Jwanda",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5911491,
+     30.2584903
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6700155185",
+    "kind": "village",
+    "name": "",
+    "name_pa": "",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.568123,
+     30.4240923
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6700261746",
+    "kind": "village",
+    "name": "Bhadalwad",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5687805,
+     30.3083552
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6702762704",
+    "kind": "village",
+    "name": "Pindi Manna",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.5834897,
+     30.3066509
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6702772365",
+    "kind": "village",
+    "name": "Kothe Rajinderpura",
+    "name_pa": "",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.6458713,
+     30.5038903
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6703043254",
+    "kind": "village",
+    "name": "Mangewal",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7577707,
+     30.494613
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6703252927",
+    "kind": "village",
+    "name": "Alipur Khalsa",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7293928,
+     30.5023097
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6703255274",
+    "kind": "village",
+    "name": "Wazirpur",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.7043877,
+     30.4492281
+    ]
+   },
+   "properties": {
+    "osm_id": "node/6703331237",
+    "kind": "village",
+    "name": "Patti Khaleel",
+    "name_pa": "",
+    "place": "village"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     75.8647369,
+     30.3708266
+    ]
+   },
+   "properties": {
+    "osm_id": "node/807827478",
+    "kind": "village",
+    "name": "Dhuri",
+    "name_pa": "ਧੂਰੀ",
+    "place": "town"
+   }
+  }
+ ]
+}

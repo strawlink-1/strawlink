@@ -1,5 +1,8 @@
 # StrawLink — root CLAUDE.md
 
+> **Handoff in progress (8 Oct 2026):** read `HANDOFF.md` first — current state, AWS deploy
+> runbook, results, and the prioritised to-do list (incl. the new 3D UI brief).
+
 Read this file first, then the CLAUDE.md in the folder you are working in
 (`pipeline/` for Yash, `app/` for Shambhvi). The PRD is the source of truth for
 *what* to build; these files say *how*.

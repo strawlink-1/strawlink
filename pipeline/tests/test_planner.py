@@ -152,3 +152,19 @@ def test_baseline_only_serves_harvested_and_bale(state):
         for s in a.stops:
             assert s.field_id in harvested
             assert s.method == "bale"
+
+
+def test_clustering_matches_dbscan():
+    import numpy as np
+    from sklearn.cluster import DBSCAN
+
+    from strawlink_planner.prepare import connected_components
+
+    rng = np.random.default_rng(1)
+    pts = [(76.4 + rng.normal(0, 0.01), 30.3 + rng.normal(0, 0.01)) for _ in range(80)]
+    ours = connected_components(pts, 0.8)
+    ref = DBSCAN(eps=0.8 / 6371.0088, min_samples=1, metric="haversine").fit(
+        np.radians([[y, x] for x, y in pts])).labels_
+    # same partition (label ids may differ)
+    assert {frozenset(i for i, l in enumerate(ours) if l == k) for k in set(ours)} == \
+        {frozenset(i for i, l in enumerate(ref) if l == k) for k in set(ref)}
