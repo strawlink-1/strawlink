@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strawlink/plan.schema.json",
+  "title": "plan.json — output of plan_day / plan_day_baseline",
+  "version": "0.1",
+  "$defs": {
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "datetime": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?([+-]\\d{2}:\\d{2})?$"}
+  },
+  "type": "object",
+  "required": ["plan_id", "date", "policy", "synthetic", "fields", "assignments", "unassigned", "totals", "solver"],
+  "properties": {
+    "plan_id": {"type": "string"},
+    "date": {"$ref": "#/$defs/date"},
+    "policy": {"enum": ["strawlink", "baseline"]},
+    "synthetic": {"type": "boolean"},
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field_id", "priority", "priority_parts", "route", "route_reason", "cluster_id", "days_left", "dry"],
+        "properties": {
+          "field_id": {"type": "string"},
+          "priority": {"type": "number", "minimum": 0},
+          "priority_parts": {
+            "type": "object",
+            "required": ["tonnes", "urgency", "bonus", "dry"],
+            "properties": {
+              "tonnes": {"type": "number", "minimum": 0},
+              "urgency": {"type": "number", "minimum": 0},
+              "bonus": {"type": "number", "minimum": 0},
+              "dry": {"type": "number", "enum": [0, 1]}
+            },
+            "additionalProperties": false
+          },
+          "route": {"enum": ["bale", "seed", "at_risk"]},
+          "route_reason": {"type": "string"},
+          "cluster_id": {"type": ["string", "null"]},
+          "days_left": {"type": "integer"},
+          "dry": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["machine_id", "type", "stops", "deliveries"],
+        "properties": {
+          "machine_id": {"type": "string"},
+          "type": {"enum": ["baler_set", "truck", "seeder"]},
+          "stops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["field_id", "arrive", "depart", "tonnes", "method"],
+              "properties": {
+                "field_id": {"type": "string"},
+                "arrive": {"$ref": "#/$defs/datetime"},
+                "depart": {"$ref": "#/$defs/datetime"},
+                "tonnes": {"type": "number", "minimum": 0},
+                "method": {"enum": ["bale", "seed"]}
+              },
+              "additionalProperties": false
+            }
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["plant_id", "tonnes", "arrive"],
+              "properties": {
+                "plant_id": {"type": "string"},
+                "tonnes": {"type": "number", "minimum": 0},
+                "arrive": {"$ref": "#/$defs/datetime"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unassigned": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field_id", "reason"],
+        "properties": {
+          "field_id": {"type": "string"},
+          "reason": {"enum": ["capacity", "deadline", "wet", "no_machine"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": ["tonnes_planned", "fields_planned", "fields_at_risk"],
+      "properties": {
+        "tonnes_planned": {"type": "number", "minimum": 0},
+        "fields_planned": {"type": "integer", "minimum": 0},
+        "fields_at_risk": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "solver": {
+      "type": "object",
+      "required": ["status", "runtime_s", "objective"],
+      "properties": {
+        "status": {"type": "string"},
+        "runtime_s": {"type": "number", "minimum": 0},
+        "objective": {"type": ["number", "null"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

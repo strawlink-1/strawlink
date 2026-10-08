@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strawlink/backtest_result.schema.json",
+  "title": "backtest_result.json",
+  "version": "0.1",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["fleet_scale", "policy", "reach_rate", "burned_fields_total", "burned_fields_reached", "tonnes_cleared_in_time", "window_coverage", "village_volume_mape", "daily"],
+    "properties": {
+      "fleet_scale": {"enum": [0.75, 1.0, 1.25]},
+      "policy": {"enum": ["strawlink", "baseline"]},
+      "reach_rate": {"type": "number", "minimum": 0, "maximum": 1},
+      "burned_fields_total": {"type": "integer", "minimum": 0},
+      "burned_fields_reached": {"type": "integer", "minimum": 0},
+      "tonnes_cleared_in_time": {"type": "number", "minimum": 0},
+      "window_coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+      "village_volume_mape": {"type": ["number", "null"], "minimum": 0},
+      "synthetic": {"type": "boolean"},
+      "daily": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["date", "cleared_fields", "cleared_t", "at_risk"],
+          "properties": {
+            "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+            "cleared_fields": {"type": "integer", "minimum": 0},
+            "cleared_t": {"type": "number", "minimum": 0},
+            "at_risk": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

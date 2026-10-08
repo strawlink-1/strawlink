@@ -1,0 +1,332 @@
+[
+  {
+    "fleet_scale": 0.75,
+    "policy": "strawlink",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  },
+  {
+    "fleet_scale": 0.75,
+    "policy": "baseline",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.0,
+    "policy": "strawlink",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.0,
+    "policy": "baseline",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.25,
+    "policy": "strawlink",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  },
+  {
+    "fleet_scale": 1.25,
+    "policy": "baseline",
+    "reach_rate": 0.0,
+    "burned_fields_total": 0,
+    "burned_fields_reached": 0,
+    "tonnes_cleared_in_time": 0.0,
+    "window_coverage": null,
+    "village_volume_mape": null,
+    "synthetic": true,
+    "daily": [
+      {
+        "date": "2025-10-01",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-11",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-21",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-10-31",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-10",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-20",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      },
+      {
+        "date": "2025-11-30",
+        "cleared_fields": 0,
+        "cleared_t": 0.0,
+        "at_risk": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,1236 @@
+{
+  "date": "2026-10-20",
+  "synthetic": true,
+  "fields": [
+    {
+      "field_id": "F0001",
+      "centroid": [
+        76.422705,
+        30.320949
+      ],
+      "village_id": "V01",
+      "straw_t": 10.8,
+      "p10": "2026-10-16",
+      "p50": "2026-10-19",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0002",
+      "centroid": [
+        76.42449,
+        30.34628
+      ],
+      "village_id": "V02",
+      "straw_t": 5.82,
+      "p10": "2026-10-21",
+      "p50": "2026-10-22",
+      "p90": "2026-10-25",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0003",
+      "centroid": [
+        76.361957,
+        30.371045
+      ],
+      "village_id": "V03",
+      "straw_t": 19.26,
+      "p10": "2026-10-22",
+      "p50": "2026-10-25",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0004",
+      "centroid": [
+        76.424321,
+        30.353034
+      ],
+      "village_id": "V04",
+      "straw_t": 16.86,
+      "p10": "2026-10-15",
+      "p50": "2026-10-17",
+      "p90": "2026-10-19",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0005",
+      "centroid": [
+        76.426656,
+        30.331704
+      ],
+      "village_id": "V01",
+      "straw_t": 6.9,
+      "p10": "2026-10-23",
+      "p50": "2026-10-25",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0006",
+      "centroid": [
+        76.433249,
+        30.340668
+      ],
+      "village_id": "V02",
+      "straw_t": 17.82,
+      "p10": "2026-10-19",
+      "p50": "2026-10-22",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0007",
+      "centroid": [
+        76.367608,
+        30.368095
+      ],
+      "village_id": "V03",
+      "straw_t": 4.92,
+      "p10": "2026-10-23",
+      "p50": "2026-10-26",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0008",
+      "centroid": [
+        76.418805,
+        30.34723
+      ],
+      "village_id": "V04",
+      "straw_t": 7.08,
+      "p10": "2026-10-26",
+      "p50": "2026-10-26",
+      "p90": "2026-10-26",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0009",
+      "centroid": [
+        76.428856,
+        30.316446
+      ],
+      "village_id": "V01",
+      "straw_t": 17.22,
+      "p10": "2026-10-21",
+      "p50": "2026-10-23",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0010",
+      "centroid": [
+        76.427679,
+        30.341771
+      ],
+      "village_id": "V02",
+      "straw_t": 8.28,
+      "p10": "2026-10-17",
+      "p50": "2026-10-20",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0011",
+      "centroid": [
+        76.360467,
+        30.367109
+      ],
+      "village_id": "V03",
+      "straw_t": 9.54,
+      "p10": "2026-10-20",
+      "p50": "2026-10-22",
+      "p90": "2026-10-25",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0012",
+      "centroid": [
+        76.419811,
+        30.353175
+      ],
+      "village_id": "V04",
+      "straw_t": 7.5,
+      "p10": "2026-10-24",
+      "p50": "2026-10-24",
+      "p90": "2026-10-24",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0013",
+      "centroid": [
+        76.415343,
+        30.32822
+      ],
+      "village_id": "V01",
+      "straw_t": 7.44,
+      "p10": "2026-10-25",
+      "p50": "2026-10-27",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0014",
+      "centroid": [
+        76.429242,
+        30.341983
+      ],
+      "village_id": "V02",
+      "straw_t": 15.0,
+      "p10": "2026-10-19",
+      "p50": "2026-10-22",
+      "p90": "2026-10-23",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0015",
+      "centroid": [
+        76.359981,
+        30.36658
+      ],
+      "village_id": "V03",
+      "straw_t": 16.14,
+      "p10": "2026-10-21",
+      "p50": "2026-10-22",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0016",
+      "centroid": [
+        76.415911,
+        30.349582
+      ],
+      "village_id": "V04",
+      "straw_t": 6.36,
+      "p10": "2026-10-24",
+      "p50": "2026-10-25",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0017",
+      "centroid": [
+        76.425522,
+        30.326868
+      ],
+      "village_id": "V01",
+      "straw_t": 7.68,
+      "p10": "2026-10-19",
+      "p50": "2026-10-22",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0018",
+      "centroid": [
+        76.429994,
+        30.352971
+      ],
+      "village_id": "V02",
+      "straw_t": 15.3,
+      "p10": "2026-10-22",
+      "p50": "2026-10-22",
+      "p90": "2026-10-22",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0019",
+      "centroid": [
+        76.367585,
+        30.371786
+      ],
+      "village_id": "V03",
+      "straw_t": 10.14,
+      "p10": "2026-10-24",
+      "p50": "2026-10-24",
+      "p90": "2026-10-24",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0020",
+      "centroid": [
+        76.417747,
+        30.345669
+      ],
+      "village_id": "V04",
+      "straw_t": 14.22,
+      "p10": "2026-10-22",
+      "p50": "2026-10-24",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0021",
+      "centroid": [
+        76.413626,
+        30.320067
+      ],
+      "village_id": "V01",
+      "straw_t": 17.46,
+      "p10": "2026-10-16",
+      "p50": "2026-10-17",
+      "p90": "2026-10-20",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0022",
+      "centroid": [
+        76.423677,
+        30.332711
+      ],
+      "village_id": "V02",
+      "straw_t": 9.12,
+      "p10": "2026-10-26",
+      "p50": "2026-10-28",
+      "p90": "2026-10-31",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0023",
+      "centroid": [
+        76.365331,
+        30.370195
+      ],
+      "village_id": "V03",
+      "straw_t": 19.32,
+      "p10": "2026-10-22",
+      "p50": "2026-10-23",
+      "p90": "2026-10-25",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0024",
+      "centroid": [
+        76.421407,
+        30.36029
+      ],
+      "village_id": "V04",
+      "straw_t": 17.28,
+      "p10": "2026-10-25",
+      "p50": "2026-10-25",
+      "p90": "2026-10-25",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0025",
+      "centroid": [
+        76.415411,
+        30.320341
+      ],
+      "village_id": "V01",
+      "straw_t": 13.8,
+      "p10": "2026-10-21",
+      "p50": "2026-10-23",
+      "p90": "2026-10-25",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0026",
+      "centroid": [
+        76.435675,
+        30.346368
+      ],
+      "village_id": "V02",
+      "straw_t": 13.14,
+      "p10": "2026-10-17",
+      "p50": "2026-10-20",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0027",
+      "centroid": [
+        76.363369,
+        30.357761
+      ],
+      "village_id": "V03",
+      "straw_t": 20.88,
+      "p10": "2026-10-15",
+      "p50": "2026-10-18",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0028",
+      "centroid": [
+        76.423528,
+        30.357783
+      ],
+      "village_id": "V04",
+      "straw_t": 17.28,
+      "p10": "2026-10-25",
+      "p50": "2026-10-27",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0029",
+      "centroid": [
+        76.432399,
+        30.326572
+      ],
+      "village_id": "V01",
+      "straw_t": 19.98,
+      "p10": "2026-10-28",
+      "p50": "2026-10-28",
+      "p90": "2026-10-28",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0030",
+      "centroid": [
+        76.428736,
+        30.3422
+      ],
+      "village_id": "V02",
+      "straw_t": 14.52,
+      "p10": "2026-10-25",
+      "p50": "2026-10-26",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0031",
+      "centroid": [
+        76.37023,
+        30.36227
+      ],
+      "village_id": "V03",
+      "straw_t": 12.9,
+      "p10": "2026-10-22",
+      "p50": "2026-10-22",
+      "p90": "2026-10-22",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0032",
+      "centroid": [
+        76.422308,
+        30.354191
+      ],
+      "village_id": "V04",
+      "straw_t": 6.78,
+      "p10": "2026-10-16",
+      "p50": "2026-10-19",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0033",
+      "centroid": [
+        76.417326,
+        30.323765
+      ],
+      "village_id": "V01",
+      "straw_t": 16.38,
+      "p10": "2026-10-18",
+      "p50": "2026-10-18",
+      "p90": "2026-10-18",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0034",
+      "centroid": [
+        76.432908,
+        30.341652
+      ],
+      "village_id": "V02",
+      "straw_t": 9.66,
+      "p10": "2026-10-16",
+      "p50": "2026-10-18",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0035",
+      "centroid": [
+        76.365246,
+        30.360635
+      ],
+      "village_id": "V03",
+      "straw_t": 5.22,
+      "p10": "2026-10-22",
+      "p50": "2026-10-24",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0036",
+      "centroid": [
+        76.423168,
+        30.364357
+      ],
+      "village_id": "V04",
+      "straw_t": 14.46,
+      "p10": "2026-10-15",
+      "p50": "2026-10-18",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0037",
+      "centroid": [
+        76.419121,
+        30.32729
+      ],
+      "village_id": "V01",
+      "straw_t": 6.54,
+      "p10": "2026-10-17",
+      "p50": "2026-10-20",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0038",
+      "centroid": [
+        76.423222,
+        30.341407
+      ],
+      "village_id": "V02",
+      "straw_t": 10.86,
+      "p10": "2026-10-22",
+      "p50": "2026-10-23",
+      "p90": "2026-10-26",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0039",
+      "centroid": [
+        76.357047,
+        30.375965
+      ],
+      "village_id": "V03",
+      "straw_t": 8.64,
+      "p10": "2026-10-25",
+      "p50": "2026-10-28",
+      "p90": "2026-11-01",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0040",
+      "centroid": [
+        76.419443,
+        30.35255
+      ],
+      "village_id": "V04",
+      "straw_t": 18.18,
+      "p10": "2026-10-14",
+      "p50": "2026-10-17",
+      "p90": "2026-10-18",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0041",
+      "centroid": [
+        76.425525,
+        30.323537
+      ],
+      "village_id": "V01",
+      "straw_t": 7.26,
+      "p10": "2026-10-22",
+      "p50": "2026-10-22",
+      "p90": "2026-10-22",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0042",
+      "centroid": [
+        76.431307,
+        30.341266
+      ],
+      "village_id": "V02",
+      "straw_t": 14.4,
+      "p10": "2026-10-14",
+      "p50": "2026-10-17",
+      "p90": "2026-10-19",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0043",
+      "centroid": [
+        76.366543,
+        30.364412
+      ],
+      "village_id": "V03",
+      "straw_t": 18.6,
+      "p10": "2026-10-22",
+      "p50": "2026-10-23",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0044",
+      "centroid": [
+        76.43157,
+        30.35279
+      ],
+      "village_id": "V04",
+      "straw_t": 5.58,
+      "p10": "2026-10-16",
+      "p50": "2026-10-19",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0045",
+      "centroid": [
+        76.430248,
+        30.327004
+      ],
+      "village_id": "V01",
+      "straw_t": 19.8,
+      "p10": "2026-10-24",
+      "p50": "2026-10-25",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0046",
+      "centroid": [
+        76.426912,
+        30.345711
+      ],
+      "village_id": "V02",
+      "straw_t": 15.18,
+      "p10": "2026-10-25",
+      "p50": "2026-10-28",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0047",
+      "centroid": [
+        76.367164,
+        30.372396
+      ],
+      "village_id": "V03",
+      "straw_t": 12.3,
+      "p10": "2026-10-24",
+      "p50": "2026-10-26",
+      "p90": "2026-10-27",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0048",
+      "centroid": [
+        76.41077,
+        30.352476
+      ],
+      "village_id": "V04",
+      "straw_t": 8.58,
+      "p10": "2026-10-16",
+      "p50": "2026-10-18",
+      "p90": "2026-10-20",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0049",
+      "centroid": [
+        76.422427,
+        30.319865
+      ],
+      "village_id": "V01",
+      "straw_t": 9.6,
+      "p10": "2026-10-23",
+      "p50": "2026-10-26",
+      "p90": "2026-10-30",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0050",
+      "centroid": [
+        76.432599,
+        30.353743
+      ],
+      "village_id": "V02",
+      "straw_t": 15.36,
+      "p10": "2026-10-18",
+      "p50": "2026-10-20",
+      "p90": "2026-10-23",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0051",
+      "centroid": [
+        76.361854,
+        30.369781
+      ],
+      "village_id": "V03",
+      "straw_t": 8.1,
+      "p10": "2026-10-21",
+      "p50": "2026-10-24",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0052",
+      "centroid": [
+        76.426432,
+        30.360576
+      ],
+      "village_id": "V04",
+      "straw_t": 6.18,
+      "p10": "2026-10-21",
+      "p50": "2026-10-24",
+      "p90": "2026-10-25",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0053",
+      "centroid": [
+        76.419573,
+        30.333778
+      ],
+      "village_id": "V01",
+      "straw_t": 17.46,
+      "p10": "2026-10-25",
+      "p50": "2026-10-28",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0054",
+      "centroid": [
+        76.425666,
+        30.345973
+      ],
+      "village_id": "V02",
+      "straw_t": 13.98,
+      "p10": "2026-10-22",
+      "p50": "2026-10-24",
+      "p90": "2026-10-26",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0055",
+      "centroid": [
+        76.366661,
+        30.366657
+      ],
+      "village_id": "V03",
+      "straw_t": 12.78,
+      "p10": "2026-10-17",
+      "p50": "2026-10-19",
+      "p90": "2026-10-23",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0056",
+      "centroid": [
+        76.430961,
+        30.352695
+      ],
+      "village_id": "V04",
+      "straw_t": 11.58,
+      "p10": "2026-10-17",
+      "p50": "2026-10-18",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0057",
+      "centroid": [
+        76.424264,
+        30.32685
+      ],
+      "village_id": "V01",
+      "straw_t": 9.18,
+      "p10": "2026-10-24",
+      "p50": "2026-10-26",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": true,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0058",
+      "centroid": [
+        76.436101,
+        30.338536
+      ],
+      "village_id": "V02",
+      "straw_t": 10.98,
+      "p10": "2026-10-17",
+      "p50": "2026-10-18",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0059",
+      "centroid": [
+        76.367475,
+        30.368993
+      ],
+      "village_id": "V03",
+      "straw_t": 10.92,
+      "p10": "2026-10-21",
+      "p50": "2026-10-24",
+      "p90": "2026-10-28",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0060",
+      "centroid": [
+        76.436281,
+        30.349583
+      ],
+      "village_id": "V04",
+      "straw_t": 6.78,
+      "p10": "2026-10-17",
+      "p50": "2026-10-18",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    }
+  ],
+  "machines": [
+    {
+      "machine_id": "BA01",
+      "type": "baler_set",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA02",
+      "type": "baler_set",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA03",
+      "type": "baler_set",
+      "base": [
+        76.366211,
+        30.364411
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA04",
+      "type": "baler_set",
+      "base": [
+        76.421743,
+        30.350697
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE01",
+      "type": "seeder",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE02",
+      "type": "seeder",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE03",
+      "type": "seeder",
+      "base": [
+        76.366211,
+        30.364411
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR01",
+      "type": "truck",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR02",
+      "type": "truck",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR03",
+      "type": "truck",
+      "base": [
+        76.366211,
+        30.364411
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR04",
+      "type": "truck",
+      "base": [
+        76.421743,
+        30.350697
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    }
+  ],
+  "plants": [
+    {
+      "plant_id": "P01",
+      "location": [
+        76.524891,
+        30.375219
+      ],
+      "weekly_capacity_t": 300,
+      "depot_capacity_t": 400,
+      "fill_t": 250
+    },
+    {
+      "plant_id": "P02",
+      "location": [
+        76.191848,
+        30.239563
+      ],
+      "weekly_capacity_t": 150,
+      "depot_capacity_t": 200,
+      "fill_t": 180
+    }
+  ],
+  "travel": {
+    "method": "road_factor",
+    "road_factor": 1.3,
+    "speed_kmh": 25
+  },
+  "params": {
+    "version": "0.1",
+    "straw_t_per_ha": 6.0,
+    "sowing_deadline_default": "2026-11-15",
+    "urgency_tau_days": 5,
+    "loyalty_bonus": 0.2,
+    "rain_wet_threshold_mm": 5,
+    "dry_days_after_rain": 2,
+    "haul_radius_km": 30,
+    "cluster_radius_m": 800,
+    "exposure_sector_deg": 30,
+    "exposure_max_km": 10,
+    "emission_factors": "TODO-cite",
+    "assumed_burn_probability": "TODO",
+    "horizon_days": 3,
+    "day_start_hour": 8,
+    "truck_capacity_t": 10,
+    "truck_trips_per_day": 4,
+    "penalty_scale": 1000000,
+    "delay_cost_per_day_frac": 0.1,
+    "solver_solution_limit": 200,
+    "cluster_max_day_frac": 0.8,
+    "stac_url": "https://earth-search.aws.element84.com/v1",
+    "s2_collection": "sentinel-2-l2a",
+    "max_scene_cloud_pct": 80,
+    "scl_drop_classes": [
+      0,
+      1,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "field_inner_buffer_m": 10,
+    "min_valid_frac": 0.6,
+    "min_valid_pixels": 5,
+    "season_start_mmdd": "09-01",
+    "season_end_mmdd": "12-15",
+    "peak_window_mmdd": [
+      "08-15",
+      "10-15"
+    ],
+    "harvest_ndvi_drop": 0.25,
+    "harvest_ndvi_max": 0.45,
+    "burn_window_days": 20,
+    "burn_dnbr_threshold": 0.15,
+    "firms_buffer_m": 200,
+    "no_burn_min_clear_obs": 2,
+    "forecast_issue_every_days": 3,
+    "forecast_first_issue_mmdd": "09-15",
+    "forecast_quantiles": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "village_mc_draws": 1000,
+    "random_seed": 42
+  },
+  "time_limit_s": 10
+}

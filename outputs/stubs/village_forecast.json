@@ -1,0 +1,110 @@
+[
+  {
+    "village_id": "V01",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 22.92,
+    "tonnes_p50": 40.38,
+    "tonnes_p90": 51.18,
+    "synthetic": true
+  },
+  {
+    "village_id": "V01",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 69.0,
+    "tonnes_p50": 90.72,
+    "tonnes_p90": 115.44,
+    "synthetic": true
+  },
+  {
+    "village_id": "V01",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-26",
+    "tonnes_p10": 37.44,
+    "tonnes_p50": 56.28,
+    "tonnes_p90": 80.76,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 24.06,
+    "tonnes_p50": 40.74,
+    "tonnes_p90": 62.21,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 93.3,
+    "tonnes_p50": 116.94,
+    "tonnes_p90": 141.06,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-26",
+    "tonnes_p10": 14.52,
+    "tonnes_p50": 28.83,
+    "tonnes_p90": 38.82,
+    "synthetic": true
+  },
+  {
+    "village_id": "V03",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 0.0,
+    "tonnes_p50": 20.88,
+    "tonnes_p90": 33.66,
+    "synthetic": true
+  },
+  {
+    "village_id": "V03",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 113.45,
+    "tonnes_p50": 138.75,
+    "tonnes_p90": 163.8,
+    "synthetic": true
+  },
+  {
+    "village_id": "V03",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-26",
+    "tonnes_p10": 13.02,
+    "tonnes_p50": 31.74,
+    "tonnes_p90": 52.56,
+    "synthetic": true
+  },
+  {
+    "village_id": "V04",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 49.5,
+    "tonnes_p50": 66.66,
+    "tonnes_p90": 82.02,
+    "synthetic": true
+  },
+  {
+    "village_id": "V04",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 51.96,
+    "tonnes_p50": 74.1,
+    "tonnes_p90": 94.9,
+    "synthetic": true
+  },
+  {
+    "village_id": "V04",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-26",
+    "tonnes_p10": 7.08,
+    "tonnes_p50": 24.36,
+    "tonnes_p90": 38.58,
+    "synthetic": true
+  }
+]

@@ -1,0 +1,170 @@
+{
+  "plan_id": "strawlink-2026-10-20-a81f1789",
+  "date": "2026-10-20",
+  "policy": "strawlink",
+  "synthetic": true,
+  "fields": [
+    {
+      "field_id": "F0001",
+      "priority": 0.0,
+      "priority_parts": {
+        "tonnes": 17.16,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 0
+      },
+      "route": "bale",
+      "route_reason": "too wet (12 mm rain); waiting to dry; tentatively bale to P01 (13 km)",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": false
+    },
+    {
+      "field_id": "F0002",
+      "priority": 0.150506,
+      "priority_parts": {
+        "tonnes": 15.24,
+        "urgency": 0.00823,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "bale: P01 is 9 km away with room for 15 t",
+      "cluster_id": "V02-C00",
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0003",
+      "priority": 0.120349,
+      "priority_parts": {
+        "tonnes": 18.18,
+        "urgency": 0.005517,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "bale: P01 is 11 km away with room for 18 t",
+      "cluster_id": "V01-C00",
+      "days_left": 26,
+      "dry": true
+    },
+    {
+      "field_id": "F0004",
+      "priority": 0.261652,
+      "priority_parts": {
+        "tonnes": 7.98,
+        "urgency": 0.027324,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "harvest expected 2026-10-28; tentatively bale to P01 (10 km)",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0005",
+      "priority": 0.16543,
+      "priority_parts": {
+        "tonnes": 20.46,
+        "urgency": 0.006738,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "bale: P01 is 10 km away with room for 20 t",
+      "cluster_id": "V01-C01",
+      "days_left": 25,
+      "dry": true
+    },
+    {
+      "field_id": "F0006",
+      "priority": 0.0,
+      "priority_parts": {
+        "tonnes": 8.46,
+        "urgency": 0.004517,
+        "bonus": 0.0,
+        "dry": 0
+      },
+      "route": "bale",
+      "route_reason": "too wet (12 mm rain); waiting to dry; tentatively bale to P01 (10 km)",
+      "cluster_id": null,
+      "days_left": 27,
+      "dry": false
+    }
+  ],
+  "assignments": [
+    {
+      "machine_id": "BA03",
+      "type": "baler_set",
+      "stops": [
+        {
+          "field_id": "F0003",
+          "arrive": "2026-10-20T08:02:00+05:30",
+          "depart": "2026-10-20T12:35:00+05:30",
+          "tonnes": 18.18,
+          "method": "bale"
+        }
+      ],
+      "deliveries": []
+    },
+    {
+      "machine_id": "TR01",
+      "type": "truck",
+      "stops": [
+        {
+          "field_id": "F0003",
+          "arrive": "2026-10-20T12:35:00+05:30",
+          "depart": "2026-10-20T12:35:00+05:30",
+          "tonnes": 10.0,
+          "method": "bale"
+        }
+      ],
+      "deliveries": [
+        {
+          "plant_id": "P01",
+          "tonnes": 10.0,
+          "arrive": "2026-10-20T13:11:00+05:30"
+        }
+      ]
+    },
+    {
+      "machine_id": "TR02",
+      "type": "truck",
+      "stops": [
+        {
+          "field_id": "F0003",
+          "arrive": "2026-10-20T12:35:00+05:30",
+          "depart": "2026-10-20T12:35:00+05:30",
+          "tonnes": 8.18,
+          "method": "bale"
+        }
+      ],
+      "deliveries": [
+        {
+          "plant_id": "P01",
+          "tonnes": 8.18,
+          "arrive": "2026-10-20T13:11:00+05:30"
+        }
+      ]
+    }
+  ],
+  "unassigned": [
+    {
+      "field_id": "F0006",
+      "reason": "wet"
+    }
+  ],
+  "totals": {
+    "tonnes_planned": 18.18,
+    "fields_planned": 1,
+    "fields_at_risk": 0
+  },
+  "solver": {
+    "status": "bale:ok;seed:empty",
+    "runtime_s": 0.037,
+    "objective": 8.0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strawlink/burn_record.schema.json",
+  "title": "burn_record.parquet rows",
+  "version": "0.1",
+  "$defs": {
+    "date_or_null": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}
+  },
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["field_id", "season", "harvested", "harvest_lo", "harvest_hi", "burned", "burn_lo", "burn_hi", "evidence", "last_clear_image"],
+    "properties": {
+      "field_id": {"type": "string"},
+      "season": {"type": "integer", "minimum": 2000},
+      "harvested": {"type": "boolean"},
+      "harvest_lo": {"$ref": "#/$defs/date_or_null"},
+      "harvest_hi": {"$ref": "#/$defs/date_or_null"},
+      "burned": {"type": "boolean"},
+      "burn_lo": {"$ref": "#/$defs/date_or_null"},
+      "burn_hi": {"$ref": "#/$defs/date_or_null"},
+      "evidence": {"type": "array", "items": {"enum": ["dnbr", "firms"]}, "uniqueItems": true},
+      "last_clear_image": {"$ref": "#/$defs/date_or_null"},
+      "synthetic": {"type": "boolean"}
+    },
+    "additionalProperties": false
+  }
+}

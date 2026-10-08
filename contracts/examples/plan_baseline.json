@@ -1,0 +1,110 @@
+{
+  "plan_id": "baseline-2026-10-20-e0d5b36e",
+  "date": "2026-10-20",
+  "policy": "baseline",
+  "synthetic": true,
+  "fields": [
+    {
+      "field_id": "F0001",
+      "priority": 0.0,
+      "priority_parts": {
+        "tonnes": 17.16,
+        "urgency": 0.014996,
+        "bonus": 0.0,
+        "dry": 0
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 21,
+      "dry": false
+    },
+    {
+      "field_id": "F0002",
+      "priority": 0.150506,
+      "priority_parts": {
+        "tonnes": 15.24,
+        "urgency": 0.00823,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 24,
+      "dry": true
+    },
+    {
+      "field_id": "F0003",
+      "priority": 0.120349,
+      "priority_parts": {
+        "tonnes": 18.18,
+        "urgency": 0.005517,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 26,
+      "dry": true
+    },
+    {
+      "field_id": "F0004",
+      "priority": 0.261652,
+      "priority_parts": {
+        "tonnes": 7.98,
+        "urgency": 0.027324,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 18,
+      "dry": true
+    },
+    {
+      "field_id": "F0005",
+      "priority": 0.16543,
+      "priority_parts": {
+        "tonnes": 20.46,
+        "urgency": 0.006738,
+        "bonus": 0.2,
+        "dry": 1
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 25,
+      "dry": true
+    },
+    {
+      "field_id": "F0006",
+      "priority": 0.0,
+      "priority_parts": {
+        "tonnes": 8.46,
+        "urgency": 0.004517,
+        "bonus": 0.0,
+        "dry": 0
+      },
+      "route": "bale",
+      "route_reason": "first-come baseline: bale only, served in booking order",
+      "cluster_id": null,
+      "days_left": 27,
+      "dry": false
+    }
+  ],
+  "assignments": [],
+  "unassigned": [],
+  "totals": {
+    "tonnes_planned": 0.0,
+    "fields_planned": 0,
+    "fields_at_risk": 0
+  },
+  "solver": {
+    "status": "first_come",
+    "runtime_s": 0.001,
+    "objective": null
+  }
+}

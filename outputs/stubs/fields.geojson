@@ -1,0 +1,2406 @@
+{
+  "type": "FeatureCollection",
+  "synthetic": true,
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.422007,
+              30.320342
+            ],
+            [
+              76.423403,
+              30.320342
+            ],
+            [
+              76.423403,
+              30.321556
+            ],
+            [
+              76.422007,
+              30.321556
+            ],
+            [
+              76.422007,
+              30.320342
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0001",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.8,
+        "straw_t": 10.8,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.423977,
+              30.345835
+            ],
+            [
+              76.425003,
+              30.345835
+            ],
+            [
+              76.425003,
+              30.346725
+            ],
+            [
+              76.423977,
+              30.346725
+            ],
+            [
+              76.423977,
+              30.345835
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0002",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 0.97,
+        "straw_t": 5.82,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.361024,
+              30.370235
+            ],
+            [
+              76.36289,
+              30.370235
+            ],
+            [
+              76.36289,
+              30.371855
+            ],
+            [
+              76.361024,
+              30.371855
+            ],
+            [
+              76.361024,
+              30.370235
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0003",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 3.21,
+        "straw_t": 19.26,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.423448,
+              30.352276
+            ],
+            [
+              76.425194,
+              30.352276
+            ],
+            [
+              76.425194,
+              30.353792
+            ],
+            [
+              76.423448,
+              30.353792
+            ],
+            [
+              76.423448,
+              30.352276
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0004",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 2.81,
+        "straw_t": 16.86,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.426098,
+              30.331219
+            ],
+            [
+              76.427214,
+              30.331219
+            ],
+            [
+              76.427214,
+              30.332189
+            ],
+            [
+              76.426098,
+              30.332189
+            ],
+            [
+              76.426098,
+              30.331219
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0005",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.15,
+        "straw_t": 6.9,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.432352,
+              30.339889
+            ],
+            [
+              76.434146,
+              30.339889
+            ],
+            [
+              76.434146,
+              30.341447
+            ],
+            [
+              76.432352,
+              30.341447
+            ],
+            [
+              76.432352,
+              30.339889
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0006",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.97,
+        "straw_t": 17.82,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.367137,
+              30.367686
+            ],
+            [
+              76.368079,
+              30.367686
+            ],
+            [
+              76.368079,
+              30.368504
+            ],
+            [
+              76.367137,
+              30.368504
+            ],
+            [
+              76.367137,
+              30.367686
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0007",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 0.82,
+        "straw_t": 4.92,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.41824,
+              30.346739
+            ],
+            [
+              76.41937,
+              30.346739
+            ],
+            [
+              76.41937,
+              30.347721
+            ],
+            [
+              76.41824,
+              30.347721
+            ],
+            [
+              76.41824,
+              30.346739
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0008",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.18,
+        "straw_t": 7.08,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.427975,
+              30.31568
+            ],
+            [
+              76.429737,
+              30.31568
+            ],
+            [
+              76.429737,
+              30.317212
+            ],
+            [
+              76.427975,
+              30.317212
+            ],
+            [
+              76.427975,
+              30.31568
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0009",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 2.87,
+        "straw_t": 17.22,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.427068,
+              30.34124
+            ],
+            [
+              76.42829,
+              30.34124
+            ],
+            [
+              76.42829,
+              30.342302
+            ],
+            [
+              76.427068,
+              30.342302
+            ],
+            [
+              76.427068,
+              30.34124
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0010",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 1.38,
+        "straw_t": 8.28,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.359811,
+              30.366539
+            ],
+            [
+              76.361123,
+              30.366539
+            ],
+            [
+              76.361123,
+              30.367679
+            ],
+            [
+              76.359811,
+              30.367679
+            ],
+            [
+              76.359811,
+              30.366539
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0011",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 1.59,
+        "straw_t": 9.54,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.419229,
+              30.352669
+            ],
+            [
+              76.420393,
+              30.352669
+            ],
+            [
+              76.420393,
+              30.353681
+            ],
+            [
+              76.419229,
+              30.353681
+            ],
+            [
+              76.419229,
+              30.352669
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0012",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.25,
+        "straw_t": 7.5,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.414764,
+              30.327716
+            ],
+            [
+              76.415922,
+              30.327716
+            ],
+            [
+              76.415922,
+              30.328724
+            ],
+            [
+              76.414764,
+              30.328724
+            ],
+            [
+              76.414764,
+              30.327716
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0013",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.24,
+        "straw_t": 7.44,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.428419,
+              30.341268
+            ],
+            [
+              76.430065,
+              30.341268
+            ],
+            [
+              76.430065,
+              30.342698
+            ],
+            [
+              76.428419,
+              30.342698
+            ],
+            [
+              76.428419,
+              30.341268
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0014",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.5,
+        "straw_t": 15.0,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.359127,
+              30.365838
+            ],
+            [
+              76.360835,
+              30.365838
+            ],
+            [
+              76.360835,
+              30.367322
+            ],
+            [
+              76.359127,
+              30.367322
+            ],
+            [
+              76.359127,
+              30.365838
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0015",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 2.69,
+        "straw_t": 16.14,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.415375,
+              30.349116
+            ],
+            [
+              76.416447,
+              30.349116
+            ],
+            [
+              76.416447,
+              30.350048
+            ],
+            [
+              76.415375,
+              30.350048
+            ],
+            [
+              76.415375,
+              30.349116
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0016",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.06,
+        "straw_t": 6.36,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.424933,
+              30.326356
+            ],
+            [
+              76.426111,
+              30.326356
+            ],
+            [
+              76.426111,
+              30.32738
+            ],
+            [
+              76.424933,
+              30.32738
+            ],
+            [
+              76.424933,
+              30.326356
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0017",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.28,
+        "straw_t": 7.68,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.429163,
+              30.352249
+            ],
+            [
+              76.430825,
+              30.352249
+            ],
+            [
+              76.430825,
+              30.353693
+            ],
+            [
+              76.429163,
+              30.353693
+            ],
+            [
+              76.429163,
+              30.352249
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0018",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.55,
+        "straw_t": 15.3,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.366908,
+              30.371198
+            ],
+            [
+              76.368262,
+              30.371198
+            ],
+            [
+              76.368262,
+              30.372374
+            ],
+            [
+              76.366908,
+              30.372374
+            ],
+            [
+              76.366908,
+              30.371198
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0019",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 1.69,
+        "straw_t": 10.14,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.416946,
+              30.344973
+            ],
+            [
+              76.418548,
+              30.344973
+            ],
+            [
+              76.418548,
+              30.346365
+            ],
+            [
+              76.416946,
+              30.346365
+            ],
+            [
+              76.416946,
+              30.344973
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0020",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 2.37,
+        "straw_t": 14.22,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.412738,
+              30.319296
+            ],
+            [
+              76.414514,
+              30.319296
+            ],
+            [
+              76.414514,
+              30.320838
+            ],
+            [
+              76.412738,
+              30.320838
+            ],
+            [
+              76.412738,
+              30.319296
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0021",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 2.91,
+        "straw_t": 17.46,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.423035,
+              30.332154
+            ],
+            [
+              76.424319,
+              30.332154
+            ],
+            [
+              76.424319,
+              30.333268
+            ],
+            [
+              76.423035,
+              30.333268
+            ],
+            [
+              76.423035,
+              30.332154
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0022",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 1.52,
+        "straw_t": 9.12,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.364397,
+              30.369384
+            ],
+            [
+              76.366265,
+              30.369384
+            ],
+            [
+              76.366265,
+              30.371006
+            ],
+            [
+              76.364397,
+              30.371006
+            ],
+            [
+              76.364397,
+              30.369384
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0023",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 3.22,
+        "straw_t": 19.32,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.420524,
+              30.359523
+            ],
+            [
+              76.42229,
+              30.359523
+            ],
+            [
+              76.42229,
+              30.361057
+            ],
+            [
+              76.420524,
+              30.361057
+            ],
+            [
+              76.420524,
+              30.359523
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0024",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 2.88,
+        "straw_t": 17.28,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.414622,
+              30.319655
+            ],
+            [
+              76.4162,
+              30.319655
+            ],
+            [
+              76.4162,
+              30.321027
+            ],
+            [
+              76.414622,
+              30.321027
+            ],
+            [
+              76.414622,
+              30.319655
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0025",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 2.3,
+        "straw_t": 13.8,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.434905,
+              30.345699
+            ],
+            [
+              76.436445,
+              30.345699
+            ],
+            [
+              76.436445,
+              30.347037
+            ],
+            [
+              76.434905,
+              30.347037
+            ],
+            [
+              76.434905,
+              30.345699
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0026",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.19,
+        "straw_t": 13.14,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.362398,
+              30.356917
+            ],
+            [
+              76.36434,
+              30.356917
+            ],
+            [
+              76.36434,
+              30.358605
+            ],
+            [
+              76.362398,
+              30.358605
+            ],
+            [
+              76.362398,
+              30.356917
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0027",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 3.48,
+        "straw_t": 20.88,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.422645,
+              30.357016
+            ],
+            [
+              76.424411,
+              30.357016
+            ],
+            [
+              76.424411,
+              30.35855
+            ],
+            [
+              76.422645,
+              30.35855
+            ],
+            [
+              76.422645,
+              30.357016
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0028",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 2.88,
+        "straw_t": 17.28,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.431449,
+              30.325747
+            ],
+            [
+              76.433349,
+              30.325747
+            ],
+            [
+              76.433349,
+              30.327397
+            ],
+            [
+              76.431449,
+              30.327397
+            ],
+            [
+              76.431449,
+              30.325747
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0029",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 3.33,
+        "straw_t": 19.98,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.427926,
+              30.341497
+            ],
+            [
+              76.429546,
+              30.341497
+            ],
+            [
+              76.429546,
+              30.342903
+            ],
+            [
+              76.427926,
+              30.342903
+            ],
+            [
+              76.427926,
+              30.341497
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0030",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.42,
+        "straw_t": 14.52,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.369467,
+              30.361607
+            ],
+            [
+              76.370993,
+              30.361607
+            ],
+            [
+              76.370993,
+              30.362933
+            ],
+            [
+              76.369467,
+              30.362933
+            ],
+            [
+              76.369467,
+              30.361607
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0031",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 2.15,
+        "straw_t": 12.9,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.421755,
+              30.35371
+            ],
+            [
+              76.422861,
+              30.35371
+            ],
+            [
+              76.422861,
+              30.354672
+            ],
+            [
+              76.421755,
+              30.354672
+            ],
+            [
+              76.421755,
+              30.35371
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0032",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.13,
+        "straw_t": 6.78,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.416466,
+              30.323018
+            ],
+            [
+              76.418186,
+              30.323018
+            ],
+            [
+              76.418186,
+              30.324512
+            ],
+            [
+              76.416466,
+              30.324512
+            ],
+            [
+              76.416466,
+              30.323018
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0033",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 2.73,
+        "straw_t": 16.38,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.432248,
+              30.341078
+            ],
+            [
+              76.433568,
+              30.341078
+            ],
+            [
+              76.433568,
+              30.342226
+            ],
+            [
+              76.432248,
+              30.342226
+            ],
+            [
+              76.432248,
+              30.341078
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0034",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 1.61,
+        "straw_t": 9.66,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.36476,
+              30.360213
+            ],
+            [
+              76.365732,
+              30.360213
+            ],
+            [
+              76.365732,
+              30.361057
+            ],
+            [
+              76.36476,
+              30.361057
+            ],
+            [
+              76.36476,
+              30.360213
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0035",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 0.87,
+        "straw_t": 5.22,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.42236,
+              30.363655
+            ],
+            [
+              76.423976,
+              30.363655
+            ],
+            [
+              76.423976,
+              30.365059
+            ],
+            [
+              76.42236,
+              30.365059
+            ],
+            [
+              76.42236,
+              30.363655
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0036",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 2.41,
+        "straw_t": 14.46,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.418578,
+              30.326818
+            ],
+            [
+              76.419664,
+              30.326818
+            ],
+            [
+              76.419664,
+              30.327762
+            ],
+            [
+              76.418578,
+              30.327762
+            ],
+            [
+              76.418578,
+              30.326818
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0037",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.09,
+        "straw_t": 6.54,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.422522,
+              30.340799
+            ],
+            [
+              76.423922,
+              30.340799
+            ],
+            [
+              76.423922,
+              30.342015
+            ],
+            [
+              76.422522,
+              30.342015
+            ],
+            [
+              76.422522,
+              30.340799
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0038",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 1.81,
+        "straw_t": 10.86,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.356422,
+              30.375422
+            ],
+            [
+              76.357672,
+              30.375422
+            ],
+            [
+              76.357672,
+              30.376508
+            ],
+            [
+              76.356422,
+              30.376508
+            ],
+            [
+              76.356422,
+              30.375422
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0039",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 1.44,
+        "straw_t": 8.64,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.418537,
+              30.351763
+            ],
+            [
+              76.420349,
+              30.351763
+            ],
+            [
+              76.420349,
+              30.353337
+            ],
+            [
+              76.418537,
+              30.353337
+            ],
+            [
+              76.418537,
+              30.351763
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0040",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 3.03,
+        "straw_t": 18.18,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.424953,
+              30.32304
+            ],
+            [
+              76.426097,
+              30.32304
+            ],
+            [
+              76.426097,
+              30.324034
+            ],
+            [
+              76.424953,
+              30.324034
+            ],
+            [
+              76.424953,
+              30.32304
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0041",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.21,
+        "straw_t": 7.26,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.430501,
+              30.340565
+            ],
+            [
+              76.432113,
+              30.340565
+            ],
+            [
+              76.432113,
+              30.341967
+            ],
+            [
+              76.430501,
+              30.341967
+            ],
+            [
+              76.430501,
+              30.340565
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0042",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.4,
+        "straw_t": 14.4,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.365626,
+              30.363616
+            ],
+            [
+              76.36746,
+              30.363616
+            ],
+            [
+              76.36746,
+              30.365208
+            ],
+            [
+              76.365626,
+              30.365208
+            ],
+            [
+              76.365626,
+              30.363616
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0043",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 3.1,
+        "straw_t": 18.6,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.431068,
+              30.352354
+            ],
+            [
+              76.432072,
+              30.352354
+            ],
+            [
+              76.432072,
+              30.353226
+            ],
+            [
+              76.431068,
+              30.353226
+            ],
+            [
+              76.431068,
+              30.352354
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0044",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 0.93,
+        "straw_t": 5.58,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.429303,
+              30.326183
+            ],
+            [
+              76.431193,
+              30.326183
+            ],
+            [
+              76.431193,
+              30.327825
+            ],
+            [
+              76.429303,
+              30.327825
+            ],
+            [
+              76.429303,
+              30.326183
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0045",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 3.3,
+        "straw_t": 19.8,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.426084,
+              30.344992
+            ],
+            [
+              76.42774,
+              30.344992
+            ],
+            [
+              76.42774,
+              30.34643
+            ],
+            [
+              76.426084,
+              30.34643
+            ],
+            [
+              76.426084,
+              30.344992
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0046",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.53,
+        "straw_t": 15.18,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.366419,
+              30.371749
+            ],
+            [
+              76.367909,
+              30.371749
+            ],
+            [
+              76.367909,
+              30.373043
+            ],
+            [
+              76.366419,
+              30.373043
+            ],
+            [
+              76.366419,
+              30.371749
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0047",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 2.05,
+        "straw_t": 12.3,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.410148,
+              30.351935
+            ],
+            [
+              76.411392,
+              30.351935
+            ],
+            [
+              76.411392,
+              30.353017
+            ],
+            [
+              76.410148,
+              30.353017
+            ],
+            [
+              76.410148,
+              30.351935
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0048",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.43,
+        "straw_t": 8.58,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.421769,
+              30.319293
+            ],
+            [
+              76.423085,
+              30.319293
+            ],
+            [
+              76.423085,
+              30.320437
+            ],
+            [
+              76.421769,
+              30.320437
+            ],
+            [
+              76.421769,
+              30.319293
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0049",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.6,
+        "straw_t": 9.6,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.431766,
+              30.35302
+            ],
+            [
+              76.433432,
+              30.35302
+            ],
+            [
+              76.433432,
+              30.354466
+            ],
+            [
+              76.431766,
+              30.354466
+            ],
+            [
+              76.431766,
+              30.35302
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0050",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.56,
+        "straw_t": 15.36,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.361249,
+              30.369256
+            ],
+            [
+              76.362459,
+              30.369256
+            ],
+            [
+              76.362459,
+              30.370306
+            ],
+            [
+              76.361249,
+              30.370306
+            ],
+            [
+              76.361249,
+              30.369256
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0051",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 1.35,
+        "straw_t": 8.1,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.425904,
+              30.360117
+            ],
+            [
+              76.42696,
+              30.360117
+            ],
+            [
+              76.42696,
+              30.361035
+            ],
+            [
+              76.425904,
+              30.361035
+            ],
+            [
+              76.425904,
+              30.360117
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0052",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.03,
+        "straw_t": 6.18,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.418685,
+              30.333007
+            ],
+            [
+              76.420461,
+              30.333007
+            ],
+            [
+              76.420461,
+              30.334549
+            ],
+            [
+              76.418685,
+              30.334549
+            ],
+            [
+              76.418685,
+              30.333007
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0053",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 2.91,
+        "straw_t": 17.46,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.424872,
+              30.345283
+            ],
+            [
+              76.42646,
+              30.345283
+            ],
+            [
+              76.42646,
+              30.346663
+            ],
+            [
+              76.424872,
+              30.346663
+            ],
+            [
+              76.424872,
+              30.345283
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0054",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 2.33,
+        "straw_t": 13.98,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.365901,
+              30.365997
+            ],
+            [
+              76.367421,
+              30.365997
+            ],
+            [
+              76.367421,
+              30.367317
+            ],
+            [
+              76.365901,
+              30.367317
+            ],
+            [
+              76.365901,
+              30.365997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0055",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 2.13,
+        "straw_t": 12.78,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.430238,
+              30.352067
+            ],
+            [
+              76.431684,
+              30.352067
+            ],
+            [
+              76.431684,
+              30.353323
+            ],
+            [
+              76.430238,
+              30.353323
+            ],
+            [
+              76.430238,
+              30.352067
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0056",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.93,
+        "straw_t": 11.58,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.42362,
+              30.326291
+            ],
+            [
+              76.424908,
+              30.326291
+            ],
+            [
+              76.424908,
+              30.327409
+            ],
+            [
+              76.42362,
+              30.327409
+            ],
+            [
+              76.42362,
+              30.326291
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0057",
+        "village_id": "V01",
+        "village_name": "Village 01 (synthetic)",
+        "area_ha": 1.53,
+        "straw_t": 9.18,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.435397,
+              30.337924
+            ],
+            [
+              76.436805,
+              30.337924
+            ],
+            [
+              76.436805,
+              30.339148
+            ],
+            [
+              76.435397,
+              30.339148
+            ],
+            [
+              76.435397,
+              30.337924
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0058",
+        "village_id": "V02",
+        "village_name": "Village 02 (synthetic)",
+        "area_ha": 1.83,
+        "straw_t": 10.98,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.366773,
+              30.368383
+            ],
+            [
+              76.368177,
+              30.368383
+            ],
+            [
+              76.368177,
+              30.369603
+            ],
+            [
+              76.366773,
+              30.369603
+            ],
+            [
+              76.366773,
+              30.368383
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0059",
+        "village_id": "V03",
+        "village_name": "Village 03 (synthetic)",
+        "area_ha": 1.82,
+        "straw_t": 10.92,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.435728,
+              30.349102
+            ],
+            [
+              76.436834,
+              30.349102
+            ],
+            [
+              76.436834,
+              30.350064
+            ],
+            [
+              76.435728,
+              30.350064
+            ],
+            [
+              76.435728,
+              30.349102
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "field_id": "F0060",
+        "village_id": "V04",
+        "village_name": "Village 04 (synthetic)",
+        "area_ha": 1.13,
+        "straw_t": 6.78,
+        "sowing_deadline": "2026-11-15",
+        "plant_hint": null,
+        "synthetic": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strawlink/planner_input.schema.json",
+  "title": "planner_input.json — state handed to plan_day",
+  "version": "0.1",
+  "$defs": {
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "lonlat": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+  },
+  "type": "object",
+  "required": ["date", "fields", "machines", "plants", "travel", "params", "time_limit_s"],
+  "properties": {
+    "date": {"$ref": "#/$defs/date"},
+    "synthetic": {"type": "boolean"},
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field_id", "centroid", "village_id", "straw_t", "p10", "p50", "p90", "source", "sowing_deadline", "status", "burned_last_season", "rain_mm_3d"],
+        "properties": {
+          "field_id": {"type": "string"},
+          "centroid": {"$ref": "#/$defs/lonlat"},
+          "village_id": {"type": "string"},
+          "straw_t": {"type": "number", "minimum": 0},
+          "p10": {"$ref": "#/$defs/date"},
+          "p50": {"$ref": "#/$defs/date"},
+          "p90": {"$ref": "#/$defs/date"},
+          "source": {"enum": ["satellite", "confirmed"]},
+          "sowing_deadline": {"$ref": "#/$defs/date"},
+          "status": {"enum": ["forecast", "ready", "scheduled", "cleared", "at_risk"]},
+          "burned_last_season": {"type": ["boolean", "null"]},
+          "rain_mm_3d": {"type": "number", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "machines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["machine_id", "type", "base", "rate_t_per_hr", "hours_per_day", "available"],
+        "properties": {
+          "machine_id": {"type": "string"},
+          "type": {"enum": ["baler_set", "truck", "seeder"]},
+          "base": {"$ref": "#/$defs/lonlat"},
+          "rate_t_per_hr": {"type": "number", "exclusiveMinimum": 0},
+          "hours_per_day": {"type": "number", "exclusiveMinimum": 0, "maximum": 24},
+          "available": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "plants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["plant_id", "location", "weekly_capacity_t", "depot_capacity_t", "fill_t"],
+        "properties": {
+          "plant_id": {"type": "string"},
+          "location": {"$ref": "#/$defs/lonlat"},
+          "weekly_capacity_t": {"type": "number", "minimum": 0},
+          "depot_capacity_t": {"type": "number", "minimum": 0},
+          "fill_t": {"type": "number", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "travel": {
+      "type": "object",
+      "required": ["method", "road_factor", "speed_kmh"],
+      "properties": {
+        "method": {"enum": ["osrm", "road_factor"]},
+        "road_factor": {"type": "number", "exclusiveMinimum": 0},
+        "speed_kmh": {"type": "number", "exclusiveMinimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "params": {"type": "object"},
+    "time_limit_s": {"type": "number", "exclusiveMinimum": 0}
+  },
+  "additionalProperties": false
+}

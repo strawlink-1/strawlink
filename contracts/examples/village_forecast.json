@@ -1,0 +1,47 @@
+[
+  {
+    "village_id": "V01",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 0.0,
+    "tonnes_p50": 0.0,
+    "tonnes_p90": 18.18,
+    "synthetic": true
+  },
+  {
+    "village_id": "V01",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 37.62,
+    "tonnes_p50": 55.8,
+    "tonnes_p90": 55.8,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-12",
+    "tonnes_p10": 0.0,
+    "tonnes_p50": 8.46,
+    "tonnes_p90": 8.46,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-19",
+    "tonnes_p10": 15.24,
+    "tonnes_p50": 23.22,
+    "tonnes_p90": 23.7,
+    "synthetic": true
+  },
+  {
+    "village_id": "V02",
+    "issued_on": "2026-10-20",
+    "week_start": "2026-10-26",
+    "tonnes_p10": 0.0,
+    "tonnes_p50": 7.98,
+    "tonnes_p90": 7.98,
+    "synthetic": true
+  }
+]

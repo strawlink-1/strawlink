@@ -1,0 +1,318 @@
+{
+  "date": "2026-10-20",
+  "synthetic": true,
+  "fields": [
+    {
+      "field_id": "F0001",
+      "centroid": [
+        76.410627,
+        30.318512
+      ],
+      "village_id": "V01",
+      "straw_t": 17.16,
+      "p10": "2026-10-25",
+      "p50": "2026-10-25",
+      "p90": "2026-10-25",
+      "source": "confirmed",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": null,
+      "rain_mm_3d": 12.0
+    },
+    {
+      "field_id": "F0002",
+      "centroid": [
+        76.435349,
+        30.3485
+      ],
+      "village_id": "V02",
+      "straw_t": 15.24,
+      "p10": "2026-10-20",
+      "p50": "2026-10-22",
+      "p90": "2026-10-24",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0003",
+      "centroid": [
+        76.425112,
+        30.320375
+      ],
+      "village_id": "V01",
+      "straw_t": 18.18,
+      "p10": "2026-10-18",
+      "p50": "2026-10-20",
+      "p90": "2026-10-23",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0004",
+      "centroid": [
+        76.428892,
+        30.341955
+      ],
+      "village_id": "V02",
+      "straw_t": 7.98,
+      "p10": "2026-10-26",
+      "p50": "2026-10-28",
+      "p90": "2026-10-29",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 0.0
+    },
+    {
+      "field_id": "F0005",
+      "centroid": [
+        76.4255,
+        30.337199
+      ],
+      "village_id": "V01",
+      "straw_t": 20.46,
+      "p10": "2026-10-20",
+      "p50": "2026-10-21",
+      "p90": "2026-10-22",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "forecast",
+      "burned_last_season": false,
+      "rain_mm_3d": 2.0
+    },
+    {
+      "field_id": "F0006",
+      "centroid": [
+        76.429145,
+        30.339721
+      ],
+      "village_id": "V02",
+      "straw_t": 8.46,
+      "p10": "2026-10-16",
+      "p50": "2026-10-19",
+      "p90": "2026-10-21",
+      "source": "satellite",
+      "sowing_deadline": "2026-11-15",
+      "status": "ready",
+      "burned_last_season": true,
+      "rain_mm_3d": 12.0
+    }
+  ],
+  "machines": [
+    {
+      "machine_id": "BA01",
+      "type": "baler_set",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA02",
+      "type": "baler_set",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA03",
+      "type": "baler_set",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "BA04",
+      "type": "baler_set",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 4.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE01",
+      "type": "seeder",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE02",
+      "type": "seeder",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "SE03",
+      "type": "seeder",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 3.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR01",
+      "type": "truck",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR02",
+      "type": "truck",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR03",
+      "type": "truck",
+      "base": [
+        76.42281,
+        30.325578
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    },
+    {
+      "machine_id": "TR04",
+      "type": "truck",
+      "base": [
+        76.429857,
+        30.34428
+      ],
+      "rate_t_per_hr": 10.0,
+      "hours_per_day": 10,
+      "available": true
+    }
+  ],
+  "plants": [
+    {
+      "plant_id": "P01",
+      "location": [
+        76.524891,
+        30.375219
+      ],
+      "weekly_capacity_t": 300,
+      "depot_capacity_t": 400,
+      "fill_t": 250
+    },
+    {
+      "plant_id": "P02",
+      "location": [
+        76.191848,
+        30.239563
+      ],
+      "weekly_capacity_t": 150,
+      "depot_capacity_t": 200,
+      "fill_t": 180
+    }
+  ],
+  "travel": {
+    "method": "road_factor",
+    "road_factor": 1.3,
+    "speed_kmh": 25
+  },
+  "params": {
+    "version": "0.1",
+    "straw_t_per_ha": 6.0,
+    "sowing_deadline_default": "2026-11-15",
+    "urgency_tau_days": 5,
+    "loyalty_bonus": 0.2,
+    "rain_wet_threshold_mm": 5,
+    "dry_days_after_rain": 2,
+    "haul_radius_km": 30,
+    "cluster_radius_m": 800,
+    "exposure_sector_deg": 30,
+    "exposure_max_km": 10,
+    "emission_factors": "TODO-cite",
+    "assumed_burn_probability": "TODO",
+    "horizon_days": 3,
+    "day_start_hour": 8,
+    "truck_capacity_t": 10,
+    "truck_trips_per_day": 4,
+    "penalty_scale": 1000000,
+    "delay_cost_per_day_frac": 0.1,
+    "solver_solution_limit": 200,
+    "cluster_max_day_frac": 0.8,
+    "stac_url": "https://earth-search.aws.element84.com/v1",
+    "s2_collection": "sentinel-2-l2a",
+    "max_scene_cloud_pct": 80,
+    "scl_drop_classes": [
+      0,
+      1,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "field_inner_buffer_m": 10,
+    "min_valid_frac": 0.6,
+    "min_valid_pixels": 5,
+    "season_start_mmdd": "09-01",
+    "season_end_mmdd": "12-15",
+    "peak_window_mmdd": [
+      "08-15",
+      "10-15"
+    ],
+    "harvest_ndvi_drop": 0.25,
+    "harvest_ndvi_max": 0.45,
+    "burn_window_days": 20,
+    "burn_dnbr_threshold": 0.15,
+    "firms_buffer_m": 200,
+    "no_burn_min_clear_obs": 2,
+    "forecast_issue_every_days": 3,
+    "forecast_first_issue_mmdd": "09-15",
+    "forecast_quantiles": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "village_mc_draws": 1000,
+    "random_seed": 42
+  },
+  "time_limit_s": 10
+}

@@ -1,0 +1,72 @@
+# StrawLink assumed constants. Shown in the UI as "assumptions".
+# Every value not from a cited real source is labelled ASSUMPTION.
+# Code must read these from here — never hard-code.
+
+version: "0.1"
+
+# --- core (root CLAUDE.md §6) ---
+straw_t_per_ha: 6.0          # ~19 Mt straw / 31.72 lakh ha paddy (Punjab, 2025 figures)
+sowing_deadline_default: "2026-11-15"   # ASSUMPTION — confirm from a Punjab agri source
+urgency_tau_days: 5          # ASSUMPTION
+loyalty_bonus: 0.2           # ASSUMPTION
+rain_wet_threshold_mm: 5     # ASSUMPTION
+dry_days_after_rain: 2       # ASSUMPTION
+haul_radius_km: 30           # ASSUMPTION for bale route
+cluster_radius_m: 800        # ASSUMPTION
+exposure_sector_deg: 30      # ASSUMPTION
+exposure_max_km: 10          # ASSUMPTION
+emission_factors: TODO-cite  # per tonne of rice straw burned; must cite a source
+assumed_burn_probability: TODO   # discount for emissions-avoided estimate
+
+# --- planner (pipeline/CLAUDE.md §4) ---
+horizon_days: 3              # ASSUMPTION — look-ahead days for machine positioning
+day_start_hour: 8            # ASSUMPTION — working day starts 08:00 IST
+truck_capacity_t: 10         # ASSUMPTION — tonnes per truck trip
+truck_trips_per_day: 4       # ASSUMPTION
+penalty_scale: 1000000       # disjunction penalty = round(priority × penalty_scale). Spec said 1000,
+                             # but early-season priorities are ~0.01–0.1 (exp(-26/5)) and arc cost is
+                             # travel minutes, so 1000 let the solver drop fields to save driving.
+delay_cost_per_day_frac: 0.1 # each day of delay costs 10% of a cluster's prize (planner tuning)
+solver_solution_limit: 200   # deterministic stop for guided local search (time limit is a safety net)
+cluster_max_day_frac: 0.8    # ASSUMPTION — a cluster must fit 80% of the slowest machine's day
+
+# --- satellite ingest (pipeline/CLAUDE.md §3) ---
+stac_url: "https://earth-search.aws.element84.com/v1"
+s2_collection: "sentinel-2-l2a"
+max_scene_cloud_pct: 80
+scl_drop_classes: [0, 1, 3, 8, 9, 10, 11]
+field_inner_buffer_m: 10
+min_valid_frac: 0.6
+min_valid_pixels: 5
+season_start_mmdd: "09-01"
+season_end_mmdd: "12-15"
+
+# --- harvest labels (tune by eye with qa.py) ---
+peak_window_mmdd: ["08-15", "10-15"]
+harvest_ndvi_drop: 0.25      # ASSUMPTION — tuned by eye
+harvest_ndvi_max: 0.45       # ASSUMPTION — tuned by eye
+harvest_lookback_days: 15    # ASSUMPTION — drop measured from max NDVI of clear obs in this lookback
+                             # (0 = previous obs only, the strict spec rule; it missed gradual
+                             # senescence+harvest on real 2025 Sangrur fields)
+harvest_confirm_obs: 1       # ASSUMPTION — next clear obs must also be < harvest_ndvi_max (haze dips)
+
+# --- burn detection ---
+burn_window_days: 20         # ASSUMPTION
+burn_dnbr_threshold: 0.15    # ASSUMPTION
+burn_post_nbr_max: 0.05      # ASSUMPTION — char/ash keeps NBR low; unburned stubble stays higher
+burn_persist_obs: 1          # ASSUMPTION — drop must persist on this many following clear obs
+firms_buffer_m: 200          # ASSUMPTION
+no_burn_min_clear_obs: 2
+
+# --- forecast ---
+forecast_issue_every_days: 3
+forecast_first_issue_mmdd: "09-15"
+forecast_quantiles: [0.1, 0.5, 0.9]
+village_mc_draws: 1000
+confidence_width_days: 21    # heuristic: confidence = 1 − (P90−P10)/this, floored at 0
+random_seed: 42
+
+# --- backtest ---
+backtest_start_mmdd: "10-01"
+backtest_end_mmdd: "11-30"
+backtest_time_limit_s: 10

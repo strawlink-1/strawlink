@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strawlink/fields.schema.json",
+  "title": "fields.geojson",
+  "version": "0.1",
+  "type": "object",
+  "required": ["type", "features"],
+  "properties": {
+    "type": {"const": "FeatureCollection"},
+    "synthetic": {"type": "boolean"},
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "geometry", "properties"],
+        "properties": {
+          "type": {"const": "Feature"},
+          "geometry": {
+            "type": "object",
+            "required": ["type", "coordinates"],
+            "properties": {
+              "type": {"enum": ["Polygon", "MultiPolygon"]},
+              "coordinates": {"type": "array"}
+            }
+          },
+          "properties": {
+            "type": "object",
+            "required": ["field_id", "village_id", "village_name", "area_ha", "straw_t", "sowing_deadline", "plant_hint"],
+            "properties": {
+              "field_id": {"type": "string", "pattern": "^F[0-9]{4,}$"},
+              "village_id": {"type": "string"},
+              "village_name": {"type": "string"},
+              "area_ha": {"type": "number", "exclusiveMinimum": 0},
+              "straw_t": {"type": "number", "minimum": 0},
+              "sowing_deadline": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+              "plant_hint": {"type": ["string", "null"]},
+              "synthetic": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

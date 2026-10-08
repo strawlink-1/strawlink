@@ -1,0 +1,82 @@
+[
+  {
+    "field_id": "F0001",
+    "season": 2025,
+    "harvested": false,
+    "harvest_lo": null,
+    "harvest_hi": null,
+    "burned": false,
+    "burn_lo": null,
+    "burn_hi": null,
+    "evidence": [],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  },
+  {
+    "field_id": "F0002",
+    "season": 2025,
+    "harvested": true,
+    "harvest_lo": "2025-10-18",
+    "harvest_hi": "2025-10-23",
+    "burned": false,
+    "burn_lo": null,
+    "burn_hi": null,
+    "evidence": [],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  },
+  {
+    "field_id": "F0003",
+    "season": 2025,
+    "harvested": true,
+    "harvest_lo": "2025-10-18",
+    "harvest_hi": "2025-10-23",
+    "burned": false,
+    "burn_lo": null,
+    "burn_hi": null,
+    "evidence": [],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  },
+  {
+    "field_id": "F0004",
+    "season": 2025,
+    "harvested": true,
+    "harvest_lo": "2025-10-18",
+    "harvest_hi": "2025-10-23",
+    "burned": false,
+    "burn_lo": null,
+    "burn_hi": null,
+    "evidence": [],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  },
+  {
+    "field_id": "F0005",
+    "season": 2025,
+    "harvested": true,
+    "harvest_lo": "2025-10-18",
+    "harvest_hi": "2025-10-23",
+    "burned": false,
+    "burn_lo": null,
+    "burn_hi": null,
+    "evidence": [],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  },
+  {
+    "field_id": "F0006",
+    "season": 2025,
+    "harvested": true,
+    "harvest_lo": "2025-10-18",
+    "harvest_hi": "2025-10-23",
+    "burned": true,
+    "burn_lo": "2025-10-25",
+    "burn_hi": "2025-10-28",
+    "evidence": [
+      "dnbr"
+    ],
+    "last_clear_image": "2025-11-07",
+    "synthetic": true
+  }
+]
