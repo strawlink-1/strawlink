@@ -10,10 +10,46 @@ import { usePrefs } from "../ui/prefs";
 import { paintGround } from "./ground";
 import { useSatellite } from "./satellite";
 
-const SLAB = 3.2; // thickness of the board
-const SIDE = "#cdbb9f";
+/** The colour distant land fades into, and the sky behind it. */
+export const HAZE = "#dfe8e4";
+const LAND = "#e7eedd", LAND_PHOTO = "#8fa06f";
 
-/** The board: the block's land painted on top of a thick earth slab. */
+/** The land all around the block, out to the haze, so the map fills the view and has no edge. */
+function Surround() {
+  const { geo, select } = useWorld();
+  const prefs = usePrefs();
+  const wide = useMemo(() => {
+    if (!geo) return null;
+    const [w, s, e, n] = geo.bbox, dx = (e - w) * 1.7, dy = (n - s) * 1.7;
+    return [w - dx, s - dy, e + dx, n + dy] as [number, number, number, number];
+  }, [geo]);
+  const photo = useSatellite(prefs.satellite && geo ? geo.project : null, prefs.satellite ? wide : null, { maxTiles: 200, fade: true });
+  const tex = useMemo(() => {
+    if (!photo) return null;
+    const t = new THREE.CanvasTexture(photo.canvas);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = 8;
+    return t;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [photo?.canvas]);
+  useEffect(() => { if (tex) tex.needsUpdate = true; }, [tex, photo?.version]);
+  if (!geo) return null;
+  const far = geo.span * 16;
+  return (
+    <group onClick={() => select(null)}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.08, 0]}>
+        <planeGeometry args={[far, far]} /><meshBasicMaterial color={prefs.satellite ? LAND_PHOTO : LAND} toneMapped={false} />
+      </mesh>
+      {prefs.satellite && photo && tex && (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[photo.x, -0.04, photo.z]}>
+          <planeGeometry args={[photo.w, photo.d]} /><meshBasicMaterial map={tex} transparent toneMapped={false} />
+        </mesh>
+      )}
+    </group>
+  );
+}
+
+/** The block itself: its land in full detail, with the real roads, waterways and a bed under every field. */
 export function Ground() {
   const { geo, cells, roads, water, select } = useWorld();
   const prefs = usePrefs();
@@ -36,19 +72,16 @@ export function Ground() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geo, cells.length, roads, water, prefs.satellite, photo?.version]);
 
-  const mats = useMemo(() => {
-    const top = new THREE.MeshBasicMaterial({ map, toneMapped: false });
-    const side = new THREE.MeshLambertMaterial({ color: SIDE });
-    return [side, side, top, side, side, side];
-  }, [map]);
+  const mat = useMemo(() => new THREE.MeshBasicMaterial({ map, toneMapped: false, transparent: true }), [map]);
 
   if (!geo) return null;
   const { box } = geo;
   const W = box.x1 - box.x0, D = box.z1 - box.z0, cx = (box.x0 + box.x1) / 2, cz = (box.z0 + box.z1) / 2;
   return (
     <group>
-      <mesh position={[cx, -SLAB / 2, cz]} material={mats} onClick={() => select(null)}>
-        <boxGeometry args={[W, SLAB, D]} />
+      <Surround />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0, cz]} material={mat} onClick={() => select(null)}>
+        <planeGeometry args={[W, D]} />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.012, cz]} receiveShadow renderOrder={1}>
         <planeGeometry args={[W, D]} /><shadowMaterial transparent opacity={0.18} depthWrite={false} />
@@ -150,7 +183,7 @@ function Block({ p, s, c }: { p: [number, number, number]; s: [number, number, n
   return <mesh position={p} castShadow><boxGeometry args={s} /><meshLambertMaterial color={c} /></mesh>;
 }
 
-/** A plant on its own little island beyond the board's edge, joined to the road network by a causeway. */
+/** A plant in its yard beyond the block (drawn closer than it is), joined to the road network by an approach road. */
 function Plant({ plant }: { plant: PlantView }) {
   const { day, clock } = useWorld();
   const pile = useRef<THREE.Mesh>(null!);
@@ -180,11 +213,11 @@ function Plant({ plant }: { plant: PlantView }) {
   return (
     <group>
       {/* causeway from the road network to the plant */}
-      <mesh position={[(ex + px) / 2, -0.12, (ez + pz) / 2]} rotation={[0, yaw, 0]} receiveShadow>
-        <boxGeometry args={[0.9, 0.24, len]} /><meshLambertMaterial color="#ffffff" />
+      <mesh position={[(ex + px) / 2, 0.02, (ez + pz) / 2]} rotation={[0, yaw, 0]} receiveShadow>
+        <boxGeometry args={[0.8, 0.05, len]} /><meshLambertMaterial color="#f1eee4" />
       </mesh>
       <group position={[px, 0, pz]}>
-        <mesh position={[0, -SLAB / 2, 0]} receiveShadow><boxGeometry args={[9, SLAB, 7]} /><meshLambertMaterial color="#dbe6cf" /></mesh>
+        <mesh position={[0, 0.04, 0]} receiveShadow><boxGeometry args={[9, 0.08, 7]} /><meshLambertMaterial color="#d8d4c6" /></mesh>
         <group scale={1.15} position={[-0.8, 0, 0]}>
           <Block p={[0, 1.1, 0]} s={[3.2, 2.2, 2.4]} c="#e7ecf0" />
           <Block p={[0, 2.3, 0]} s={[3.4, 0.2, 2.6]} c="#5b6b7a" />

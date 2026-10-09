@@ -17,26 +17,35 @@ const lat2y = (lat: number, z: number) => {
 const x2lon = (x: number, z: number) => (x / 2 ** z) * 360 - 180;
 const y2lat = (y: number, z: number) => (Math.atan(Math.sinh(Math.PI * (1 - (2 * y) / 2 ** z))) * 180) / Math.PI;
 
-export function useSatellite(project: Projector | null, bbox: [number, number, number, number] | null): Ground | null {
+/** A little brighter and greener than the raw imagery, so fields and machines stand out on it. */
+const TREAT = "brightness(1.16) saturate(1.22) contrast(1.04)";
+
+/**
+ * @param maxTiles how many tiles the mosaic may use; the sharpest zoom that fits is chosen
+ * @param fade     fade the mosaic's edges to transparent (for a photo that ends in open ground)
+ */
+export function useSatellite(project: Projector | null, bbox: [number, number, number, number] | null,
+                             { maxTiles = MAX_TILES, fade = false }: { maxTiles?: number; fade?: boolean } = {}): Ground | null {
   const [ground, setGround] = useState<Ground | null>(null);
-  const key = bbox?.map((v) => v.toFixed(4)).join(",");
+  const key = bbox ? `${bbox.map((v) => v.toFixed(4)).join(",")}|${maxTiles}|${fade}` : undefined;
 
   useEffect(() => {
     if (!project || !bbox) return;
     const [w, s, e, n] = bbox;
     // sharpest zoom that keeps the mosaic to a sensible number of tiles
     let z = 16, x0 = 0, x1 = 0, y0 = 0, y1 = 0;
-    for (; z > 10; z--) {
+    for (; z > 8; z--) {
       x0 = Math.floor(lon2x(w, z)) - 1; x1 = Math.floor(lon2x(e, z)) + 1;
       y0 = Math.floor(lat2y(n, z)) - 1; y1 = Math.floor(lat2y(s, z)) + 1;
-      if ((x1 - x0 + 1) * (y1 - y0 + 1) <= MAX_TILES) break;
+      if ((x1 - x0 + 1) * (y1 - y0 + 1) <= maxTiles) break;
     }
     const nx = x1 - x0 + 1, ny = y1 - y0 + 1;
     const canvas = document.createElement("canvas");
     canvas.width = nx * TILE; canvas.height = ny * TILE;
     const g = canvas.getContext("2d")!;
-    g.fillStyle = "#e9ece7";
+    g.fillStyle = "#93a476"; // farmland green until a tile arrives
     g.fillRect(0, 0, canvas.width, canvas.height);
+    g.filter = TREAT;
 
     // the scene's projection is linear in lon/lat; over ~12 km the Mercator difference is under a metre
     const [ax, az] = project([x2lon(x0, z), y2lat(y0, z)]);
@@ -46,8 +55,9 @@ export function useSatellite(project: Projector | null, bbox: [number, number, n
     let live = true, done = 0, version = 0;
     const publish = () => live && setGround({ canvas, ...place, version: ++version });
     const finish = () => {
-      // fade the photo's edges into the white page
-      const m = Math.min(canvas.width, canvas.height) * 0.07;
+      if (!fade) return publish();
+      g.filter = "none";
+      const m = Math.min(canvas.width, canvas.height) * 0.12;
       g.globalCompositeOperation = "destination-out";
       for (const [x, y, gw, gh, x1g, y1g, x2g, y2g] of [
         [0, 0, canvas.width, m, 0, 0, 0, m], [0, canvas.height - m, canvas.width, m, 0, canvas.height, 0, canvas.height - m],

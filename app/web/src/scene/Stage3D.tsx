@@ -6,7 +6,7 @@ import { useStage, type CameraSpec } from "../sim/stage";
 import { useWorld } from "../sim/world";
 import { Effects } from "./Effects";
 import { Fields } from "./Fields";
-import { Ground, Pin, Plants, Settlements, VillageLabels } from "./Scenery";
+import { Ground, HAZE, Pin, Plants, Settlements, VillageLabels } from "./Scenery";
 import { Vehicles } from "./Vehicles";
 
 const clamp01 = (u: number) => Math.min(1, Math.max(0, u));
@@ -45,7 +45,7 @@ function Rig({ reduced }: { reduced: boolean }) {
   const { geo, plants, follow, vehiclePos, selected, cellById } = useWorld();
   const spec = useStage().camera;
   const controls = useRef<{ target: THREE.Vector3; update: () => void } | null>(null);
-  const { camera } = useThree();
+  const { camera, scene } = useThree();
   const aspect = useThree((s) => s.size.width / Math.max(1, s.size.height));
   const span = geo?.span ?? 100;
   const want = useRef({ target: new THREE.Vector3(), r: span * 1.2, polar: 0.8, azim: -0.18, on: false });
@@ -103,6 +103,12 @@ function Rig({ reduced }: { reduced: boolean }) {
     if (!c) return;
     const k = reduced ? 1 : 1 - Math.exp(-Math.min(dt, 0.1) * 2.4);
     const w = want.current;
+    // haze begins a little beyond whatever the camera is looking at, so the map never shows an edge
+    if (scene.fog instanceof THREE.Fog) {
+      const d = camera.position.distanceTo(c.target);
+      scene.fog.near = d * 1.1 + span * 0.45;
+      scene.fog.far = d * 1.1 + span * 3.6;
+    }
     if (follow) {
       const p = vehiclePos.current.get(follow);
       if (p) {
@@ -162,6 +168,8 @@ function World({ reduced }: { reduced: boolean }) {
   const pinned = cellById.get(mode.pin ?? selected ?? "");
   return (
     <>
+      <color attach="background" args={[HAZE]} />
+      <fog attach="fog" args={[HAZE, 200, 600]} />
       <Sun />
       <Rig reduced={reduced} />
       <Ground />

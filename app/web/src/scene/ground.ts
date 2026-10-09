@@ -4,7 +4,7 @@ import type { RoadLine } from "../sim/roads";
 const P = {
   land: "#e7eedd", patches: ["#e2ead7", "#eaf0e1", "#dfe8d3", "#e5ecda"], bed: "#b7c2ab",
   casing: "#c3ccb7", road: "#ffffff", lane: "#f6f4ea", water: "#9fd0ee", built: "rgba(160,140,110,0.09)",
-  rim: "rgba(110,130,100,0.22)", photoTint: "rgba(255,255,255,0.05)",
+  photoTint: "rgba(255,255,255,0.05)",
 };
 
 /** Fine light-and-dark speckle, tiled over the photo: detail the imagery itself runs out of up close. */
@@ -58,9 +58,7 @@ export function paintGround(canvas: HTMLCanvasElement, input: GroundInput, maxPx
   g.fillStyle = P.land;
   g.fillRect(0, 0, canvas.width, canvas.height);
   if (photo) {
-    g.filter = "brightness(1.16) saturate(1.22) contrast(1.04)";
     g.drawImage(photo.canvas, X(photo.x - photo.w / 2), Z(photo.z - photo.d / 2), photo.w * k, photo.d * k);
-    g.filter = "none";
     g.fillStyle = P.photoTint;
     g.fillRect(0, 0, canvas.width, canvas.height);
     g.fillStyle = g.createPattern(grain(), "repeat")!;
@@ -118,16 +116,18 @@ export function paintGround(canvas: HTMLCanvasElement, input: GroundInput, maxPx
   g.fillStyle = P.bed;
   for (const c of cells) g.fillRect(X(c.x - c.w / 2) - 2, Z(c.z - c.d / 2) - 2, c.w * k + 4, c.d * k + 4);
 
-  // soften the map's rim
-  const rim = 1.0 * k;
+  // the block has no edge: its rim fades out, and the land around it shows through
+  const rim = 1.6 * k;
+  g.globalCompositeOperation = "destination-out";
   for (const [x, y, w, h, x1, y1, x2, y2] of [
     [0, 0, canvas.width, rim, 0, 0, 0, rim], [0, canvas.height - rim, canvas.width, rim, 0, canvas.height, 0, canvas.height - rim],
     [0, 0, rim, canvas.height, 0, 0, rim, 0], [canvas.width - rim, 0, rim, canvas.height, canvas.width, 0, canvas.width - rim, 0],
   ]) {
     const grad = g.createLinearGradient(x1, y1, x2, y2);
-    grad.addColorStop(0, P.rim);
+    grad.addColorStop(0, "rgba(0,0,0,1)");
     grad.addColorStop(1, "rgba(0,0,0,0)");
     g.fillStyle = grad;
     g.fillRect(x, y, w, h);
   }
+  g.globalCompositeOperation = "source-over";
 }
