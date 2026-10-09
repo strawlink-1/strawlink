@@ -89,6 +89,23 @@ def query(name: str, pk: str, value: str, index: str | None = None, desc: bool =
         kw["ExclusiveStartKey"] = r["LastEvaluatedKey"]
 
 
+def remove(name: str, key: dict, attrs: list[str]) -> None:
+    """Drop attributes from one row."""
+    if not attrs:
+        return
+    names = {f"#k{i}": a for i, a in enumerate(attrs)}
+    table(name).update_item(Key=key, UpdateExpression="REMOVE " + ", ".join(names), ExpressionAttributeNames=names)
+
+
+def clear(name: str, key_names: tuple[str, ...]) -> int:
+    """Delete every row of a table (demo reset). Returns how many were removed."""
+    rows = scan(name)
+    with table(name).batch_writer() as w:
+        for r in rows:
+            w.delete_item(Key={k: r[k] for k in key_names})
+    return len(rows)
+
+
 def batch_put(name: str, items: list[dict]) -> None:
     with table(name).batch_writer() as w:
         for it in items:

@@ -41,24 +41,24 @@ def now_iso() -> str:
 
 @lru_cache
 def params() -> dict:
-    return yaml.safe_load((SHARED / "config" / "params.yaml").read_text())
+    return yaml.safe_load((SHARED / "config" / "params.yaml").read_text(encoding="utf-8"))
 
 
 @lru_cache
 def synthetic() -> dict:
     f = SHARED / "config" / "synthetic.yaml"
-    return yaml.safe_load(f.read_text()) if f.exists() else {}
+    return yaml.safe_load(f.read_text(encoding="utf-8")) if f.exists() else {}
 
 
 @lru_cache
 def schema(name: str) -> dict:
-    return json.loads((SHARED / "contracts" / f"{name}.schema.json").read_text())
+    return json.loads((SHARED / "contracts" / f"{name}.schema.json").read_text(encoding="utf-8"))
 
 
 @lru_cache
 def geojson(rel: str) -> dict:
     f = SHARED / rel
-    return json.loads(f.read_text()) if f.exists() else {"type": "FeatureCollection", "features": []}
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {"type": "FeatureCollection", "features": []}
 
 
 def validate(doc, name: str) -> None:
@@ -70,7 +70,7 @@ def validate(doc, name: str) -> None:
 def assumptions() -> list[dict]:
     """Every ASSUMPTION / TODO / synthetic input, for the UI's assumptions panel."""
     out = []
-    text = (SHARED / "config" / "params.yaml").read_text().splitlines()
+    text = (SHARED / "config" / "params.yaml").read_text(encoding="utf-8").splitlines()
     for line in text:
         if ":" not in line or line.strip().startswith("#"):
             continue

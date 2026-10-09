@@ -1,0 +1,105 @@
+# StrawLink — to-do list
+
+Last updated Fri 9 Oct 2026. Submission: Sun 11 Oct, video recorded by noon.
+`[x]` = done, `[ ]` = still to do. Sources: `HANDOFF.md` (Yash) and the work done since.
+
+## 1. Data and satellite pipeline (Yash) — done, with known weaknesses
+
+- [x] Pick the block (west of Sangrur) from 2025 burn-scar imagery
+- [x] 200 field parcels across 4 villages (Alal, Sultanpur, Mulowal, Ranike) — approximate grid cells on real paddy pixels, not hand-drawn
+- [x] Synthetic machines, plants, phone numbers and combine bookings (`config/synthetic.yaml`)
+- [x] Villages and schools from OpenStreetMap (for the downwind layer)
+- [x] Sentinel-2 download and per-field greenness series, 2022–2026
+- [x] Harvest dates detected for 97–99.5 % of fields per season
+- [x] Burn detection from imagery
+- [x] Harvest forecast model (median error 4.0 days on 2025)
+- [x] Weekly straw volume per village
+- [x] Planner: fair queue, bale-or-seed route choice, daily machine routing, truck hauls, first-come baseline
+- [x] 2025 season backtest at three fleet sizes, plus day-by-day replay files
+- [x] Live forecast and plan for the demo day (24 Oct 2026)
+- [x] Contract schemas v0.1 and stub files
+- [x] 53 pipeline tests passing (on Yash's machine)
+
+Still weak — fix if time allows, otherwise say it plainly in the demo:
+
+- [ ] **Add NASA FIRMS fire data** — burns are over-counted without it (2025 shows 92.5 % burned). Needs a free `FIRMS_MAP_KEY`, then rerun burns → forecast → backtest
+- [ ] **Widen the forecast range** — the "80 %" range only contains about 35 % of real harvests
+- [ ] Rerun live forecast + backtest after the two fixes above
+- [ ] Wire `burn_status` into the live run so certificates can say "no burn detected"
+- [ ] Review contracts v0.1 together and bump to 1.0
+
+## 2. Backend — code done and tested here, not deployed yet
+
+- [x] All API routes (fields, plan, re-plan, rain, harvest confirmation, missed call, plants, machines, backtest, certificates, verify, exposure, emissions, assistant, WhatsApp webhook, road routes)
+- [x] Loaders from S3 into DynamoDB
+- [x] Re-plan on rain and on harvest confirmation
+- [x] WhatsApp message templates with Punjabi translation and a number-check guard
+- [x] Farmer assistant (Strands + Bedrock)
+- [x] Clearance certificate PDF with QR code
+- [x] Downwind exposure (villages and schools)
+- [x] SAM template for the whole stack
+- [x] Local dev server that needs no AWS account (works on Windows)
+- [x] `POST /simulate` — what-if plan for the Simulator's sliders; stores nothing
+- [x] `POST /demo/reset` — undo rain events, confirmations, cleared marks, certificates and messages, then re-plan (button on the Farmers page)
+- [x] Emissions estimate with cited factors (Andreae 2019 for PM2.5, black carbon, CO, CO2; IPCC 2006 for the share that burns), shown on the Air page as an upper estimate
+- [x] "Mark cleared" on the Farmers page, so the certificate and its verify page can be shown
+- [x] Backend tests re-run on this machine: 16 pass
+- [x] Planner and contract tests re-run on this machine: 34 pass; 1 needs scikit-learn, which is not installed here
+- [ ] The other pipeline tests (forecast, labels, burns) need the pipeline's own packages (lightgbm, rasterio); not run here
+- [ ] Native-speaker check of the hand-written Punjabi templates
+
+## 3. AWS deployment — ready to run, waiting for a go-ahead
+
+No Docker or SAM CLI is needed any more: `app/tools/deploy_nodocker.sh` fetches Linux packages
+with pip and lets CloudFormation apply the SAM template.
+
+- [x] Lambda packages build on this laptop (API 118 MB, planner 201 MB unzipped; limit 250 MB)
+- [x] Template validated by CloudFormation
+- [x] One command for everything: `app/tools/deploy_nodocker.sh all` (build → stack → data → web → check)
+- [ ] **Confirm the AWS account.** Shambhvi's own account; this laptop's AWS login must point at it before deploying
+- [ ] Run the deploy: stack in `ap-south-1`, data to S3, first re-plan, web app on Amplify Hosting
+- [ ] Smoke-test on AWS: simulator, Punjabi translation and assistant (needs Bedrock model access), certificate PDF link
+- [ ] Twilio WhatsApp sandbox + SSM parameters + webhook URL (optional; the Farmers page simulates the thread without it)
+- [ ] In Yash's account, if it is ever used again: delete the half-pushed `strawlink-de4e8727-CompanionStack`
+
+## 4. Web app — rebuilt on 9 Oct around a slider-driven Simulator
+
+A light, simple tool: page tabs on top, inputs on the left, the 3D map in the middle with a
+scoreboard above it and a time bar below it (`app/web/README.md`).
+
+- [x] Shell: page tabs, left panel, 3D map, scoreboard strip, time bar; light look; "What is real here?" sheet
+- [x] **Simulator** (opens first): five sliders — day, baler sets, Super Seeders, trucks, rain (whole block or one village). Every change goes to the real planner (`POST /simulate`); the map, machine list and scoreboard follow the plan it returns
+- [x] Each slider says what that kind of machine achieved in the plan (fields baled, fields sown, truck trips used), and says so when every truck trip is used
+- [x] Run the day slowly: tractors and trucks drive real OpenStreetMap roads at the plan's times, a field is cleared in passes, bales go to the plants. Speed slider (1–60 plan-minutes a second, starts at 4) and a scrubber
+- [x] The whole fleet is on the map; a machine with no work stays parked and the list says so; click a machine to follow it
+- [x] Scoreboard: fields cleared so far / planned, straw dealt with, fields still waiting (and too wet), "enough / not enough machines"
+- [x] Field card on click, with "Farmer says: harvested today" feeding straight back into the plan
+- [x] **Forecast**, **Plants**, **Farmers**, **Air**, **2025 test** pages, one job each
+- [x] Backend: `/simulate` (stores nothing; has a test), `/roads`, wind fallback when the plan day is beyond the forecast, UTF-8 config reading
+- [ ] **You run the Simulator and sign off look, speed and clarity**
+- [ ] Look at the maps on the Forecast, Plants, Air and 2025 test tabs: their panels were checked after the last change, their maps were not re-checked on screen
+- [ ] Check it on the laptop and screen size you will record on
+- [ ] Punjabi names for the four villages (`name_pa` is empty in `data/fields/villages.geojson`)
+- [x] "Start the demo over" on the Farmers page (`POST /demo/reset`)
+- [ ] After deploy: confirm Amazon Location road routes replace the local road graph
+
+## 5. Repository housekeeping
+
+- [ ] **Commit and push this session's work** — nothing is committed yet
+- [x] `README.md` for the judges
+- [x] `app/CLAUDE.md` and `app/web/README.md` describe the new UI
+- [ ] Update `HANDOFF.md` to match
+
+## 6. Demo and submission (Day 4, Sun 11 Oct)
+
+- [ ] Freeze data at 10:00
+- [ ] Write the 3-minute script: problem → play the day → rain re-plan → WhatsApp confirm → backtest → AWS architecture
+- [ ] Rehearse twice
+- [ ] Record the video by noon; keep a backup screen recording
+- [ ] Deck: problem, how it works, backtest result, AWS architecture, roadmap
+- [ ] State the caveats: approximate parcels, synthetic fleet and plants, burn over-count, narrow forecast range, backtest is a tie at equal information
+- [ ] Optional: AWS Builder Center blog post
+
+## Cut order if time runs out
+
+Emissions → exposure layer → assistant (keep the API) → certificates. Never cut the backtest.

@@ -1,5 +1,10 @@
 # StrawLink — handoff (Yash → Shambhvi), 8 Oct 2026
 
+> **Since this handoff (9 Oct 2026):** the web app was rebuilt around a slider-driven Simulator
+> (§2.4 and §6 below describe the old UI and the old brief), the API gained `/simulate`, `/roads`
+> and `/demo/reset`, emission factors are cited, and deployment no longer needs Docker or the SAM
+> CLI (`app/tools/deploy_nodocker.sh`). Current state: `README.md` and `TODO.md`.
+
 Read this first, then `/CLAUDE.md`, then `app/CLAUDE.md` / `pipeline/CLAUDE.md`.
 Yash's Claude session built **both halves** (pipeline + most of app). This file is the
 single source of truth for *what exists, what works, what's blocked, and what's next*.

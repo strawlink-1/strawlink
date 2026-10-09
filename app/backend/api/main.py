@@ -108,6 +108,13 @@ def meta():
             "bedrock_model": settings.BEDROCK_MODEL_ID or None}
 
 
+@app.get("/roads")
+def roads():
+    """OSM roads and waterways of the block (display + path drawing). Empty if not exported yet."""
+    return {"roads": settings.geojson("data/osm/roads.geojson"), "water": settings.geojson("data/osm/water.geojson"),
+            "attribution": "Roads and waterways © OpenStreetMap contributors"}
+
+
 # ---------------------------------------------------------------- fields
 
 
@@ -194,6 +201,39 @@ def get_plan(date: str | None = None, policy: str = "strawlink"):
 def post_replan(body: dict = Body(default={})):
     on = plan_date(body.get("date"))
     return notify_and_replan(on, body.get("trigger", "manual"))
+
+
+@app.post("/simulate")
+def simulate(body: dict = Body(default={})):
+    """What-if plan for one day: fleet size, rain and date come from the request; nothing is stored."""
+    on = plan_date(body.get("date"))
+    base = {t: sum(m["type"] == t for m in planning.machines()) for t in ("baler_set", "seeder", "truck")}
+    fleet = {t: max(0, min(8, int(body.get(t, base[t])))) for t in base}
+    try:
+        return planning.scenario(on, fleet, rain_mm=max(0.0, min(100.0, float(body.get("rain_mm", 0)))),
+                                 rain_village=str(body.get("rain_village", "all")),
+                                 confirmed=tuple(str(x) for x in body.get("confirmed", [])[:200]),
+                                 time_limit_s=max(1.0, min(12.0, float(body.get("time_limit_s", 3)))))
+    except Exception as e:  # noqa: BLE001 — a scenario the planner rejects is the caller's to fix
+        raise HTTPException(422, f"could not plan this scenario: {e}") from e
+
+
+@app.post("/demo/reset")
+def demo_reset(body: dict = Body(default={})):
+    """Undo what was done during a demo — rain events, harvest confirmations, cleared marks,
+    certificates and the message log — then re-plan. Forecasts, fields and the fleet are untouched."""
+    on = plan_date(body.get("date"))
+    touched = 0
+    for f in fields_all():
+        gone = [k for k in ("confirmed", "cleared_on", "status") if k in f]
+        if gone:
+            store.remove("fields", {"field_id": f["field_id"]}, gone)
+            touched += "confirmed" in gone or "cleared_on" in gone
+    removed = {"events": store.clear("events", ("field_id", "ts")),
+               "certificates": store.clear("certificates", ("cert_id",)),
+               "messages": store.clear("messages", ("phone", "ts"))}
+    _cache.clear()
+    return {"fields_reset": touched, "removed": removed, "replan": notify_and_replan(on, "reset")}
 
 
 @app.post("/events/rain")
@@ -393,8 +433,12 @@ def get_exposure(date: str | None = None):
 
 
 @app.get("/emissions")
-def get_emissions(date: str | None = None):
+def get_emissions(date: str | None = None, tonnes: float | None = None):
+    """What burning straw in the field would emit. Default: the straw on fields marked cleared by `date`.
+    With `tonnes`, the same sum for that amount of straw (the web app passes a plan's tonnage)."""
     on = plan_date(date).isoformat()
+    if tonnes is not None:
+        return {"date": on, **emissions.estimate(max(0.0, min(1e6, tonnes)), basis="asked")}
     t = sum(float(f.get("straw_t", 0)) for f in fields_all() if f.get("cleared_on") and f["cleared_on"] <= on)
     return {"date": on, **emissions.estimate(t)}
 

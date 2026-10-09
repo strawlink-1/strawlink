@@ -12,3 +12,5 @@ app/web/node_modules/
 app/web/dist/
 outputs/backtest/plans/
 outputs/logs/
+app/.build/
+app/.build-deps/

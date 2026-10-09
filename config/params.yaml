@@ -15,8 +15,33 @@ haul_radius_km: 30           # ASSUMPTION for bale route
 cluster_radius_m: 800        # ASSUMPTION
 exposure_sector_deg: 30      # ASSUMPTION
 exposure_max_km: 10          # ASSUMPTION
-emission_factors: TODO-cite  # per tonne of rice straw burned; must cite a source
-assumed_burn_probability: TODO   # discount for emissions-avoided estimate
+# Emissions if straw is burned in the open field: grams per kg of dry matter burned.
+# All four are the "agricultural residues (open)" column of Table 1 in Andreae, M. O. (2019),
+# "Emission of trace gases and aerosols from biomass burning – an updated assessment",
+# Atmos. Chem. Phys. 19, 8523–8546, doi:10.5194/acp-19-8523-2019 (mean ± SD, number of studies).
+# They are global averages for crop residue, not measurements of Punjab rice straw.
+emission_factors:
+  pm2_5:
+    label: "Fine particles (PM2.5)"
+    g_per_kg: 8.2
+    source: "Andreae 2019, ACP 19, Table 1, agricultural residues (open): 8.2 ± 4.4 g/kg, 18 studies"
+  black_carbon:
+    label: "Black carbon (soot)"
+    g_per_kg: 0.42
+    source: "Andreae 2019, ACP 19, Table 1, agricultural residues (open): 0.42 ± 0.28 g/kg, 24 studies"
+  co:
+    label: "Carbon monoxide"
+    g_per_kg: 76
+    source: "Andreae 2019, ACP 19, Table 1, agricultural residues (open): 76 ± 55 g/kg, 39 studies"
+  co2:
+    label: "Carbon dioxide"
+    g_per_kg: 1430
+    source: "Andreae 2019, ACP 19, Table 1, agricultural residues (open): 1430 ± 230 g/kg, 29 studies"
+# Share of the straw on the field that actually burns.
+combustion_factor:
+  value: 0.80
+  source: "IPCC 2006 Guidelines for National GHG Inventories, Vol. 4, Ch. 2, Table 2.6: rice residues, post-harvest field burning"
+assumed_burn_probability: 1.0   # ASSUMPTION — upper bound: counts every field as one that would otherwise be burned; straw tonnes are treated as dry matter
 
 # --- planner (pipeline/CLAUDE.md §4) ---
 horizon_days: 3              # ASSUMPTION — look-ahead days for machine positioning

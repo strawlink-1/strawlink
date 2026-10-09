@@ -39,9 +39,9 @@ export type Meta = {
 };
 
 export const STATUS: Record<Status, { label: string; color: string; hint: string }> = {
-  forecast: { label: "Forecast", color: "var(--forecast)", hint: "Harvest expected later (satellite forecast)." },
-  ready: { label: "Ready", color: "var(--ready)", hint: "Harvest due or done; no machine assigned today." },
-  scheduled: { label: "Scheduled today", color: "var(--seed)", hint: "A machine is assigned in today's plan." },
+  forecast: { label: "Not harvested yet", color: "var(--forecast)", hint: "The paddy is still standing; harvest is expected later (satellite forecast)." },
+  ready: { label: "Waiting for a machine", color: "var(--ready)", hint: "Harvested or due, but no machine is free for it today." },
+  scheduled: { label: "Scheduled today", color: "var(--sched)", hint: "A machine visits this field today. It turns green once the machine has finished." },
   cleared: { label: "Cleared", color: "var(--cleared)", hint: "Straw cleared; certificate issued." },
   at_risk: { label: "At risk", color: "var(--risk)", hint: "Neither route can reach it before the sowing deadline." },
   wet: { label: "Too wet", color: "var(--wet)", hint: "Recent rain above the wet threshold; machines wait." },
@@ -51,3 +51,10 @@ export const fmtDate = (d?: string | null) =>
   d ? new Date(d + (d.length === 10 ? "T00:00:00" : "")).toLocaleDateString("en-IN", { day: "numeric", month: "short" }) : "—";
 export const fmtTime = (iso?: string) => (iso ? iso.slice(11, 16) : "—");
 export const daysBetween = (a: string, b: string) => Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
+
+/** BA01 → "Baler 1", SE02 → "Seeder 2", TR03 → "Truck 3" (ids come from config/synthetic.yaml). */
+export const machineName = (id: string) => {
+  const kind = { BA: "Baler", SE: "Seeder", TR: "Truck" }[id.slice(0, 2)];
+  const n = parseInt(id.slice(2), 10);
+  return kind && !isNaN(n) ? `${kind} ${n}` : id;
+};
