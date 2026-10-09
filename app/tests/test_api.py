@@ -99,12 +99,14 @@ def test_meta_lists_assumptions(client):
 def test_simulate_answers_the_sliders_and_stores_nothing(client):
     client.post("/replan", json={})
     stored = client.get("/plan").json()["plan_id"]
+    # nothing changed: the simulator starts from the saved plan itself
     base = client.post("/simulate", json={"time_limit_s": 2}).json()
     jsonschema.validate(base["plan"], settings.schema("plan"))
+    assert base["inputs"]["saved"] is True and base["plan"]["plan_id"] == stored
     assert base["synthetic"] is True and base["plan"]["totals"]["fields_planned"] > 0
     # a bigger fleet clears more; no machines clears nothing
     more = client.post("/simulate", json={"baler_set": 6, "seeder": 6, "truck": 6, "time_limit_s": 2}).json()
-    assert len(more["machines"]) == 18
+    assert len(more["machines"]) == 18 and more["inputs"]["saved"] is False
     assert more["plan"]["totals"]["fields_planned"] > base["plan"]["totals"]["fields_planned"]
     none = client.post("/simulate", json={"baler_set": 0, "seeder": 0, "truck": 0, "time_limit_s": 2}).json()
     assert none["plan"]["totals"]["fields_planned"] == 0

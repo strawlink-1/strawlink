@@ -92,7 +92,8 @@ function Controls() {
         {planning ? <><span className="spin" />The planner is working out a new plan…</>
           : simError ? <>The planner could not plan this: {simError}</>
           : sim && sim.plan.totals.fields_planned === 0 ? <>Plan ready: no field can be cleared with this setup.</>
-          : sim ? <>Plan ready — solved in {sim.plan.solver.runtime_s.toFixed(1)} s. Press “Run the day”.</>
+          : sim?.inputs.saved ? <>This is today's saved plan. Press “Run the day”, or move a slider to ask the planner “what if?”.</>
+          : sim ? <>What-if plan ready — solved in {sim.plan.solver.runtime_s.toFixed(1)} s. Press “Run the day”.</>
           : "Waiting for the first plan…"}
       </p>
     </Group>

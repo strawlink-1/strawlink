@@ -236,8 +236,12 @@ def fleet_of(base: list[dict], want: dict[str, int]) -> list[dict]:
 
 def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village: str = "all",
              confirmed: tuple[str, ...] = (), time_limit_s: float = 3.0) -> dict:
-    """Plan one day under what-if inputs. Nothing is stored: the saved plan and fields are untouched."""
+    """Plan one day under what-if inputs. Nothing is stored: the saved plan and fields are untouched.
+
+    With nothing changed (the real fleet, no extra rain, no extra confirmations) the answer is the
+    saved plan itself, so the simulator starts from the plan farmers have been told about."""
     state, meta = build_state(on, time_limit_s)
+    real_fleet = [m["machine_id"] for m in state["machines"]]
     wet_above = float(state["params"]["rain_wet_threshold_mm"])
     for f in state["fields"]:
         if rain_mm and rain_village in ("all", "ALL", None, f["village_id"]):
@@ -246,9 +250,13 @@ def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village
             # a farmer's word that the field is harvested today overrides the satellite forecast
             f.update(p10=on.isoformat(), p50=on.isoformat(), p90=on.isoformat(), source="confirmed", status="ready")
     state["machines"] = fleet_of(state["machines"], fleet)
-    settings.validate(state, "planner_input")
-    plan = run_planner(state, "strawlink")
-    settings.validate(plan, "plan")
+    untouched = not rain_mm and not confirmed and [m["machine_id"] for m in state["machines"]] == real_fleet
+    plan = load_plan(on, "strawlink") if untouched else None
+    saved = plan is not None
+    if not saved:
+        settings.validate(state, "planner_input")
+        plan = run_planner(state, "strawlink")
+        settings.validate(plan, "plan")
 
     visited = {s["field_id"] for a in plan["assignments"] if a["type"] != "truck" for s in a["stops"]}
     route = {f["field_id"]: f["route"] for f in plan["fields"]}
@@ -262,7 +270,7 @@ def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village
         "date": on.isoformat(), "synthetic": True, "plan": plan, "status": status, "machines": state["machines"],
         "inputs": {"fleet": {t: sum(m["type"] == t for m in state["machines"]) for t in _PREFIX},
                    "rain_mm": rain_mm, "rain_village": rain_village, "rain_wet_threshold_mm": wet_above,
-                   "confirmed": sorted(confirmed),
+                   "confirmed": sorted(confirmed), "saved": saved,
                    "observed_rain_mm_3d": meta.get("observed_mm_3d"), "time_limit_s": time_limit_s},
     }
 

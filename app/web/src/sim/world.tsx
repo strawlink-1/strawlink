@@ -27,7 +27,8 @@ export type SimResult = {
   plan: Plan;
   status: Record<string, Status>;
   machines: { machine_id: string; type: MachineType; base: LonLat }[];
-  inputs: { fleet: Record<MachineType, number>; rain_wet_threshold_mm: number; time_limit_s: number };
+  /** saved: this is the stored plan (nothing was changed), not a what-if solved for these inputs */
+  inputs: { fleet: Record<MachineType, number>; rain_wet_threshold_mm: number; time_limit_s: number; saved?: boolean };
 };
 
 type Machines = { machines: { machine_id: string; type: string }[] };

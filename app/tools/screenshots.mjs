@@ -71,7 +71,7 @@ const HELPERS = `
   window.__click = (text) => { const b = [...document.querySelectorAll('button, a')].find((x) => x.textContent.trim().startsWith(text)); if (!b) return false; b.click(); return true; };
   window.__status = () => document.querySelector('.status')?.textContent ?? '';
   true`;
-const planReady = () => until("window.__status && __status().startsWith('Plan ready')", 90000, "plan ready");
+const planReady = () => until("(() => { const s = document.querySelector('.status'); return !!s && !s.classList.contains('busy') && !s.textContent.startsWith('Waiting'); })()", 90000, "plan ready");
 const prep = async (path) => { await go(path); await js(HELPERS); };
 
 const SHOTS = {
@@ -92,12 +92,12 @@ const SHOTS = {
   "sim-bigfleet": async () => {
     await prep("/simulator"); await planReady(); await sleep(1500);
     await js("__slider('Baler sets', 6)"); await js("__slider('Super Seeders', 6)"); await js("__slider('Trucks', 6)");
-    await until("__status().includes('working out')", 8000, "planning starts"); await planReady(); await sleep(1500);
+    await until("!!document.querySelector('.status.busy')", 8000, "planning starts"); await planReady(); await sleep(1500);
     await js("__time(11 * 60 + 20)"); await sleep(4500); await shot("sim-bigfleet");
   },
   "sim-rain": async () => {
     await prep("/simulator"); await planReady(); await sleep(1500); await js("__slider('Rain', 15)");
-    await until("__status().includes('working out')", 8000, "planning starts"); await planReady(); await sleep(5000); await shot("sim-rain");
+    await until("!!document.querySelector('.status.busy')", 8000, "planning starts"); await planReady(); await sleep(5000); await shot("sim-rain");
   },
   "sim-small": async () => { await size(962, 634); await prep("/simulator"); await planReady(); await sleep(2500); await js("__time(11 * 60 + 20)"); await sleep(4500); await shot("sim-small"); await size(1440, 810); },
   "forecast": async () => { await prep("/forecast"); await sleep(7000); await shot("forecast"); },

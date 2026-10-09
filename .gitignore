@@ -14,3 +14,5 @@ outputs/backtest/plans/
 outputs/logs/
 app/.build/
 app/.build-deps/
+app/.film/
+docs/video/

@@ -89,6 +89,7 @@ scoreboard above it and a time bar below it (`app/web/README.md`).
 - [x] Field card on click, with "Farmer says: harvested today" feeding straight back into the plan
 - [x] **Forecast**, **Plants**, **Farmers**, **Air**, **2025 test** pages, one job each
 - [x] Backend: `/simulate` (stores nothing; has a test), `/roads`, wind fallback when the plan day is beyond the forecast, UTF-8 config reading
+- [x] The Simulator opens on the saved plan (the one farmers are told about); only a moved slider asks the planner for a what-if. Before this the field card and the farmer's assistant could disagree
 - [ ] **You run the Simulator and sign off look, speed and clarity**
 - [x] Every page checked on the live site from screenshots (`docs/img`, taken with `app/tools/screenshots.mjs`): simulator at rest, mid-day, following a machine, a bigger fleet, rain, the field card, and the five other pages
 - [x] Fixed from that check: the map was missing on every page except the Simulator; labels now shrink on a small window; status rings only show on the Simulator
@@ -110,10 +111,12 @@ scoreboard above it and a time bar below it (`app/web/README.md`).
 - [x] Draft of the 3-minute script with what to click and what to say: `docs/demo-script.md`
 - [x] Draft deck, 11 slides with speaker notes: https://claude.ai/artifact/SdBubpT3h94vt8eFJLmjZV (private until shared from its Share menu; downloads as PowerPoint or PDF)
 - [x] Draft submission text: `docs/submission.md`
+- [x] Narrated demo film, 2:52, 1080p, English voice (Amazon Polly, Kajal) with captions and zooms, rendered frame by frame from the live site: `docs/video/strawlink-demo.mp4` (not in git; rebuild with `app/tools/film/voice.py`, `film.mjs`, `assemble.mjs`). Narration text: `app/tools/film/narration.json`
 - [x] Caveats written into the script, the deck and the README: approximate parcels, synthetic fleet and plants, burn over-count, narrow forecast range, the backtest is a tie
 - [ ] **You:** read the script and the deck, change the wording to your own
 - [ ] **You:** have a Punjabi speaker read the messages the app sends
-- [ ] **You:** press "Start the demo over" on the Farmers page, rehearse twice, record; keep a backup recording
+- [ ] **You:** watch the film with sound once (the voice is synthetic and nobody has listened to it yet); upload it and put the link in the submission
+- [ ] Optional: record your own take instead, with `docs/demo-script.md`
 - [ ] **You:** put the repository link into the deck's last slide and `docs/submission.md`
 - [ ] **You:** fill in the submission form (repo, live link, video)
 - [ ] Optional: AWS Builder Center blog post
