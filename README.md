@@ -24,6 +24,8 @@ StrawLink is that plan, for one block of 200 fields west of Sangrur:
 
 ## See it
 
+![The Simulator: sliders on the left, the day playing on a 3D map of the block](docs/img/simulator.png)
+
 The web app opens on a **Simulator**. Move a slider — day, baler sets, Super Seeders, trucks,
 rain — and the real planner re-plans in about four seconds. Press *Run the day* and watch tractors
 and trucks drive the block's real roads, clear fields and carry bales to the plants.
@@ -36,6 +38,13 @@ and trucks drive the block's real roads, clear fields and carry bales to the pla
 | Farmers | The WhatsApp thread in Punjabi, the time slot, the clearance certificate |
 | Air | Afternoon wind, villages and schools downwind of fields with no machine, and what burning today's straw would emit |
 | 2025 test | The 2025 replay against first-come booking |
+
+| Farmers | Air | 2025 test |
+|---|---|---|
+| ![WhatsApp thread in Punjabi beside the farmer's field](docs/img/farmers.png) | ![Wind and the villages downwind of fields with no machine](docs/img/air.png) | ![The 2025 season replayed: cleared and burned fields](docs/img/results-2025.png) |
+
+Screenshots are of the live site; `app/tools/screenshots.mjs` regenerates them. A draft video script
+and the submission text are in `docs/`.
 
 ## Run it on your machine (no AWS account needed)
 

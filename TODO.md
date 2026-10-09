@@ -90,7 +90,8 @@ scoreboard above it and a time bar below it (`app/web/README.md`).
 - [x] **Forecast**, **Plants**, **Farmers**, **Air**, **2025 test** pages, one job each
 - [x] Backend: `/simulate` (stores nothing; has a test), `/roads`, wind fallback when the plan day is beyond the forecast, UTF-8 config reading
 - [ ] **You run the Simulator and sign off look, speed and clarity**
-- [ ] Look at the maps on the Forecast, Plants, Air and 2025 test tabs: their panels were checked after the last change, their maps were not re-checked on screen
+- [x] Every page checked on the live site from screenshots (`docs/img`, taken with `app/tools/screenshots.mjs`): simulator at rest, mid-day, following a machine, a bigger fleet, rain, the field card, and the five other pages
+- [x] Fixed from that check: the map was missing on every page except the Simulator; labels now shrink on a small window; status rings only show on the Simulator
 - [ ] Check it on the laptop and screen size you will record on
 - [ ] Punjabi names for the four villages (`name_pa` is empty in `data/fields/villages.geojson`)
 - [x] "Start the demo over" on the Farmers page (`POST /demo/reset`)
@@ -98,19 +99,23 @@ scoreboard above it and a time bar below it (`app/web/README.md`).
 
 ## 5. Repository housekeeping
 
-- [ ] **Commit and push this session's work** — nothing is committed yet
+- [x] Work committed on the local branch `simulator-ui`
+- [ ] **Push it.** GitHub refuses: user `shambhvi2006` has read-only access to `strawlink-1/strawlink`, and the repository is private. Either get write access (and make it public for the judges), or create a new public repository and push there
 - [x] `README.md` for the judges
 - [x] `app/CLAUDE.md` and `app/web/README.md` describe the new UI
 - [ ] Update `HANDOFF.md` to match
 
-## 6. Demo and submission (Day 4, Sun 11 Oct)
+## 6. Demo and submission (Sun 11 Oct, video by noon)
 
-- [ ] Freeze data at 10:00
-- [ ] Write the 3-minute script: problem → play the day → rain re-plan → WhatsApp confirm → backtest → AWS architecture
-- [ ] Rehearse twice
-- [ ] Record the video by noon; keep a backup screen recording
-- [ ] Deck: problem, how it works, backtest result, AWS architecture, roadmap
-- [ ] State the caveats: approximate parcels, synthetic fleet and plants, burn over-count, narrow forecast range, backtest is a tie at equal information
+- [x] Draft of the 3-minute script with what to click and what to say: `docs/demo-script.md`
+- [x] Draft deck, 11 slides with speaker notes: https://claude.ai/artifact/SdBubpT3h94vt8eFJLmjZV (private until shared from its Share menu; downloads as PowerPoint or PDF)
+- [x] Draft submission text: `docs/submission.md`
+- [x] Caveats written into the script, the deck and the README: approximate parcels, synthetic fleet and plants, burn over-count, narrow forecast range, the backtest is a tie
+- [ ] **You:** read the script and the deck, change the wording to your own
+- [ ] **You:** have a Punjabi speaker read the messages the app sends
+- [ ] **You:** press "Start the demo over" on the Farmers page, rehearse twice, record; keep a backup recording
+- [ ] **You:** put the repository link into the deck's last slide and `docs/submission.md`
+- [ ] **You:** fill in the submission form (repo, live link, video)
 - [ ] Optional: AWS Builder Center blog post
 
 ## Cut order if time runs out

@@ -108,6 +108,7 @@ export function WorldProvider({ children }: { children: ReactNode }) {
 
   // ask the planner whenever the inputs settle (or the stored data changes)
   const planned = useRef<number | null>(null);
+  const askedKey = useRef("");
   const key = JSON.stringify(inputs);
   useEffect(() => {
     if (!defaults || !inputs.date) return;
@@ -119,7 +120,9 @@ export function WorldProvider({ children }: { children: ReactNode }) {
         if (live) {
           const n = r.plan.totals.fields_planned, was = planned.current;
           planned.current = n;
-          if (was !== null) say(n === was ? `New plan: still ${n} fields cleared today` : `New plan: ${n} fields cleared today (${n > was ? "+" : "\u2212"}${Math.abs(n - was)})`);
+          const asked = key !== askedKey.current;
+          askedKey.current = key;
+          if (was !== null && asked) say(n === was ? `New plan: still ${n} fields cleared today` : `New plan: ${n} fields cleared today (${n > was ? "+" : "\u2212"}${Math.abs(n - was)})`);
           setSim(r); setSimError(null);
         }
       } catch (e) {

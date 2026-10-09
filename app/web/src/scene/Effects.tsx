@@ -181,7 +181,7 @@ export function Effects({ reduced }: { reduced: boolean }) {
     <>
       {villages.filter((v) => v.wet).map((v) => <Rain key={v.id} at={v.mid} r={Math.min(v.r, 14)} reduced={reduced} />)}
       {mode.smoke.length > 0 && <Smoke sites={mode.smoke} reduced={reduced} />}
-      {!reduced && pulses.map((p) => <Pulse key={p.key} pulse={p} />)}
+      {!reduced && mode.live && pulses.map((p) => <Pulse key={p.key} pulse={p} />)}
       {mode.trips && <Trips reduced={reduced} />}
       {mode.air && <Air air={mode.air} reduced={reduced} />}
     </>
