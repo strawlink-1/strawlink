@@ -9,7 +9,8 @@
 #   app/tools/deploy_nodocker.sh check     # call the deployed API and print what answers
 #   app/tools/deploy_nodocker.sh all       # build → stack → data → web → stack (with the web URL) → check
 #
-# Uses the AWS CLI's current login. REGION, STACK and DEMO_DATE can be overridden in the environment.
+# Uses the AWS CLI's current login (set AWS_PROFILE to pick one). REGION, STACK and DEMO_DATE can be
+# overridden in the environment; BEDROCK_MODEL_ID picks the Bedrock model (default: the template's).
 set -e
 REGION=${REGION:-ap-south-1}
 STACK=${STACK:-strawlink}
@@ -78,15 +79,21 @@ stack() {
     --s3-bucket "$ART" --s3-prefix "$STACK" --output-template-file "$OUT/packaged.yaml" >/dev/null
   aws cloudformation deploy --region "$REGION" --stack-name "$STACK" --template-file "$OUT/packaged.yaml" \
     --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND --no-fail-on-empty-changeset \
-    --parameter-overrides "DemoDate=$DEMO_DATE" ${WEB_URL:+"PublicWebUrl=$WEB_URL"}
+    --parameter-overrides "DemoDate=$DEMO_DATE" ${WEB_URL:+"PublicWebUrl=$WEB_URL"}       ${BEDROCK_MODEL_ID:+"BedrockModelId=$BEDROCK_MODEL_ID"}
   echo "API_URL=$(out ApiUrl)"
 }
 
 data() {
   REGION="$REGION" STACK="$STACK" "$APP/tools/publish_data.sh"
   API_URL=$(out ApiUrl)
-  echo "first re-plan…"
-  curl -sS -m 60 -X POST "$API_URL/replan" -H 'content-type: application/json' -d '{}' | cut -c1-300; echo
+  # the first call starts both Lambdas cold and can run into the API's 30 s limit; try a few times
+  for try in 1 2 3; do
+    echo "re-plan (try $try)…"
+    R=$(curl -sS -m 60 -X POST "$API_URL/replan" -H 'content-type: application/json' -d '{}' || true)
+    echo "$R" | cut -c1-300
+    case "$R" in *fields_planned*) break ;; esac
+    sleep 5
+  done
 }
 
 web() {

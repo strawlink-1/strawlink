@@ -34,3 +34,10 @@ def test_regex_parse():
     assert regex_parse("ਕਟਾਈ ੨੫/੧੦ ਨੂੰ", on) == {"intent": "harvest_date", "date": "2026-10-25"}
     assert regex_parse("aaj katai ho gayi", on)["date"] == "2026-10-24"
     assert regex_parse("kab aayegi machine?", on)["intent"] == "question"
+
+
+def test_assistant_reply_drops_model_reasoning():
+    from assistant.agent import clean_reply
+
+    assert clean_reply("<thinking> the tool says no slot </thinking> No slot yet.") == "No slot yet."
+    assert clean_reply("  Your machine comes at 10:20.  ") == "Your machine comes at 10:20."

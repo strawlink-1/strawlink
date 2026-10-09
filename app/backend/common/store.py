@@ -8,6 +8,7 @@ from functools import lru_cache
 from typing import Any
 
 import boto3
+from botocore.config import Config
 from boto3.dynamodb.conditions import Key
 
 from . import settings
@@ -20,7 +21,10 @@ def _ddb():
 
 @lru_cache
 def _s3():
-    return boto3.client("s3", region_name=settings.REGION)
+    # The regional endpoint: a presigned link through the global one is redirected (and its
+    # signature broken) during a new bucket's first day.
+    return boto3.client("s3", region_name=settings.REGION, endpoint_url=f"https://s3.{settings.REGION}.amazonaws.com",
+                        config=Config(signature_version="s3v4"))
 
 
 def table(name: str):

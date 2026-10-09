@@ -4,6 +4,8 @@
 
 WeMakeDevs × AWS Environmental Hacks 2026 — Air track.
 
+**Live:** https://main.d16side0ke5w9y.amplifyapp.com · API: https://u1feqhbpaa.execute-api.ap-south-1.amazonaws.com
+
 Each October, farmers in Punjab have about three weeks between the rice harvest and wheat sowing.
 A field whose straw is not baled or sown through in time gets burned, and the smoke reaches
 villages, schools and cities downwind. Machines that can clear straw exist; what is missing is a
@@ -80,7 +82,10 @@ app/tools/deploy_nodocker.sh all
 ```
 
 It builds the Lambda packages from Linux wheels, creates the stack in `ap-south-1`, uploads the
-data, runs the first plan and publishes the web app.
+data, runs the first plan and publishes the web app. It uses the AWS CLI's current login
+(`AWS_PROFILE` picks one). The Bedrock model is a template parameter: the live stack runs Amazon
+Nova Pro (`BEDROCK_MODEL_ID=apac.amazon.nova-pro-v1:0`), because Anthropic models need a one-time
+use-case form per AWS account.
 
 ## What is real and what is not
 

@@ -48,19 +48,32 @@ Still weak — fix if time allows, otherwise say it plainly in the demo:
 - [ ] The other pipeline tests (forecast, labels, burns) need the pipeline's own packages (lightgbm, rasterio); not run here
 - [ ] Native-speaker check of the hand-written Punjabi templates
 
-## 3. AWS deployment — ready to run, waiting for a go-ahead
+## 3. AWS deployment — live since 9 Oct 2026
 
-No Docker or SAM CLI is needed any more: `app/tools/deploy_nodocker.sh` fetches Linux packages
-with pip and lets CloudFormation apply the SAM template.
+Web app: https://main.d16side0ke5w9y.amplifyapp.com
+API: https://u1feqhbpaa.execute-api.ap-south-1.amazonaws.com
+Stack `strawlink`, region `ap-south-1`, in Shambhvi's AWS account. No Docker or SAM CLI needed:
+`app/tools/deploy_nodocker.sh` fetches Linux packages with pip and lets CloudFormation apply the
+SAM template.
 
 - [x] Lambda packages build on this laptop (API 118 MB, planner 201 MB unzipped; limit 250 MB)
-- [x] Template validated by CloudFormation
-- [x] One command for everything: `app/tools/deploy_nodocker.sh all` (build → stack → data → web → check)
-- [ ] **Confirm the AWS account.** Shambhvi's own account; this laptop's AWS login must point at it before deploying
-- [ ] Run the deploy: stack in `ap-south-1`, data to S3, first re-plan, web app on Amplify Hosting
-- [ ] Smoke-test on AWS: simulator, Punjabi translation and assistant (needs Bedrock model access), certificate PDF link
+- [x] Stack created: S3 bucket, 6 DynamoDB tables, API + planner + loader + daily Lambdas, HTTP API, daily schedule, Location key
+- [x] Data published to S3; loaders filled DynamoDB; first re-plan ran on AWS (18 fields, 131 t — same as local)
+- [x] Web app on Amplify Hosting, built against the live API
+- [x] Checked on AWS: every read endpoint, the simulator's sliders (3/3/3 → 18 fields, 6/6/6 → 36, rain → 0), harvest message with Punjabi reply, farmer assistant with tools, certificate + PDF link + verify, demo reset
+- [x] Fixed on the way: certificate PDF links are signed for the regional S3 endpoint; the assistant's reply drops a model's `<thinking>` notes
+- [x] Bedrock model: Amazon Nova Pro (`apac.amazon.nova-pro-v1:0`). Claude Haiku 4.5 (the template default) is refused in this account until the Anthropic use-case form is submitted in the Bedrock console
+- [ ] Optional: submit that form, then redeploy with the default model if Claude's Punjabi reads better
 - [ ] Twilio WhatsApp sandbox + SSM parameters + webhook URL (optional; the Farmers page simulates the thread without it)
-- [ ] In Yash's account, if it is ever used again: delete the half-pushed `strawlink-de4e8727-CompanionStack`
+- [ ] Old leftovers in the account, safe to delete: `strawlink-de4e8727-CompanionStack` (empty its ECR repo first) and `aws-sam-cli-managed-default`
+- [ ] The account is used as the root user; create an IAM admin user and turn on root MFA when there is time
+- [ ] After the hackathon, to stop all cost: empty the two `strawlink-…` buckets, delete the `strawlink` stack and the `strawlink-web` Amplify app
+
+To redeploy after a change (the login lasts some hours; `aws login --profile strawlink` renews it):
+
+```bash
+AWS_PROFILE=strawlink BEDROCK_MODEL_ID=apac.amazon.nova-pro-v1:0 app/tools/deploy_nodocker.sh all
+```
 
 ## 4. Web app — rebuilt on 9 Oct around a slider-driven Simulator
 
