@@ -4,8 +4,23 @@ import type { RoadLine } from "../sim/roads";
 const P = {
   land: "#e7eedd", patches: ["#e2ead7", "#eaf0e1", "#dfe8d3", "#e5ecda"], bed: "#b7c2ab",
   casing: "#c3ccb7", road: "#ffffff", lane: "#f6f4ea", water: "#9fd0ee", built: "rgba(160,140,110,0.09)",
-  rim: "rgba(110,130,100,0.22)", photoTint: "rgba(255,255,255,0.1)",
+  rim: "rgba(110,130,100,0.22)", photoTint: "rgba(255,255,255,0.05)",
 };
+
+/** Fine light-and-dark speckle, tiled over the photo: detail the imagery itself runs out of up close. */
+function grain(): HTMLCanvasElement {
+  const c = document.createElement("canvas");
+  c.width = c.height = 192;
+  const g = c.getContext("2d")!, r = rng(7);
+  for (let y = 0; y < c.height; y += 2) {
+    for (let x = 0; x < c.width; x += 2) {
+      const v = r();
+      g.fillStyle = v < 0.5 ? `rgba(20,40,10,${(0.5 - v) * 0.22})` : `rgba(255,250,220,${(v - 0.5) * 0.16})`;
+      g.fillRect(x, y, 2, 2);
+    }
+  }
+  return c;
+}
 
 // drawn width in scene units (1 unit = 100 m): wider than life so the roads machines use read from far away
 const ROAD: Record<string, { w: number; major: boolean }> = {
@@ -43,8 +58,12 @@ export function paintGround(canvas: HTMLCanvasElement, input: GroundInput, maxPx
   g.fillStyle = P.land;
   g.fillRect(0, 0, canvas.width, canvas.height);
   if (photo) {
+    g.filter = "brightness(1.16) saturate(1.22) contrast(1.04)";
     g.drawImage(photo.canvas, X(photo.x - photo.w / 2), Z(photo.z - photo.d / 2), photo.w * k, photo.d * k);
+    g.filter = "none";
     g.fillStyle = P.photoTint;
+    g.fillRect(0, 0, canvas.width, canvas.height);
+    g.fillStyle = g.createPattern(grain(), "repeat")!;
     g.fillRect(0, 0, canvas.width, canvas.height);
   } else {
     // a faint quilt of neighbouring farms that are not in the programme
@@ -82,7 +101,7 @@ export function paintGround(canvas: HTMLCanvasElement, input: GroundInput, maxPx
     trace(line.pts);
     g.stroke();
   }
-  g.globalAlpha = photo ? 0.55 : 1;
+  g.globalAlpha = photo ? 0.42 : 1;
   for (const pass of ["casing", "fill"] as const) {
     for (const line of roads) {
       const spec = ROAD[line.kind] ?? ROAD.track;

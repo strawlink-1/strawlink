@@ -2,6 +2,7 @@ import { Component, useEffect, useState, type ReactNode } from "react";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { API, machineName } from "../api";
 import { LabelLayer } from "../scene/Label";
+import { IMAGERY_CREDIT } from "../scene/satellite";
 import { Stage3D } from "../scene/Stage3D";
 import { sheet, useSheet } from "../sim/stage";
 import { useWorld } from "../sim/world";
@@ -59,6 +60,7 @@ export function Shell() {
           {world.ready && <MapGuard><Stage3D /></MapGuard>}
           <div id="labels" aria-hidden><LabelLayer /></div>
           <div id="tags" aria-hidden />
+          {world.ready && prefs.satellite && <div id="credit">{IMAGERY_CREDIT}</div>}
 
           {world.ready && (
             <div id="mapbar">

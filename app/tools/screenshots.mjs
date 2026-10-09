@@ -89,6 +89,12 @@ const SHOTS = {
     for (const type of ["mouseMoved", "mousePressed", "mouseReleased"]) await send("Input.dispatchMouseEvent", { type, x: at.x, y: at.y, button: type === "mouseMoved" ? "none" : "left", clickCount: 1 });
     await sleep(2500); await shot("field-card");
   },
+  "sim-satellite": async () => {
+    await prep("/simulator"); await planReady(); await sleep(1500);
+    await js("(() => { const c = document.querySelector('#mapbar .check input'); if (c && !c.checked) c.click(); return !!c; })()");
+    await sleep(9000); await js("__time(11 * 60 + 20)"); await sleep(4000); await shot("sim-satellite");
+    await js("(() => { const b = document.querySelector('.machines button'); b && b.click(); return !!b; })()"); await sleep(7000); await shot("sim-satellite-close");
+  },
   "sim-bigfleet": async () => {
     await prep("/simulator"); await planReady(); await sleep(1500);
     await js("__slider('Baler sets', 6)"); await js("__slider('Super Seeders', 6)"); await js("__slider('Trucks', 6)");

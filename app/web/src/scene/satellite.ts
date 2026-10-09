@@ -7,7 +7,7 @@ export type Ground = { canvas: HTMLCanvasElement; x: number; z: number; w: numbe
 // Esri World Imagery: no key needed, sends CORS headers. Attribution is shown on the map.
 const TILES = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 export const IMAGERY_CREDIT = "Imagery © Esri, Maxar, Earthstar Geographics";
-const TILE = 256, MAX_TILES = 170;
+const TILE = 256, MAX_TILES = 620;
 
 const lon2x = (lon: number, z: number) => ((lon + 180) / 360) * 2 ** z;
 const lat2y = (lat: number, z: number) => {
@@ -68,7 +68,7 @@ export function useSatellite(project: Projector | null, bbox: [number, number, n
           if (!live) return;
           done++;
           if (done === nx * ny) finish();
-          else if (done % 16 === 0) publish();
+          else if (done % 96 === 0) publish();
         };
         img.onload = () => { if (live) g.drawImage(img, (tx - x0) * TILE, (ty - y0) * TILE); settle(); };
         img.onerror = settle; // a missing tile just stays the neutral ground colour

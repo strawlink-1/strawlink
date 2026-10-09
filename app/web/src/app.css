@@ -222,6 +222,7 @@ i.on { background: var(--green); } i.base { background: #b8c1ba; }
 #mapbar button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
 #mapbar .check { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink-2); }
 #mapbar .check input { accent-color: var(--green); margin: 0; }
+#credit { position: absolute; left: 10px; top: 8px; z-index: 3; font-size: 10.5px; color: var(--ink-2); background: rgba(255, 255, 255, 0.78); padding: 1px 8px; border-radius: 999px; pointer-events: none; }
 #toast { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); z-index: 9; background: var(--ink); color: #fff; padding: 7px 14px; border-radius: 999px; font-size: 13px; box-shadow: var(--shadow); white-space: nowrap; }
 #loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--ink-2); z-index: 8; text-align: center; padding: 24px; }
 #loading p { margin: 0; } #loading.fatal b { color: var(--risk); font-size: 16px; }

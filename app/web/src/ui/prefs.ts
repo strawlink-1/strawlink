@@ -6,9 +6,10 @@ export type Prefs = { satellite: boolean };
 const KEY = "strawlink.prefs";
 function load(): Prefs {
   try {
-    return { satellite: !!JSON.parse(localStorage.getItem(KEY) ?? "{}").satellite };
+    const saved = JSON.parse(localStorage.getItem(KEY) ?? "{}").satellite;
+    return { satellite: saved === undefined ? true : !!saved };
   } catch {
-    return { satellite: false };
+    return { satellite: true };
   }
 }
 
