@@ -42,11 +42,18 @@ def store(name: str, value: dict) -> None:
         os.unlink(f.name)
 
 
-def phone(text: str) -> str:
+def phone(text: str) -> str | None:
     p = "".join(c for c in text if c.isdigit() or c == "+")
-    if not p.startswith("+") or len(p) < 9:
-        raise SystemExit("Phone numbers need the country code, for example +9198xxxxxxxx")
-    return p
+    return p if p.startswith("+") and len(p) >= 9 else None
+
+
+def ask(prompt: str, ok, hint: str, hidden: bool = False, default: str = "") -> str:
+    """Keep asking until the answer looks right; nothing is stored until every answer does."""
+    while True:
+        text = (getpass.getpass(prompt) if hidden else input(prompt)).strip() or default
+        if ok(text):
+            return text
+        print(f"    {hint}")
 
 
 def main() -> None:
@@ -57,13 +64,19 @@ def main() -> None:
     stops = sorted((s["arrive"], s["field_id"], a["machine_id"]) for a in plan["assignments"] if a["type"] != "truck" for s in a["stops"])
     suggested = stops[0][1] if stops else "F0001"
 
-    print("Twilio console → Account Info")
-    sid = input("  Account SID (starts with AC): ").strip()
-    token = getpass.getpass("  Auth token (hidden as you type): ").strip()
-    print("Twilio console → Messaging → Try it out → Send a WhatsApp message")
-    sandbox = phone(input("  Sandbox number [+14155238886]: ").strip() or "+14155238886")
-    mine = phone(input("Your own WhatsApp number, with country code: ").strip())
-    field = input(f"Field your phone stands for [{suggested}, a machine comes there today]: ").strip() or suggested
+    print("Answer each question and press Enter. Paste with a right-click.")
+    print()
+    print("1 of 5. From the Twilio Console home page, box \"Account Info\":")
+    sid = ask("   Account SID: ", lambda t: t.startswith("AC") and len(t) == 34,
+              "That is not an Account SID. It starts with AC and is 34 characters long. Copy it from Twilio and paste it here.")
+    print("2 of 5. Same box. Nothing appears while you paste this one; that is normal.")
+    token = ask("   Auth Token: ", lambda t: len(t) >= 20, "Nothing (or too little) arrived. Click the copy icon next to Auth Token in Twilio, right-click here, press Enter.", hidden=True)
+    print("3 of 5. The sandbox number on Twilio's WhatsApp page. Just press Enter if it is +1 415 523 8886.")
+    sandbox = phone(ask("   Sandbox number: ", phone, "Type it with the plus sign, like +14155238886.", default="+14155238886"))
+    print("4 of 5. Your own WhatsApp number, the phone that joined the sandbox.")
+    mine = phone(ask("   Your number: ", phone, "Start with the plus sign and country code, like +9198xxxxxxxx."))
+    print(f"5 of 5. Which field your phone stands for. Just press Enter for {suggested}, where a machine comes today.")
+    field = input("   Field: ").strip() or suggested
 
     store("/strawlink/twilio", {"sid": sid, "token": token, "from": f"whatsapp:{sandbox}"})
     store("/strawlink/demo_phone_map", {field: mine})

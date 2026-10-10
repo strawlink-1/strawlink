@@ -129,6 +129,14 @@ def send_whatsapp(phone: str, field_id: str | None, body_pa: str, body_en: str) 
                           auth=(creds["sid"], creds["token"]), timeout=15,
                           data={"From": creds["from"], "To": f"whatsapp:{phone}", "Body": body_pa})
         status = "sent" if r.ok else f"error:{r.status_code}"
+        if not r.ok:
+            # Twilio says why in its own words (a code and a sentence, no secrets); keep it with the message
+            try:
+                why = r.json()
+                return log(phone, field_id, "out", body_pa, body_en=body_en, status=f"{status}:{why.get('code')}",
+                           error=str(why.get("message", ""))[:300])
+            except ValueError:
+                pass
     return log(phone, field_id, "out", body_pa, body_en=body_en, status=status)
 
 
