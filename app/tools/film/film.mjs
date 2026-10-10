@@ -103,12 +103,14 @@ async function load(path, ready) {
 }
 
 /** A narration line: note where it starts, show it as a subtitle, run the shot, and stay at least as long as the voice. */
-async function say(id, shot, { gap = 0.25, sub = true, lead = 0 } = {}) {
+async function say(id, shot, { gap = 0, sub = true, lead = 0 } = {}) {
   if (lead) await frames(lead);
-  const start = F, need = Math.ceil((DUR[id] + gap) * FPS);
+  // voice files are whole frames long, and lines that follow one another must not drift apart
+  const start = F, need = Math.round((DUR[id] + gap) * FPS);
   marks.push({ id, frame: F });
   if (sub) { S.sub.text = TEXT[id]; tw(S.sub, { o: 1 }, 5); subOff = start + Math.ceil(DUR[id] * FPS) + 3; }
   if (shot) await shot(need);
+  if (F - start > need) console.log(`  ! the shot for ${id} ran ${F - start - need} frames past its line`);
   if (F - start < need) await frames(need - (F - start));
 }
 
@@ -239,7 +241,8 @@ const CARD = {
   impact: `<div class="in"><div data-k="0" class="eyebrow">One block · 200 fields · 1,452 tonnes of straw</div><div data-k="1" class="num">up to 9.5 t</div><div data-k="2" class="mid">of fine particles (PM2.5) kept out of the air this season.</div><div data-k="3" class="small">Upper estimate: assumes every field would otherwise be burned. Emission factors: Andreae 2019, IPCC 2006.</div></div>`,
   adapt: `<div class="in"><div data-k="0" class="big">Adapts to any data.</div><div class="chips"><span data-k="1" class="chip">another block's fields</span><span data-k="2" class="chip">its machines</span><span data-k="3" class="chip">its plants</span></div><div data-k="4" class="small">The machines and plants shown in this film are examples, labelled synthetic in the app.</div></div>`,
   aws: `<div class="in"><div data-k="0" class="eyebrow">Running on AWS today</div><div class="chips">${["Amplify Hosting", "API Gateway", "Lambda", "DynamoDB", "S3", "Bedrock", "Transcribe", "EventBridge"].map((s, i) => `<span data-k="${i + 1}" class="chip plain">${s}</span>`).join("")}</div></div>`,
-  end: `<div class="in" style="text-align:center"><div data-k="0" class="logo" style="justify-content:center"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Every field picked up in time, so no one has to burn.</div><div data-k="2" class="small" style="font-size:24px;color:#f2b632">main.d16side0ke5w9y.amplifyapp.com</div><div data-k="3" class="small">Yash and Shambhvi · AWS Environmental Hacks 2026</div></div>`,
+  end: `<div class="in" style="text-align:center"><div data-k="0" class="logo" style="justify-content:center"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Every field picked up in time, so no one has to burn.</div></div>`,
+  thanks: `<div class="in" style="text-align:center"><div data-k="0" class="big" style="font-size:92px">Thank you.</div><div data-k="1" class="logo" style="justify-content:center;font-size:54px;letter-spacing:-1.5px;margin-top:30px;gap:14px"><span class="mark" style="width:50px;height:50px;border-radius:12px"></span>StrawLink</div><div data-k="2" class="mid" style="max-width:none;margin-top:10px">Shambhvi and Yash</div><div data-k="3" class="small" style="font-size:26px;color:#f2b632;margin-top:26px">github.com/strawlink-1/strawlink</div><div data-k="4" class="small" style="margin-top:10px">Live: main.d16side0ke5w9y.amplifyapp.com · AWS Environmental Hacks 2026</div></div>`,
 };
 const zeros = () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 function setCard(html, cls = "") { S.card.html = html; S.card.cls = cls; S.card.k = zeros(); }
@@ -251,7 +254,7 @@ async function wordsIn(big, mid, small, cls = "left") {
   setCard(words(big, mid, small), cls);
   show(0); await frames(12); show(1); await frames(6); show(2, 16);
 }
-const need = (...ids) => ids.reduce((n, id) => n + Math.ceil((DUR[id] + 0.25) * FPS), 0);
+const need = (...ids) => ids.reduce((n, id) => n + Math.round(DUR[id] * FPS), 0);
 /** Sweep the season slider from one day to another over n frames. */
 function sweep(from, to, n) {
   let last = from;
@@ -289,7 +292,7 @@ try {
     await say("p1", () => wordsIn("October in Punjab.", "Rice is harvested. Three weeks to sow wheat.", "Behind: the 2025 season on this block, read from satellite images."), { lead: 8 });
     await say("p2", () => wordsIn("The straw is in the way."));
     await say("p3", () => wordsIn("Not picked up in time<br>means burned.", "", "Dark fields: burned in 2025, as seen in the imagery."));
-    await frames(10);
+    await frames(8);
   });
 
   // 2 · the idea: knows, plans, tells
@@ -298,12 +301,11 @@ try {
     setCard(CARD.title);
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(4);
-    await say("i1", async () => { show(0, 14); await frames(40); show(1, 14); });
-    hideAll(); await frames(9);
+    await say("i1", async (n) => { show(0, 14); await frames(40); show(1, 14); await frames(Math.max(1, n - 40 - 9)); hideAll(); });
     setCard(CARD.idea);
-    await say("i2", async (n) => { show(0); await frames(6); show(1); await frames(Math.round(n * 0.34)); show(2); await frames(Math.round(n * 0.3)); show(3); });
+    await say("i2", async (n) => { show(0); await frames(4); show(1); await frames(Math.round(n * 0.33)); show(2); await frames(Math.round(n * 0.27)); show(3); });
     show(4, 12);
-    await frames(22);
+    await frames(24);
   });
 
   // 3 · how it knows: the forecast season, then the morning plan setting off
@@ -314,18 +316,17 @@ try {
     await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
     await frames(6);
-    sweep(0, planDay + 2, need("k1") - 30);
-    await say("k1", async (n) => { await wheel(-420, 50); await frames(Math.max(10, n - 60)); await ringOn(`document.querySelector(".stat")`); });
-    ringOff(4); await frames(5);
-    // cut to the simulator at the start of the working day
+    sweep(0, planDay + 2, need("k1") - 40);
+    await say("k1", async (n) => { await wheel(-420, 50); await frames(Math.max(10, n - 70)); await ringOn(`document.querySelector(".stat")`); await frames(50); ringOff(6); });
+    // cut to the simulator at the start of the working day (her sentence runs on, so no frame is added here)
     await js(`__ov.q("#tabs a", "Simulator").click(); 0`);
     await until(SIM_READY);
     for (let i = 0; i < 30; i++) { await js(`__film.step(50); 0`); await b.sleep(90); }
     await setTime(Math.max(await js(`+${TIME}.min`), 7 * 60 + 30));
     await setSpeed(8);
-    await frames(4);
-    await say("k2", async () => { await frames(12); await click(`document.querySelector(".run")`, 16); hideCursor(); });
-    await frames(26);
+    S.ring.o = 0;
+    await say("k2", async () => { await frames(8); await click(`document.querySelector(".run")`, 14); hideCursor(); });
+    await frames(22);
   });
 
   // 4 · where the straw goes: close-ups of a baler, a truck and a Super Seeder at work
@@ -337,8 +338,9 @@ try {
       if (m) { await unfollow(); await follow(m.name); await setSpeed(speed); await skip(1900); await wheelNow(-900); await play(true); }
     };
     await closeUp((n, t) => n.startsWith("Baler") && t.startsWith("baling"));
+    await frames(4);
     await say("g1", async (n) => {
-      await frames(Math.round(n * 0.45));
+      await frames(Math.round(n * 0.42));
       await closeUp((nm, t) => nm.startsWith("Truck") && t.startsWith("carrying")); // a cut: nothing is filmed while the camera moves
     });
     await closeUp((n, t) => n.startsWith("Seeder") && t.startsWith("sowing"));
@@ -346,44 +348,43 @@ try {
     await frames(8);
   });
 
-  // 6 · the officer: the scoreboard, then the sliders asking the planner (scene 5 is the camera take, clip.mjs)
+  // 6 · the officer: the scoreboard, then the sliders asking the planner (scene 5 is the camera take, clip.mjs).
+  // The planner's thinking time (a few seconds per what-if) is cut: the film waits for it off camera.
   await scene("06-officer", async () => {
     await load("/simulator", SIM_READY);
     await skip(1500);
     await setTime(11 * 60 + 20);
     console.log("  verdict on screen:", await js(`document.querySelector(".verdict")?.innerText ?? ""`));
+    const planned = async () => { await until(SIM_BUSY, { max: 2500, label: "planner starts" }); await until(SIM_READY, { max: 400000 }); await skip(600); await until(SIM_READY, { max: 400000 }); await skip(150); };
     await frames(6);
-    await say("o1", async (n) => {
-      zoom(camFor(await rectOf(`document.getElementById("above")`), { pad: 26, max: 1.6 }), 22);
-      await frames(Math.round(n * 0.4));
+    await say("o1", async () => {
+      zoom(camFor(await rectOf(`document.getElementById("above")`), { pad: 26, max: 1.6 }), 18);
+      await frames(28);
       await ringOn(`document.querySelector(".tile")`);
-      await frames(Math.round(n * 0.3));
+      await frames(22);
       await ringOn(`document.querySelector(".verdict")`);
+      await frames(24);
+      ringOff(5);
+      zoom(camFor({ x: 0, y: 50, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 16);
     });
-    ringOff(6);
-    zoom(camFor({ x: 0, y: 50, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 20);
-    await frames(12);
     await say("o2", async () => {
-      await drag("Baler sets", 6);
-      await waitOn(SIM_BUSY, 40);
-      await waitOn(SIM_READY, 240);
+      await drag("Baler sets", 6, 14);
+      await planned();
       hideCursor();
-      await ringOn(`document.querySelector(".note.limit") ?? document.getElementById("toast") ?? document.querySelector(".tile")`);
-      await frames(34);
+      await ringOn(`document.getElementById("toast") ?? document.querySelector(".note.limit") ?? document.querySelector(".tile")`);
     });
-    ringOff(6);
+    ringOff(4);
     await say("o3", async () => {
-      await drag("Trucks", 6, 13);
-      await drag("Super Seeders", 6, 13);
-      await waitOn(SIM_BUSY, 40);
-      await waitOn(SIM_READY, 240);
+      await drag("Trucks", 6, 10);
+      await drag("Super Seeders", 6, 10);
+      await planned();
       hideCursor();
       await ringOn(`document.getElementById("toast") ?? document.querySelector(".tile")`);
-      await frames(30);
+      await frames(34);
       await ringOn(`document.querySelector(".tile")`);
-      await frames(30);
     });
     console.log("  scoreboard after:", await js(`document.querySelector(".tile")?.innerText.replace(/\\n/g, " ") ?? ""`));
+    await frames(26);
     ringOff(); await frames(8);
   });
 
@@ -407,13 +408,12 @@ try {
       await frames(28);
       await ringOn(`document.querySelector(".bars")`, { pad: 4 });
       noteAt("75 of 185 = 40.5 % · first-come booking, same machines: 74 · burn detection from imagery, over-counts", g.x + 4, g.y + g.h + 10);
-      await frames(40);
     });
     ringOff(); noteOff(); home(22);
     tw(S.card, { o: 1, bg: 0.7 }, 12);
     await say("t4", () => wordsIn("Within two days", "of harvest, most of the rest had burned."));
     await say("t5", () => wordsIn("StrawLink starts<br>before the harvest."));
-    await frames(8);
+    await frames(10);
   });
 
   // 8 · why it matters, any data, the close (the AWS scene, arch.mjs, comes just before this one)
@@ -424,19 +424,21 @@ try {
     Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
     setCard(CARD.impact);
     Object.assign(S.card, { o: 1, bg: 0.84 });
+    await frames(6);
+    await say("w1", async (n) => { show(0); await frames(Math.round(n * 0.3)); show(1, 14); await frames(Math.round(n * 0.22)); show(2); await frames(Math.round(n * 0.2)); show(3, 16); });
     await frames(4);
-    await say("w1", async (n) => { show(0); await frames(Math.round(n * 0.2)); show(1, 14); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.25)); show(3, 16); });
-    await frames(8);
     hideAll(); await frames(8);
     setCard(CARD.adapt);
-    await say("w2", async (n) => { show(0); await frames(Math.round(n * 0.3)); show(1); await frames(6); show(2); await frames(6); show(3); await frames(Math.round(n * 0.25)); show(4, 14); });
-    await frames(14);
-    hideAll(); tw(S.card, { bg: 1 }, 12); await frames(12);
+    await say("w2", async (n) => { show(0); await frames(Math.round(n * 0.25)); show(1); await frames(6); show(2); await frames(6); show(3); await frames(Math.round(n * 0.2)); show(4, 14); });
+    await frames(4);
+    hideAll(); tw(S.card, { bg: 1 }, 10); await frames(9);
     setCard(CARD.end);
-    await say("w3", async () => { show(0, 14); await frames(30); show(1, 14); await frames(50); show(2, 12); await frames(18); show(3, 12); });
-    await frames(34);
-    hideAll(14);
+    await say("w3", async () => { show(0, 14); await frames(24); show(1, 14); });
     await frames(16);
+    hideAll(8); await frames(9);
+    setCard(CARD.thanks);
+    show(0, 14); await frames(16); show(1, 12); await frames(8); show(2, 12); await frames(10); show(3, 12); await frames(8); show(4, 12);
+    await frames(120); // the last frame stays: thank you, names, repository
   });
 } finally {
   b.close();

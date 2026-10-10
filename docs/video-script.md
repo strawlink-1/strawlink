@@ -1,8 +1,9 @@
-# StrawLink — video script (short version, 10 Oct 2026, awaiting approval)
+# StrawLink — video script (short version, recorded by Shambhvi on 10 Oct 2026)
 
-About 300 words. At Shambhvi's speaking pace (about two words a second) this runs close to
-2:50; the limit is 3:00. Leave about a second of silence between paragraphs.
-Paragraph 5 is said on camera with the phone; the rest is one audio recording.
+About 300 words. The finished film, `docs/video/strawlink-demo.mp4`, runs 2:17 (limit 3:00).
+Paragraph 5 is her camera take with the phone; the rest is her voice recording, cut to the shots
+by `app/tools/film/uservoice.py` (cut points in `voice-cuts.json`). A few words differ in her
+reading ("turn into gold from green", "burnt", "wakes up the planner"); the captions follow her.
 
 **1. The problem**
 
