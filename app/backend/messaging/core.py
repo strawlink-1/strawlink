@@ -84,6 +84,25 @@ def slot_message(field: dict, slot: dict, operator: str) -> dict:
     return {"en": en, "pa": pa, "translation": how}
 
 
+ASK_EN = ("StrawLink: field {field_id} ({village}). Satellite images suggest your paddy will be ready to harvest "
+          "between {lo} and {hi}. When you harvest, send a voice note or the date, and we will send a machine "
+          "for the straw.")
+ASK_PA = ("ਸਟ੍ਰਾਲਿੰਕ: ਖੇਤ {field_id} ({village})। ਸੈਟੇਲਾਈਟ ਤਸਵੀਰਾਂ ਮੁਤਾਬਕ ਤੁਹਾਡਾ ਝੋਨਾ {lo} ਤੋਂ {hi} ਵਿਚਕਾਰ ਕਟਾਈ ਲਈ ਤਿਆਰ "
+          "ਹੋਵੇਗਾ। ਕਟਾਈ ਹੋਣ 'ਤੇ ਵੌਇਸ ਨੋਟ ਜਾਂ ਤਾਰੀਖ਼ ਭੇਜੋ, ਅਸੀਂ ਪਰਾਲੀ ਲਈ ਮਸ਼ੀਨ ਭੇਜਾਂਗੇ।")
+
+
+def ask_message(field: dict) -> dict | None:
+    """Before the harvest: tell the farmer the window the satellite forecast gives and ask him to say when he cuts."""
+    fc = field.get("forecast") or {}
+    if not (fc.get("p10") and fc.get("p90")):
+        return None
+    vals = {"field_id": field["field_id"], "village": field.get("village_name", field["village_id"]),
+            "lo": date.fromisoformat(fc["p10"]).strftime("%d-%m-%Y"), "hi": date.fromisoformat(fc["p90"]).strftime("%d-%m-%Y")}
+    en = ASK_EN.format(**vals)
+    pa, how = translate_pa(en, ASK_PA.format(**vals))
+    return {"en": en, "pa": pa, "translation": how}
+
+
 # ---------------------------------------------------------------- phones
 
 

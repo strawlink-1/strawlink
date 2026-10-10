@@ -321,6 +321,18 @@ def handle_inbound(phone: str, text: str, on: date, channel: str, deliver: bool 
             "field_id": fid, **out}
 
 
+@app.post("/fields/{fid}/ask")
+def ask_farmer(fid: str):
+    """Before the harvest: send the farmer the forecast window for his field and ask him to say when he cuts."""
+    f = field_or_404(fid)
+    phone = msg.phone_for(fid)
+    m = msg.ask_message(f)
+    if not phone or not m:
+        raise HTTPException(404, "no phone or no satellite forecast for this field")
+    sent = msg.send_whatsapp(phone, fid, m["pa"], m["en"])
+    return {"field_id": fid, "status": sent["status"], "en": m["en"], "pa": m["pa"], "translation": m["translation"]}
+
+
 @app.post("/webhooks/whatsapp")
 async def whatsapp(request: Request):
     form = {k: str(v) for k, v in (await request.form()).items()}

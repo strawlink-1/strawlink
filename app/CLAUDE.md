@@ -94,7 +94,8 @@ POST /events/confirm               {field_id, date, source} → forecast overrid
 POST /simulate                     {date, baler_set, seeder, truck, rain_mm, rain_village, confirmed[]}
                                    → plan + field statuses for that what-if; stores nothing
 POST /simulate/missed-call         {phone} → confirm harvest = today for that field
-POST /webhooks/whatsapp            Twilio inbound (validate signature)
+POST /fields/{id}/ask              before harvest: send the forecast window, ask the farmer to say when he cuts
+POST /webhooks/whatsapp            Twilio inbound (validate signature); text or voice note (Amazon Transcribe)
 GET  /plants/supply?weeks=         weekly tonnes per plant + depot alerts
 GET  /backtest                     backtest_result.json (+ per-day plan URLs)
 POST /fields/{id}/cleared          mark cleared (demo console) → certificate
