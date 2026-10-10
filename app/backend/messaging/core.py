@@ -74,6 +74,17 @@ def translate_pa(english: str, fallback_pa: str) -> tuple[str, str]:
     return fallback_pa, "fallback"
 
 
+def to_english(text: str) -> str | None:
+    """English copy of an answer written in Punjabi (for the demo phones); None if it cannot be made."""
+    try:
+        t = _bedrock(text, "Translate the user's message into plain English. Translate only; add nothing, remove "
+                           "nothing. Keep every number, date, time and field ID exactly as written. Output only "
+                           "the translation.")
+        return t if guard_ok(text.translate(str.maketrans("੦੧੨੩੪੫੬੭੮੯", "0123456789")), t) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def slot_message(field: dict, slot: dict, operator: str) -> dict:
     d = date.fromisoformat(slot["date"])
     vals = {"field_id": field["field_id"], "village": field.get("village_name", field["village_id"]),
@@ -272,7 +283,9 @@ def parse_inbound(text: str, on: date) -> dict:
             "A farmer in Punjab sent this WhatsApp message (Punjabi, Hindi or English) about paddy harvest and "
             "straw pickup. Return only JSON: {\"intent\": one of \"confirm_slot\" (agrees to the offered slot), "
             "\"harvest_date\" (says when harvest is/was), \"question\", \"other\"; \"date\": YYYY-MM-DD or null}. "
-            "Resolve relative dates against today.", max_tokens=100)
+            "Resolve relative dates against today. The text may be a transcript of a voice note with small "
+            "mistakes. If the farmer says he is harvesting, wants to harvest now, or has harvested, and names no "
+            "other day, the intent is \"harvest_date\" and the date is today.", max_tokens=100)
         j = json.loads(out[out.find("{"): out.rfind("}") + 1])
         if j.get("intent") in ("confirm_slot", "harvest_date", "question", "other"):
             if j.get("date"):

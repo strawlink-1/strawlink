@@ -315,7 +315,8 @@ def handle_inbound(phone: str, text: str, on: date, channel: str, deliver: bool 
         from assistant.agent import chat
 
         a = chat(text, fid)
-        reply, reply_en, out = a["reply"], None, {"tools_used": a["tools_used"]}
+        reply, out = a["reply"], {"tools_used": a["tools_used"]}
+        reply_en = msg.to_english(reply) if deliver else None
     reply = answer(reply, reply_en)
     return {"reply": reply, "reply_en": reply_en, "intent": parsed["intent"], "parser": parsed.get("parser"),
             "field_id": fid, **out}
