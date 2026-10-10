@@ -11,6 +11,8 @@ import hashlib
 import hmac
 import json
 import re
+import time
+import uuid
 from datetime import date, datetime, timedelta
 
 import boto3
@@ -137,6 +139,13 @@ def send_whatsapp(phone: str, field_id: str | None, body_pa: str, body_en: str) 
                            error=str(why.get("message", ""))[:300])
             except ValueError:
                 pass
+        elif body_en and body_en != body_pa:
+            # demo phones also get the English translation as a second message, right after the Punjabi one
+            e = requests.post(f"https://api.twilio.com/2010-04-01/Accounts/{creds['sid']}/Messages.json",
+                              auth=(creds["sid"], creds["token"]), timeout=15,
+                              data={"From": creds["from"], "To": f"whatsapp:{phone}", "Body": body_en})
+            return log(phone, field_id, "out", body_pa, body_en=body_en, status=status,
+                       english_copy="sent" if e.ok else f"error:{e.status_code}")
     return log(phone, field_id, "out", body_pa, body_en=body_en, status=status)
 
 
@@ -155,6 +164,50 @@ def notify_scheduled(stops: list[dict]) -> list[dict]:
         m = slot_message(f, s, ops.get(s["machine_id"], s["machine_id"]))
         sent.append(send_whatsapp(phone, s["field_id"], m["pa"], m["en"]))
     return sent
+
+
+# ---------------------------------------------------------------- voice notes
+
+
+def transcribe_voice(media_url: str, wait_s: int = 100) -> dict | None:
+    """A WhatsApp voice note → {text, language} with Amazon Transcribe (Punjabi, Hindi or English).
+
+    The recording is kept only while it is being transcribed.
+    """
+    creds = store.ssm_json(settings.TWILIO_PARAM)
+    if not creds or not settings.BUCKET:
+        return None
+    audio = requests.get(media_url, auth=(creds["sid"], creds["token"]), timeout=20)
+    audio.raise_for_status()
+    name = f"strawlink-voice-{uuid.uuid4().hex}"
+    key = f"raw/voice/{name}.ogg"
+    s3, tr = store._s3(), boto3.client("transcribe", region_name=settings.REGION)
+    s3.put_object(Bucket=settings.BUCKET, Key=key, Body=audio.content, ContentType="audio/ogg")
+    try:
+        tr.start_transcription_job(TranscriptionJobName=name, Media={"MediaFileUri": f"s3://{settings.BUCKET}/{key}"},
+                                   MediaFormat="ogg", IdentifyLanguage=True, LanguageOptions=settings.VOICE_LANGUAGES)
+        end = time.time() + wait_s
+        while time.time() < end:
+            job = tr.get_transcription_job(TranscriptionJobName=name)["TranscriptionJob"]
+            if job["TranscriptionJobStatus"] == "COMPLETED":
+                out = requests.get(job["Transcript"]["TranscriptFileUri"], timeout=20).json()
+                text = " ".join(t["transcript"] for t in out["results"]["transcripts"]).strip()
+                return {"text": text, "language": job.get("LanguageCode")} if text else None
+            if job["TranscriptionJobStatus"] == "FAILED":
+                print(json.dumps({"event": "voice_failed", "reason": job.get("FailureReason")}))
+                return None
+            time.sleep(1.5)
+        return None
+    finally:
+        s3.delete_object(Bucket=settings.BUCKET, Key=key)
+        try:
+            tr.delete_transcription_job(TranscriptionJobName=name)
+        except Exception:  # noqa: BLE001 — still running; it expires on its own
+            pass
+
+
+VOICE_UNCLEAR_EN = "StrawLink: we could not make out your voice note. Please send it again, or type your message."
+VOICE_UNCLEAR_PA = "ਸਟ੍ਰਾਲਿੰਕ: ਤੁਹਾਡਾ ਵੌਇਸ ਨੋਟ ਸਮਝ ਨਹੀਂ ਆਇਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਭੇਜੋ, ਜਾਂ ਲਿਖ ਕੇ ਭੇਜੋ।"
 
 
 # ---------------------------------------------------------------- inbound

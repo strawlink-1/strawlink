@@ -8,7 +8,14 @@ from datetime import date
 
 from common import settings, store
 
-from .main import notify_and_replan
+from .main import inbound_work, notify_and_replan
+
+
+def inbound(event, _context):
+    """Answers one WhatsApp message (text or voice note) handed over by the webhook."""
+    r = inbound_work(event)
+    print(json.dumps({"event": "inbound", "intent": r.get("intent"), "language": r.get("language")}))
+    return {"ok": True}
 
 
 def daily(event, _context):

@@ -21,6 +21,8 @@ IST = timezone(timedelta(hours=5, minutes=30))
 REGION = os.environ.get("AWS_REGION", "ap-south-1")
 BUCKET = os.environ.get("STRAWLINK_BUCKET", "")
 PLANNER_FUNCTION = os.environ.get("PLANNER_FUNCTION", "")
+INBOUND_FUNCTION = os.environ.get("INBOUND_FUNCTION", "")  # worker that answers WhatsApp messages after the webhook returns
+VOICE_LANGUAGES = os.environ.get("VOICE_LANGUAGES", "pa-IN,hi-IN,en-IN").split(",")
 BEDROCK_MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "")
 PUBLIC_WEB_URL = os.environ.get("PUBLIC_WEB_URL", "http://localhost:5173")
 TWILIO_PARAM = os.environ.get("TWILIO_PARAM", "/strawlink/twilio")

@@ -9,6 +9,7 @@ import os
 import time
 from datetime import date
 
+import boto3
 from fastapi import Body, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
@@ -275,20 +276,36 @@ def missed_call(body: dict = Body(...)):
 # ---------------------------------------------------------------- messaging
 
 
-def handle_inbound(phone: str, text: str, on: date, channel: str) -> dict:
+def handle_inbound(phone: str, text: str, on: date, channel: str, deliver: bool = False, heard: bool = False) -> dict:
+    """Read a farmer's message and answer it.
+
+    deliver: send the answer to the phone ourselves (the webhook has already returned).
+    heard:   the text came from a voice note, so the answer starts with what was understood.
+    """
+    phone = phone.replace("whatsapp:", "").strip()
     fid = msg.field_for_phone(phone)
-    msg.log(phone, fid, "in", text, channel=channel)
+    msg.log(phone, fid, "in", text, channel=channel, **({"voice_note": True} if heard else {}))
+
+    def answer(pa: str, en: str | None) -> str:
+        if heard:
+            pa, en = f'ਸੁਣਿਆ: "{text}"\n{pa}', (f'Heard: "{text}"\n{en}' if en else None)
+        if deliver:
+            msg.send_whatsapp(phone, fid, pa, en or "")
+        else:
+            msg.log(phone, fid, "out", pa, body_en=en, status="simulated" if channel != "whatsapp" else "reply")
+        return pa
+
     if not fid:
-        reply = msg.UNKNOWN_PA
-        msg.log(phone, None, "out", reply, body_en=msg.UNKNOWN_EN, status="simulated" if channel != "whatsapp" else "reply")
-        return {"reply": reply, "intent": "unknown_phone"}
+        return {"reply": answer(msg.UNKNOWN_PA, msg.UNKNOWN_EN), "intent": "unknown_phone"}
     parsed = msg.parse_inbound(text, on)
     if parsed["intent"] == "harvest_date" and parsed["date"]:
         d = date.fromisoformat(parsed["date"]).strftime("%d-%m-%Y")
-        r = confirm(fid, parsed["date"], channel, on)
         reply_en = msg.CONFIRM_EN.format(date=d, field_id=fid)
         reply, _ = msg.translate_pa(reply_en, msg.CONFIRM_PA.format(date=d, field_id=fid))
-        out = {"replan": r["replan"]}
+        reply = answer(reply, reply_en)  # the thank-you first; the new slot follows once the plan is redone
+        r = confirm(fid, parsed["date"], channel, on)
+        return {"reply": reply, "reply_en": reply_en, "intent": parsed["intent"], "parser": parsed.get("parser"),
+                "field_id": fid, "replan": r["replan"]}
     elif parsed["intent"] == "confirm_slot":
         store.put("events", {"field_id": fid, "ts": settings.now_iso(), "type": "slot_confirmed", "source": channel})
         reply_en = "StrawLink: thank you, your slot is confirmed."
@@ -299,7 +316,7 @@ def handle_inbound(phone: str, text: str, on: date, channel: str) -> dict:
 
         a = chat(text, fid)
         reply, reply_en, out = a["reply"], None, {"tools_used": a["tools_used"]}
-    msg.log(phone, fid, "out", reply, body_en=reply_en, status="reply")
+    reply = answer(reply, reply_en)
     return {"reply": reply, "reply_en": reply_en, "intent": parsed["intent"], "parser": parsed.get("parser"),
             "field_id": fid, **out}
 
@@ -310,9 +327,36 @@ async def whatsapp(request: Request):
     url = str(request.url).replace("http://", "https://")
     if not msg.verify_twilio(url, form, request.headers.get("X-Twilio-Signature", "")):
         raise HTTPException(403, "invalid signature")
+    voice = form.get("MediaUrl0") if form.get("MediaContentType0", "").startswith("audio") else None
+    if settings.INBOUND_FUNCTION:
+        # Twilio waits 15 s at most; listening to a voice note and re-planning take longer, so a
+        # worker answers through Twilio's API and this request returns at once.
+        boto3.client("lambda", region_name=settings.REGION).invoke(
+            FunctionName=settings.INBOUND_FUNCTION, InvocationType="Event",
+            Payload=json.dumps({"from": form.get("From", ""), "body": form.get("Body", ""), "voice": voice,
+                                "on": plan_date().isoformat()}).encode())
+        return Response(content="<?xml version='1.0' encoding='UTF-8'?><Response/>", media_type="application/xml")
     r = handle_inbound(form.get("From", ""), form.get("Body", ""), plan_date(), "whatsapp")
     xml = f"<?xml version='1.0' encoding='UTF-8'?><Response><Message>{_xml(r['reply'])}</Message></Response>"
     return Response(content=xml, media_type="application/xml")
+
+
+def inbound_work(event: dict) -> dict:
+    """The worker's half of the WhatsApp webhook: listen (if it is a voice note), understand, answer, re-plan."""
+    phone, on = event["from"].replace("whatsapp:", "").strip(), date.fromisoformat(event["on"])
+    if not event.get("voice"):
+        return handle_inbound(phone, event.get("body", ""), on, "whatsapp", deliver=True)
+    try:
+        said = msg.transcribe_voice(event["voice"])
+    except Exception as e:  # noqa: BLE001
+        print(json.dumps({"event": "voice_error", "error": str(e)[:200]}))
+        said = None
+    if not said:
+        fid = msg.field_for_phone(phone)
+        msg.log(phone, fid, "in", "[voice note, not understood]", channel="whatsapp", voice_note=True)
+        msg.send_whatsapp(phone, fid, msg.VOICE_UNCLEAR_PA, msg.VOICE_UNCLEAR_EN)
+        return {"intent": "voice_unclear"}
+    return {**handle_inbound(phone, said["text"], on, "whatsapp", deliver=True, heard=True), "language": said["language"]}
 
 
 def _xml(s: str) -> str:

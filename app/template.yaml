@@ -134,7 +134,9 @@ Resources:
       Environment:
         Variables:
           PLANNER_FUNCTION: !Ref PlannerFunction
+          INBOUND_FUNCTION: !Ref InboundFunction
       Policies:
+        - LambdaInvokePolicy: {FunctionName: !Ref InboundFunction}
         - DynamoDBCrudPolicy: {TableName: !Ref FieldsTable}
         - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
         - DynamoDBCrudPolicy: {TableName: !Ref EventsTable}
@@ -163,6 +165,45 @@ Resources:
         Proxy:
           Type: HttpApi
           Properties: {Path: "/{proxy+}", Method: ANY, ApiId: !Ref HttpApi}
+
+  # Answers a farmer's WhatsApp message after the webhook has returned: voice note → Amazon
+  # Transcribe → Bedrock reads the intent → re-plan → reply through Twilio.
+  InboundFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: api.jobs.inbound
+      Runtime: python3.11
+      MemorySize: 1536
+      Timeout: 240
+      Environment:
+        Variables:
+          PLANNER_FUNCTION: !Ref PlannerFunction
+      Policies:
+        - DynamoDBCrudPolicy: {TableName: !Ref FieldsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref EventsTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref CertificatesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MachinesTable}
+        - DynamoDBCrudPolicy: {TableName: !Ref MessagesTable}
+        - S3CrudPolicy: {BucketName: !Sub "strawlink-${AWS::AccountId}-${AWS::Region}"}
+        - LambdaInvokePolicy: {FunctionName: !Ref PlannerFunction}
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:InvokeModelWithResponseStream, bedrock:Converse, bedrock:ConverseStream]
+              Resource: "*"
+            - Effect: Allow
+              Action: [transcribe:StartTranscriptionJob, transcribe:GetTranscriptionJob, transcribe:DeleteTranscriptionJob]
+              Resource: "*"
+            - Effect: Allow
+              Action: [ssm:GetParameter]
+              Resource: !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/strawlink/*
+            - Effect: Allow
+              Action: [kms:Decrypt]
+              Resource: "*"
+            - Effect: Allow
+              Action: [geo-routes:CalculateRoutes]
+              Resource: "*"
 
   DailyReplanFunction:
     Type: AWS::Serverless::Function
