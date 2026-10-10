@@ -45,10 +45,20 @@ def afternoon_wind(lon: float, lat: float, day: str) -> dict:
     d = date.fromisoformat(day)
     recent = (settings.today() - d).days <= 5
     url = "https://api.open-meteo.com/v1/forecast" if recent else "https://archive-api.open-meteo.com/v1/archive"
-    r = requests.get(url, params={"latitude": lat, "longitude": lon, "hourly": "wind_direction_10m,wind_speed_10m",
-                                  "timezone": "Asia/Kolkata", "start_date": day, "end_date": day}, timeout=15)
-    r.raise_for_status()
-    h = r.json()["hourly"]
+    q = {"latitude": lat, "longitude": lon, "hourly": "wind_direction_10m,wind_speed_10m", "timezone": "Asia/Kolkata"}
+    r = requests.get(url, params={**q, "start_date": day, "end_date": day}, timeout=15)
+    used = day
+    if recent and r.status_code == 400:
+        # beyond the forecast horizon: fall back to the furthest day the forecast covers
+        r = requests.get(url, params={**q, "forecast_days": 16}, timeout=15)
+        r.raise_for_status()
+        h = r.json()["hourly"]
+        used = max(t[:10] for t in h["time"])
+        keep = [i for i, t in enumerate(h["time"]) if t[:10] == used]
+        h = {k: [v[i] for i in keep] for k, v in h.items()}
+    else:
+        r.raise_for_status()
+        h = r.json()["hourly"]
     u = v = 0.0
     n = 0
     for t, wd, ws in zip(h["time"], h["wind_direction_10m"], h["wind_speed_10m"]):
@@ -60,7 +70,8 @@ def afternoon_wind(lon: float, lat: float, day: str) -> dict:
     if not n:
         raise RuntimeError("no wind data")
     return {"wind_from_deg": round((math.degrees(math.atan2(u, v)) + 360) % 360, 1),
-            "wind_speed_kmh": round(math.hypot(u, v) / n, 1), "hours": "15:00–18:00 IST", "source": "open-meteo"}
+            "wind_speed_kmh": round(math.hypot(u, v) / n, 1), "hours": "15:00–18:00 IST", "source": "open-meteo",
+            "date": used, "requested_date": day}
 
 
 def exposure(risk_fields: list[dict], wind: dict) -> dict:

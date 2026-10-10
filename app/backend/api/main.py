@@ -9,6 +9,7 @@ import os
 import time
 from datetime import date
 
+import boto3
 from fastapi import Body, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
@@ -108,6 +109,13 @@ def meta():
             "bedrock_model": settings.BEDROCK_MODEL_ID or None}
 
 
+@app.get("/roads")
+def roads():
+    """OSM roads and waterways of the block (display + path drawing). Empty if not exported yet."""
+    return {"roads": settings.geojson("data/osm/roads.geojson"), "water": settings.geojson("data/osm/water.geojson"),
+            "attribution": "Roads and waterways © OpenStreetMap contributors"}
+
+
 # ---------------------------------------------------------------- fields
 
 
@@ -196,6 +204,39 @@ def post_replan(body: dict = Body(default={})):
     return notify_and_replan(on, body.get("trigger", "manual"))
 
 
+@app.post("/simulate")
+def simulate(body: dict = Body(default={})):
+    """What-if plan for one day: fleet size, rain and date come from the request; nothing is stored."""
+    on = plan_date(body.get("date"))
+    base = {t: sum(m["type"] == t for m in planning.machines()) for t in ("baler_set", "seeder", "truck")}
+    fleet = {t: max(0, min(8, int(body.get(t, base[t])))) for t in base}
+    try:
+        return planning.scenario(on, fleet, rain_mm=max(0.0, min(100.0, float(body.get("rain_mm", 0)))),
+                                 rain_village=str(body.get("rain_village", "all")),
+                                 confirmed=tuple(str(x) for x in body.get("confirmed", [])[:200]),
+                                 time_limit_s=max(1.0, min(12.0, float(body.get("time_limit_s", 3)))))
+    except Exception as e:  # noqa: BLE001 — a scenario the planner rejects is the caller's to fix
+        raise HTTPException(422, f"could not plan this scenario: {e}") from e
+
+
+@app.post("/demo/reset")
+def demo_reset(body: dict = Body(default={})):
+    """Undo what was done during a demo — rain events, harvest confirmations, cleared marks,
+    certificates and the message log — then re-plan. Forecasts, fields and the fleet are untouched."""
+    on = plan_date(body.get("date"))
+    touched = 0
+    for f in fields_all():
+        gone = [k for k in ("confirmed", "cleared_on", "status") if k in f]
+        if gone:
+            store.remove("fields", {"field_id": f["field_id"]}, gone)
+            touched += "confirmed" in gone or "cleared_on" in gone
+    removed = {"events": store.clear("events", ("field_id", "ts")),
+               "certificates": store.clear("certificates", ("cert_id",)),
+               "messages": store.clear("messages", ("phone", "ts"))}
+    _cache.clear()
+    return {"fields_reset": touched, "removed": removed, "replan": notify_and_replan(on, "reset")}
+
+
 @app.post("/events/rain")
 def rain_event(body: dict = Body(...)):
     on = plan_date(body.get("date"))
@@ -235,20 +276,36 @@ def missed_call(body: dict = Body(...)):
 # ---------------------------------------------------------------- messaging
 
 
-def handle_inbound(phone: str, text: str, on: date, channel: str) -> dict:
+def handle_inbound(phone: str, text: str, on: date, channel: str, deliver: bool = False, heard: bool = False) -> dict:
+    """Read a farmer's message and answer it.
+
+    deliver: send the answer to the phone ourselves (the webhook has already returned).
+    heard:   the text came from a voice note, so the answer starts with what was understood.
+    """
+    phone = phone.replace("whatsapp:", "").strip()
     fid = msg.field_for_phone(phone)
-    msg.log(phone, fid, "in", text, channel=channel)
+    msg.log(phone, fid, "in", text, channel=channel, **({"voice_note": True} if heard else {}))
+
+    def answer(pa: str, en: str | None) -> str:
+        if heard:
+            pa, en = f'ਸੁਣਿਆ: "{text}"\n{pa}', (f'Heard: "{text}"\n{en}' if en else None)
+        if deliver:
+            msg.send_whatsapp(phone, fid, pa, en or "")
+        else:
+            msg.log(phone, fid, "out", pa, body_en=en, status="simulated" if channel != "whatsapp" else "reply")
+        return pa
+
     if not fid:
-        reply = msg.UNKNOWN_PA
-        msg.log(phone, None, "out", reply, body_en=msg.UNKNOWN_EN, status="simulated" if channel != "whatsapp" else "reply")
-        return {"reply": reply, "intent": "unknown_phone"}
+        return {"reply": answer(msg.UNKNOWN_PA, msg.UNKNOWN_EN), "intent": "unknown_phone"}
     parsed = msg.parse_inbound(text, on)
     if parsed["intent"] == "harvest_date" and parsed["date"]:
         d = date.fromisoformat(parsed["date"]).strftime("%d-%m-%Y")
-        r = confirm(fid, parsed["date"], channel, on)
         reply_en = msg.CONFIRM_EN.format(date=d, field_id=fid)
         reply, _ = msg.translate_pa(reply_en, msg.CONFIRM_PA.format(date=d, field_id=fid))
-        out = {"replan": r["replan"]}
+        reply = answer(reply, reply_en)  # the thank-you first; the new slot follows once the plan is redone
+        r = confirm(fid, parsed["date"], channel, on)
+        return {"reply": reply, "reply_en": reply_en, "intent": parsed["intent"], "parser": parsed.get("parser"),
+                "field_id": fid, "replan": r["replan"]}
     elif parsed["intent"] == "confirm_slot":
         store.put("events", {"field_id": fid, "ts": settings.now_iso(), "type": "slot_confirmed", "source": channel})
         reply_en = "StrawLink: thank you, your slot is confirmed."
@@ -258,10 +315,23 @@ def handle_inbound(phone: str, text: str, on: date, channel: str) -> dict:
         from assistant.agent import chat
 
         a = chat(text, fid)
-        reply, reply_en, out = a["reply"], None, {"tools_used": a["tools_used"]}
-    msg.log(phone, fid, "out", reply, body_en=reply_en, status="reply")
+        reply, out = a["reply"], {"tools_used": a["tools_used"]}
+        reply_en = msg.to_english(reply) if deliver else None
+    reply = answer(reply, reply_en)
     return {"reply": reply, "reply_en": reply_en, "intent": parsed["intent"], "parser": parsed.get("parser"),
             "field_id": fid, **out}
+
+
+@app.post("/fields/{fid}/ask")
+def ask_farmer(fid: str):
+    """Before the harvest: send the farmer the forecast window for his field and ask him to say when he cuts."""
+    f = field_or_404(fid)
+    phone = msg.phone_for(fid)
+    m = msg.ask_message(f)
+    if not phone or not m:
+        raise HTTPException(404, "no phone or no satellite forecast for this field")
+    sent = msg.send_whatsapp(phone, fid, m["pa"], m["en"])
+    return {"field_id": fid, "status": sent["status"], "en": m["en"], "pa": m["pa"], "translation": m["translation"]}
 
 
 @app.post("/webhooks/whatsapp")
@@ -270,9 +340,36 @@ async def whatsapp(request: Request):
     url = str(request.url).replace("http://", "https://")
     if not msg.verify_twilio(url, form, request.headers.get("X-Twilio-Signature", "")):
         raise HTTPException(403, "invalid signature")
+    voice = form.get("MediaUrl0") if form.get("MediaContentType0", "").startswith("audio") else None
+    if settings.INBOUND_FUNCTION:
+        # Twilio waits 15 s at most; listening to a voice note and re-planning take longer, so a
+        # worker answers through Twilio's API and this request returns at once.
+        boto3.client("lambda", region_name=settings.REGION).invoke(
+            FunctionName=settings.INBOUND_FUNCTION, InvocationType="Event",
+            Payload=json.dumps({"from": form.get("From", ""), "body": form.get("Body", ""), "voice": voice,
+                                "on": plan_date().isoformat()}).encode())
+        return Response(content="<?xml version='1.0' encoding='UTF-8'?><Response/>", media_type="application/xml")
     r = handle_inbound(form.get("From", ""), form.get("Body", ""), plan_date(), "whatsapp")
     xml = f"<?xml version='1.0' encoding='UTF-8'?><Response><Message>{_xml(r['reply'])}</Message></Response>"
     return Response(content=xml, media_type="application/xml")
+
+
+def inbound_work(event: dict) -> dict:
+    """The worker's half of the WhatsApp webhook: listen (if it is a voice note), understand, answer, re-plan."""
+    phone, on = event["from"].replace("whatsapp:", "").strip(), date.fromisoformat(event["on"])
+    if not event.get("voice"):
+        return handle_inbound(phone, event.get("body", ""), on, "whatsapp", deliver=True)
+    try:
+        said = msg.transcribe_voice(event["voice"])
+    except Exception as e:  # noqa: BLE001
+        print(json.dumps({"event": "voice_error", "error": str(e)[:200]}))
+        said = None
+    if not said:
+        fid = msg.field_for_phone(phone)
+        msg.log(phone, fid, "in", "[voice note, not understood]", channel="whatsapp", voice_note=True)
+        msg.send_whatsapp(phone, fid, msg.VOICE_UNCLEAR_PA, msg.VOICE_UNCLEAR_EN)
+        return {"intent": "voice_unclear"}
+    return {**handle_inbound(phone, said["text"], on, "whatsapp", deliver=True, heard=True), "language": said["language"]}
 
 
 def _xml(s: str) -> str:
@@ -393,8 +490,12 @@ def get_exposure(date: str | None = None):
 
 
 @app.get("/emissions")
-def get_emissions(date: str | None = None):
+def get_emissions(date: str | None = None, tonnes: float | None = None):
+    """What burning straw in the field would emit. Default: the straw on fields marked cleared by `date`.
+    With `tonnes`, the same sum for that amount of straw (the web app passes a plan's tonnage)."""
     on = plan_date(date).isoformat()
+    if tonnes is not None:
+        return {"date": on, **emissions.estimate(max(0.0, min(1e6, tonnes)), basis="asked")}
     t = sum(float(f.get("straw_t", 0)) for f in fields_all() if f.get("cleared_on") and f["cleared_on"] <= on)
     return {"date": on, **emissions.estimate(t)}
 

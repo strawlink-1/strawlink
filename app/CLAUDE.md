@@ -17,7 +17,8 @@ files; never wait on `pipeline/`.
 - AI: Amazon Bedrock (`BEDROCK_MODEL_ID` env — use any text model enabled in the
   account; do not hard-code), **Strands Agents SDK** for the assistant.
 - Messaging: Twilio WhatsApp sandbox (inbound webhook + outbound send).
-- Maps: MapLibre GL + deck.gl; Amazon Location Service for displayed road routes.
+- Scene: three.js (`@react-three/fiber`) — one 3D model of the block shared by every view. Roads from
+  OpenStreetMap (`data/osm/roads.geojson`); Amazon Location Service road routes when deployed.
 - Frontend: React + TypeScript + Vite, hosted on AWS Amplify Hosting.
 - PDFs: reportlab + qrcode.
 
@@ -38,8 +39,11 @@ app/
     emissions/
     common/         # config loader, ddb helpers, schema validation
   web/
-    src/screens/    # Operator, Factory, Farmer, Backtest, Verify
-    src/components/ # Map, WhyCard, DemoConsole, AssumptionsPanel, Charts
+    src/sim/        # data → simulation (world, dayplan, roads, stage); no drawing
+    src/scene/      # the shared 3D scene (ground, fields, vehicles, scenery, effects)
+    src/views/      # Simulator, Forecast, Plants, Farmers, Air, Results
+    src/ui/         # shell, sliders and tiles, time bar, field card
+    src/screens/    # Verify (public certificate page)
   tools/
     make_synthetic.py
     load_osm.py     # one-time Overpass export of villages + schools for the AOI
@@ -87,16 +91,21 @@ GET  /plan?date=&policy=           plan (strawlink|baseline)
 POST /replan                       invoke planner Lambda with current state → store plan
 POST /events/rain                  {village_id|all, mm, date} → Events + replan
 POST /events/confirm               {field_id, date, source} → forecast override + replan
+POST /simulate                     {date, baler_set, seeder, truck, rain_mm, rain_village, confirmed[]}
+                                   → plan + field statuses for that what-if; stores nothing
 POST /simulate/missed-call         {phone} → confirm harvest = today for that field
-POST /webhooks/whatsapp            Twilio inbound (validate signature)
+POST /fields/{id}/ask              before harvest: send the forecast window, ask the farmer to say when he cuts
+POST /webhooks/whatsapp            Twilio inbound (validate signature); text or voice note (Amazon Transcribe)
 GET  /plants/supply?weeks=         weekly tonnes per plant + depot alerts
 GET  /backtest                     backtest_result.json (+ per-day plan URLs)
 POST /fields/{id}/cleared          mark cleared (demo console) → certificate
 GET  /certificates/{id}            PDF URL + status
 GET  /verify/{id}                  public verification JSON
 GET  /exposure?date=               downwind villages/schools
-GET  /emissions?date=              estimate with formula + sources
+GET  /emissions?date=&tonnes=      what burning that straw would emit, with formula + sources
+POST /demo/reset                   undo rain, confirmations, cleared marks, certificates, messages → replan
 GET  /machines                     machine list
+GET  /roads                        OSM roads and waterways for the block (GeoJSON)
 POST /machines/import              CSV import (owner_name, village, machine_type, phone, available)
 POST /assistant/chat               {phone|field_id, message} → assistant reply
 ```
@@ -107,23 +116,26 @@ POST /assistant/chat               {phone|field_id, message} → assistant reply
 returned plan, stores it. EventBridge runs it daily at 06:00 IST and on
 `confirm`, `rain`, and capacity-change events.
 
-## 6. Screens (keep each to one clear job; large type; every number has a tooltip)
+## 6. Pages (one job each; every number has a tooltip) — see `web/README.md`
 
-1. **Operator** (`/operator`): map of fields coloured by status (forecast, ready,
-   scheduled, cleared, at risk, too wet); route lines per machine; date slider;
-   toggle StrawLink vs baseline; village volume sidebar; click field → **WhyCard**
-   (harvest window + source, route + reason, priority parts, wetness, assigned
-   machine + ETA). Officer filter: at-risk only + exposure layer.
-2. **Factory** (`/factory`): per plant, weekly expected tonnes with P10–P90 band,
-   depot fill bars, alert banner when projected full within 2 days.
-3. **Farmer** (`/farmer`): phone mock showing the WhatsApp thread (pickup or seeding
-   slot, confirmation reply) and the assistant chat; Punjabi by default, English toggle.
-4. **Backtest** (`/backtest`): reach rate, StrawLink vs baseline, at 3 fleet sizes
-   (grouped bars); replay button that animates the map day by day; caveats text.
-5. **Verify** (`/verify/:certId`): certificate details and no-burn check with image dates.
-- **DemoConsole** (only with `?demo=1`): inject rain, confirm harvest, simulate
-  missed call, mark field cleared, run re-plan.
-- **AssumptionsPanel**: lists every ASSUMPTION/synthetic input from config.
+One 3D map stays mounted. The frame is fixed: page tabs on top, a panel on the left, the map with
+one strip above and one below. Light look. Nothing floats over the map except what the user opened.
+
+1. **Simulator** (`/simulator`, opens first): sliders for day, baler sets, Super Seeders, trucks
+   and rain → `POST /simulate` → the planner's plan drives the map, the machine list and the
+   scoreboard. Run the day slowly (speed slider), scrub it, follow a machine. Not a scripted demo:
+   never add a canned sequence here.
+2. **Forecast** (`/forecast`): scrub the season; fields turn from standing paddy to straw; weekly
+   straw volume; forecast accuracy stated honestly.
+3. **Plants** (`/plants`): bale or seed route per field, plants and depots, truck trips.
+4. **Farmers** (`/farmers`): WhatsApp thread (Punjabi default), slot, certificate link.
+5. **Air** (`/air`): afternoon wind, fields with no machine, places downwind. Exposure, not a
+   pollution reading; never an enforcement view.
+6. **2025 test** (`/results`): 2025 replay, reach rate by fleet size, limits stated.
+- **Field card**: click any field → when / how / fair-queue parts, and "Farmer says: harvested today".
+- **Verify** (`/verify/:certId`): certificate details and no-burn check with image dates.
+- **What is real here?** (top bar): lists every ASSUMPTION/synthetic input from config.
+- Plain words on screen: "Baler 1", not `BA01`; say what a number counts.
 
 ## 7. Messaging and Bedrock
 
@@ -168,16 +180,20 @@ returned plan, stores it. EventBridge runs it daily at 06:00 IST and on
 
 ## 11. Emissions (F13)
 
-`tonnes_cleared × emission_factor × assumed_burn_probability`. Until
-`emission_factors` is cited in `config/params.yaml`, show "estimate pending source".
-Show the formula and sources on hover.
+`tonnes × combustion_factor × emission_factor × assumed_burn_probability`, every factor from
+`config/params.yaml` with its source (Andreae 2019; IPCC 2006). `assumed_burn_probability` is 1.0,
+an ASSUMPTION, so the UI calls the result an upper estimate. Show the formula and sources on hover.
+If the config has no cited factors, show "estimate pending source".
 
 ## 12. Deploy
 
 ```
-cd app && sam build && sam deploy --guided     # first time
-cd app/web && npm i && npm run build           # Amplify Hosting connects to the repo
+app/tools/deploy_nodocker.sh all     # no Docker, no SAM CLI: build → stack → data → web → check
 ```
+`build` fetches Linux arm64 wheels with pip into `app/.build` (cached in `app/.build-deps`);
+`stack` runs `aws cloudformation package` + `deploy` on the SAM template; `data` runs
+`publish_data.sh` and the first re-plan; `web` builds with `VITE_API_URL` and publishes to Amplify
+Hosting. With Docker and the SAM CLI, the runbook in `HANDOFF.md` §3 still works.
 Secrets in SSM Parameter Store: Twilio SID/token/sandbox number, DEMO_PHONE_MAP.
 CORS restricted to the Amplify domain.
 

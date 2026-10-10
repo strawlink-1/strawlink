@@ -212,6 +212,69 @@ def replan(on: date, trigger: str, policies=("strawlink", "baseline")) -> dict:
     return out
 
 
+# ---------------------------------------------------------------- scenarios (the simulator)
+
+_PREFIX = {"baler_set": "BA", "seeder": "SE", "truck": "TR"}
+
+
+def fleet_of(base: list[dict], want: dict[str, int]) -> list[dict]:
+    """The fleet resized for a scenario. Fewer: the last machines of that type are left out.
+    More: copies of an existing machine of that type, based at the next village in turn."""
+    vil = [v["geometry"]["coordinates"] for v in settings.geojson("data/fields/villages.geojson")["features"]]
+    out = []
+    for mtype, prefix in _PREFIX.items():
+        have = [m for m in base if m["type"] == mtype]
+        n = max(0, int(want.get(mtype, len(have))))
+        out += have[:n]
+        for k in range(len(have), n):
+            if not have:
+                break  # no machine of this type to copy rates from
+            at = vil[k % len(vil)] if vil else have[0]["base"]
+            out.append({**have[k % len(have)], "machine_id": f"{prefix}{k + 1:02d}", "base": [float(at[0]), float(at[1])]})
+    return out
+
+
+def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village: str = "all",
+             confirmed: tuple[str, ...] = (), time_limit_s: float = 3.0) -> dict:
+    """Plan one day under what-if inputs. Nothing is stored: the saved plan and fields are untouched.
+
+    With nothing changed (the real fleet, no extra rain, no extra confirmations) the answer is the
+    saved plan itself, so the simulator starts from the plan farmers have been told about."""
+    state, meta = build_state(on, time_limit_s)
+    real_fleet = [m["machine_id"] for m in state["machines"]]
+    wet_above = float(state["params"]["rain_wet_threshold_mm"])
+    for f in state["fields"]:
+        if rain_mm and rain_village in ("all", "ALL", None, f["village_id"]):
+            f["rain_mm_3d"] = round(f["rain_mm_3d"] + rain_mm, 1)
+        if f["field_id"] in confirmed and f["status"] != "cleared":
+            # a farmer's word that the field is harvested today overrides the satellite forecast
+            f.update(p10=on.isoformat(), p50=on.isoformat(), p90=on.isoformat(), source="confirmed", status="ready")
+    state["machines"] = fleet_of(state["machines"], fleet)
+    untouched = not rain_mm and not confirmed and [m["machine_id"] for m in state["machines"]] == real_fleet
+    plan = load_plan(on, "strawlink") if untouched else None
+    saved = plan is not None
+    if not saved:
+        settings.validate(state, "planner_input")
+        plan = run_planner(state, "strawlink")
+        settings.validate(plan, "plan")
+
+    visited = {s["field_id"] for a in plan["assignments"] if a["type"] != "truck" for s in a["stops"]}
+    route = {f["field_id"]: f["route"] for f in plan["fields"]}
+    status = {}
+    for f in state["fields"]:
+        fid = f["field_id"]
+        status[fid] = ("cleared" if f["status"] == "cleared" else "scheduled" if fid in visited
+                       else "at_risk" if route.get(fid) == "at_risk" else "forecast" if f["status"] == "forecast"
+                       else "wet" if f["rain_mm_3d"] >= wet_above else "ready")
+    return {
+        "date": on.isoformat(), "synthetic": True, "plan": plan, "status": status, "machines": state["machines"],
+        "inputs": {"fleet": {t: sum(m["type"] == t for m in state["machines"]) for t in _PREFIX},
+                   "rain_mm": rain_mm, "rain_village": rain_village, "rain_wet_threshold_mm": wet_above,
+                   "confirmed": sorted(confirmed), "saved": saved,
+                   "observed_rain_mm_3d": meta.get("observed_mm_3d"), "time_limit_s": time_limit_s},
+    }
+
+
 def haversine_km(a, b) -> float:
     lon1, lat1, lon2, lat2 = map(math.radians, (a[0], a[1], b[0], b[1]))
     h = math.sin((lat2 - lat1) / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2

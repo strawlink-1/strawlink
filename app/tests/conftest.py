@@ -9,6 +9,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "app" / "backend"))
+sys.path.insert(0, str(ROOT / "pipeline"))  # strawlink_planner, without installing the pipeline
 
 os.environ.update({
     "AWS_DEFAULT_REGION": "ap-south-1", "AWS_REGION": "ap-south-1", "AWS_ACCESS_KEY_ID": "test",

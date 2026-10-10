@@ -67,8 +67,11 @@ def test_supply_and_emissions_and_machines(client):
     for p in s["plants"]:
         for w in p["weeks"]:
             assert w["tonnes_p10"] <= w["tonnes_p50"] <= w["tonnes_p90"]
-    e = client.get("/emissions").json()
-    assert e["status"] == "pending_source"
+    # 100 t × 0.80 burnt × 8.2 g/kg (= kg/t) × 1.0 → 656 kg of PM2.5, every factor with its source
+    e = client.get("/emissions", params={"tonnes": 100}).json()
+    assert e["status"] == "ok" and e["combustion_factor"]["value"] == 0.8
+    pm = next(r for r in e["pollutants"] if r["pollutant"] == "pm2_5")
+    assert pm["kg"] == 656.0 and "Andreae" in pm["source"]
     assert client.get("/machines").json()["machines"]
 
 
@@ -88,4 +91,41 @@ def test_farmer_message_regex_path(client):
 def test_meta_lists_assumptions(client):
     m = client.get("/meta").json()
     keys = {a["key"] for a in m["assumptions"]}
-    assert "sowing_deadline_default" in keys and "emission_factors" in keys
+    # emission factors now carry a cited source; the burn probability is still an assumption
+    assert "sowing_deadline_default" in keys and "assumed_burn_probability" in keys
+    assert "emission_factors" not in keys
+
+
+def test_simulate_answers_the_sliders_and_stores_nothing(client):
+    client.post("/replan", json={})
+    stored = client.get("/plan").json()["plan_id"]
+    # nothing changed: the simulator starts from the saved plan itself
+    base = client.post("/simulate", json={"time_limit_s": 2}).json()
+    jsonschema.validate(base["plan"], settings.schema("plan"))
+    assert base["inputs"]["saved"] is True and base["plan"]["plan_id"] == stored
+    assert base["synthetic"] is True and base["plan"]["totals"]["fields_planned"] > 0
+    # a bigger fleet clears more; no machines clears nothing
+    more = client.post("/simulate", json={"baler_set": 6, "seeder": 6, "truck": 6, "time_limit_s": 2}).json()
+    assert len(more["machines"]) == 18 and more["inputs"]["saved"] is False
+    assert more["plan"]["totals"]["fields_planned"] > base["plan"]["totals"]["fields_planned"]
+    none = client.post("/simulate", json={"baler_set": 0, "seeder": 0, "truck": 0, "time_limit_s": 2}).json()
+    assert none["plan"]["totals"]["fields_planned"] == 0
+    # rain over the wet threshold keeps machines off the fields
+    wet = client.post("/simulate", json={"rain_mm": 20, "time_limit_s": 2}).json()
+    assert wet["plan"]["totals"]["fields_planned"] == 0 and "wet" in set(wet["status"].values())
+    # a what-if never replaces the stored plan
+    assert client.get("/plan").json()["plan_id"] == stored
+
+
+def test_demo_reset_undoes_events(client):
+    client.post("/events/rain", json={"village_id": "all", "mm": 20})
+    client.post("/events/confirm", json={"field_id": "F0150", "date": "2026-10-23", "source": "farmer"})
+    client.post("/fields/F0010/cleared", json={})
+    r = client.post("/demo/reset", json={})
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["fields_reset"] >= 2 and body["removed"]["events"] >= 3
+    assert body["replan"]["strawlink"]["totals"]["fields_planned"] > 0  # dry again, so machines work
+    assert client.get("/fields/F0150").json()["harvest_window"]["source"] != "confirmed"
+    statuses = {f["properties"]["field_id"]: f["properties"]["status"] for f in client.get("/fields").json()["features"]}
+    assert statuses["F0010"] != "cleared" and "wet" not in set(statuses.values())

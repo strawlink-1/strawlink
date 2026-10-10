@@ -51,7 +51,7 @@ def main() -> None:
         s3.create_bucket(Bucket="strawlink-dev", CreateBucketConfiguration={"LocationConstraint": "ap-south-1"})
         out = ROOT / "outputs"
         for f in list((out / "live").rglob("*.json")) + list((out / "backtest").glob("*.json")) + list((out / "backtest" / "replay").rglob("*.json")):
-            s3.upload_file(str(f), "strawlink-dev", str(f.relative_to(ROOT)))
+            s3.upload_file(str(f), "strawlink-dev", f.relative_to(ROOT).as_posix())  # posix keys on Windows too
         rep = ROOT / "pipeline" / ".s3" / "derived" / "forecast_report.json"
         if rep.exists():
             s3.upload_file(str(rep), "strawlink-dev", "derived/forecast_report.json")

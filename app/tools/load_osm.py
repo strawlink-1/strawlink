@@ -1,8 +1,9 @@
-"""One-time Overpass export of villages/hamlets and schools for the block bbox + 15 km.
+"""One-time Overpass export for the block: villages/hamlets and schools (bbox + 15 km), roads and waterways (bbox + 1 km).
 
     python app/tools/load_osm.py --bbox 75.684,30.295,75.788,30.386
+    python app/tools/load_osm.py --bbox 75.684,30.295,75.788,30.386 --roads-only
 
-Writes data/osm/villages.geojson and data/osm/schools.geojson (© OpenStreetMap contributors).
+Writes data/osm/{villages,schools,roads,water}.geojson (© OpenStreetMap contributors).
 """
 
 from __future__ import annotations
@@ -16,24 +17,6 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[2]
 OVERPASS = "https://overpass-api.de/api/interpreter"
-MIRRORS = [OVERPASS, "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter"]
-
-
-def overpass(q: str) -> dict:
-    """POST an Overpass query, trying public mirrors in turn (they time out under load)."""
-    import time
-
-    last = None
-    for attempt in range(2):
-        for url in MIRRORS:
-            try:
-                r = requests.post(url, data={"data": q}, timeout=240, headers={"User-Agent": "strawlink-hackathon/0.1"})
-                r.raise_for_status()
-                return r.json()
-            except Exception as e:  # noqa: BLE001
-                last = e
-                time.sleep(3 + attempt * 5)
-    raise RuntimeError(f"all Overpass mirrors failed: {last}")
 
 
 def grow(b: list[float], km: float) -> list[float]:
@@ -67,49 +50,52 @@ def to_fc(elements: list[dict], kind: str) -> dict:
     return {"type": "FeatureCollection", "attribution": "© OpenStreetMap contributors", "features": feats}
 
 
-def query_ways(selector: str, b: list[float]) -> list[dict]:
+def ways(selector: str, b: list[float]) -> list[dict]:
     s, w, n, e = b[1], b[0], b[3], b[2]
-    q = f"[out:json][timeout:180];way{selector}({s},{w},{n},{e});out geom tags;"
-    return overpass(q)["elements"]
+    q = f"[out:json][timeout:120];({selector}({s},{w},{n},{e}););out tags geom;"
+    r = requests.post(OVERPASS, data={"data": q}, timeout=180, headers={"User-Agent": "strawlink-hackathon/0.1"})
+    r.raise_for_status()
+    return r.json()["elements"]
 
 
-def roads(block: list[float], wide: list[float]) -> dict:
-    """Main roads over the wide box (to reach plants) + every farm track/minor road near the block."""
-    major = query_ways('["highway"~"^(motorway|trunk|primary|secondary|tertiary)(_link)?$"]', wide)
-    minor = query_ways('["highway"~"^(unclassified|residential|track|service|living_street|road)$"]', grow(block, 3))
-    feats, seen = [], set()
-    for el in major + minor:
-        if el["id"] in seen or "geometry" not in el:
-            continue
-        seen.add(el["id"])
-        t = el.get("tags", {})
-        feats.append({"type": "Feature",
-                      "geometry": {"type": "LineString", "coordinates": [[round(p["lon"], 6), round(p["lat"], 6)] for p in el["geometry"]]},
-                      "properties": {"osm_id": f"way/{el['id']}", "highway": t.get("highway", ""), "name": t.get("name:en") or t.get("name") or "",
-                                     "surface": t.get("surface", "")}})
-    feats.sort(key=lambda f: f["properties"]["osm_id"])
+def lines_fc(elements: list[dict], key: str) -> dict:
+    """Ways → LineStrings with one property: kind (the highway / waterway class)."""
+    feats = []
+    for el in sorted(elements, key=lambda el: el["id"]):
+        kind = el.get("tags", {}).get(key)
+        geom = [[round(p["lon"], 6), round(p["lat"], 6)] for p in el.get("geometry", [])]
+        if kind and len(geom) >= 2:
+            feats.append({"type": "Feature", "geometry": {"type": "LineString", "coordinates": geom},
+                          "properties": {"kind": kind}})
     return {"type": "FeatureCollection", "attribution": "© OpenStreetMap contributors", "features": feats}
+
+
+def export_lines(elements: list[dict], out: Path) -> dict:
+    roads = lines_fc([el for el in elements if "highway" in el.get("tags", {})], "highway")
+    water = lines_fc([el for el in elements if "waterway" in el.get("tags", {})], "waterway")
+    (out / "roads.geojson").write_text(json.dumps(roads, separators=(",", ":")), encoding="utf-8")
+    (out / "water.geojson").write_text(json.dumps(water, separators=(",", ":")), encoding="utf-8")
+    return {"roads": len(roads["features"]), "water": len(water["features"])}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--bbox", required=True)
     ap.add_argument("--km", type=float, default=15)
-    ap.add_argument("--roads-km", type=float, default=28, help="radius of the main-road box (must reach the plants)")
     ap.add_argument("--roads-only", action="store_true")
+    ap.add_argument("--raw", type=Path, help="reuse a saved Overpass JSON response for the roads export")
     a = ap.parse_args()
     block = [float(x) for x in a.bbox.split(",")]
-    b = grow(block, a.km)
     out = ROOT / "data" / "osm"
     out.mkdir(parents=True, exist_ok=True)
-    r = roads(block, grow(block, a.roads_km))
-    (out / "roads.geojson").write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
-    web = ROOT / "app" / "web" / "public" / "osm"
-    web.mkdir(parents=True, exist_ok=True)
-    (web / "roads.geojson").write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
-    print(json.dumps({"roads": len(r["features"])}))
+    els = json.loads(a.raw.read_text(encoding="utf-8"))["elements"] if a.raw else None
+    if els is None:
+        b1 = grow(block, 1)
+        els = ways('way["highway"]', b1) + ways('way["waterway"]', b1)
+    print(json.dumps(export_lines(els, out)))
     if a.roads_only:
         return
+    b = grow(block, a.km)
     v = to_fc(query('node["place"~"^(village|hamlet|town)$"]', b), "village")
     s = to_fc(query('nwr["amenity"="school"]', b), "school")
     (out / "villages.geojson").write_text(json.dumps(v, ensure_ascii=False, indent=1))

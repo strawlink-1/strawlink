@@ -1,47 +1,45 @@
-import { lazy, StrictMode, Suspense } from "react";
+import { Component, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import "./app.css";
+import { Verify } from "./screens/Verify";
+import { WorldProvider } from "./sim/world";
 import { AppProvider } from "./state";
-import "./styles.css";
+import "./ui/prefs";
+import { Shell } from "./ui/Shell";
 
-// each screen loads its own heavy library (three.js for /live, MapLibre for the 2D screens)
-const MovieScreen = lazy(() => import("./movie/MovieScreen").then((m) => ({ default: m.MovieScreen })));
-const Shell = lazy(() => import("./components/Shell").then((m) => ({ default: m.Shell })));
-const Operator = lazy(() => import("./screens/Operator").then((m) => ({ default: m.Operator })));
-const Factory = lazy(() => import("./screens/Factory").then((m) => ({ default: m.Factory })));
-const Farmer = lazy(() => import("./screens/Farmer").then((m) => ({ default: m.Farmer })));
-const Backtest = lazy(() => import("./screens/Backtest").then((m) => ({ default: m.Backtest })));
-const Verify = lazy(() => import("./screens/Verify").then((m) => ({ default: m.Verify })));
+function Home() {
+  const { search } = useLocation();
+  return <Navigate to={`/simulator${search}`} replace />;
+}
 
-const Loading = () => <div style={{ display: "grid", placeItems: "center", height: "100%", font: "600 16px var(--display)" }}>Loading StrawLink…</div>;
+/** Last line of defence: an error anywhere shows a message and a reload button, never a blank page. */
+class Crash extends Component<{ children: ReactNode }, { error: string | null }> {
+  state = { error: null as string | null };
+  static getDerivedStateFromError(e: unknown) { return { error: String((e as Error)?.message ?? e) }; }
+  render() {
+    if (!this.state.error) return this.props.children;
+    return (
+      <div id="loading" className="fatal">
+        <p><b>StrawLink hit an error.</b></p>
+        <p>{this.state.error}</p>
+        <button type="button" className="btn ghost sm" onClick={() => location.reload()}>Reload</button>
+      </div>
+    );
+  }
+}
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <AppProvider>
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/verify/:certId" element={<Verify />} />
-            <Route path="/live" element={<MovieScreen />} />
-            <Route
-              path="*"
-              element={
-                <Shell>
-                  <Suspense fallback={<Loading />}>
-                    <Routes>
-                      <Route path="/operator" element={<Operator />} />
-                      <Route path="/factory" element={<Factory />} />
-                      <Route path="/farmer" element={<Farmer />} />
-                      <Route path="/backtest" element={<Backtest />} />
-                      <Route path="*" element={<Navigate to={`/live${location.search}`} replace />} />
-                    </Routes>
-                  </Suspense>
-                </Shell>
-              }
-            />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </AppProvider>
-  </StrictMode>,
+  <Crash>
+  <AppProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/verify/:certId" element={<Verify />} />
+        {/* one shell for every view: the 3D scene stays mounted while the view changes */}
+        <Route path="/:view" element={<WorldProvider><Shell /></WorldProvider>} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  </AppProvider>
+  </Crash>,
 );

@@ -8,6 +8,7 @@ from functools import lru_cache
 from typing import Any
 
 import boto3
+from botocore.config import Config
 from boto3.dynamodb.conditions import Key
 
 from . import settings
@@ -20,7 +21,10 @@ def _ddb():
 
 @lru_cache
 def _s3():
-    return boto3.client("s3", region_name=settings.REGION)
+    # The regional endpoint: a presigned link through the global one is redirected (and its
+    # signature broken) during a new bucket's first day.
+    return boto3.client("s3", region_name=settings.REGION, endpoint_url=f"https://s3.{settings.REGION}.amazonaws.com",
+                        config=Config(signature_version="s3v4"))
 
 
 def table(name: str):
@@ -87,6 +91,23 @@ def query(name: str, pk: str, value: str, index: str | None = None, desc: bool =
         if "LastEvaluatedKey" not in r:
             return [from_ddb(i) for i in out]
         kw["ExclusiveStartKey"] = r["LastEvaluatedKey"]
+
+
+def remove(name: str, key: dict, attrs: list[str]) -> None:
+    """Drop attributes from one row."""
+    if not attrs:
+        return
+    names = {f"#k{i}": a for i, a in enumerate(attrs)}
+    table(name).update_item(Key=key, UpdateExpression="REMOVE " + ", ".join(names), ExpressionAttributeNames=names)
+
+
+def clear(name: str, key_names: tuple[str, ...]) -> int:
+    """Delete every row of a table (demo reset). Returns how many were removed."""
+    rows = scan(name)
+    with table(name).batch_writer() as w:
+        for r in rows:
+            w.delete_item(Key={k: r[k] for k in key_names})
+    return len(rows)
 
 
 def batch_put(name: str, items: list[dict]) -> None:

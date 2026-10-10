@@ -3,6 +3,8 @@ ASGI client), never the database directly."""
 
 from __future__ import annotations
 
+import re
+
 from common import settings
 
 SYSTEM = """You are StrawLink's assistant for paddy farmers in Punjab.
@@ -101,4 +103,11 @@ def chat(message: str, field_id: str | None) -> dict:
         for c in m.get("content", []):
             if "toolUse" in c:
                 tools_used.append(c["toolUse"]["name"])
-    return {"reply": str(result).strip(), "tools_used": tools_used, "field_id": field_id}
+    return {"reply": clean_reply(str(result)), "tools_used": tools_used, "field_id": field_id}
+
+
+def clean_reply(text: str) -> str:
+    """The words meant for the farmer. Some models (Amazon Nova) write their reasoning first,
+    inside <thinking> tags; that is never part of the message."""
+    text = re.sub(r"<thinking>.*?</thinking>", "", text, flags=re.S)
+    return re.sub(r"</?thinking>", "", text).strip()

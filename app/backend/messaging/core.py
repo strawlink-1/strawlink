@@ -11,6 +11,8 @@ import hashlib
 import hmac
 import json
 import re
+import time
+import uuid
 from datetime import date, datetime, timedelta
 
 import boto3
@@ -72,6 +74,17 @@ def translate_pa(english: str, fallback_pa: str) -> tuple[str, str]:
     return fallback_pa, "fallback"
 
 
+def to_english(text: str) -> str | None:
+    """English copy of an answer written in Punjabi (for the demo phones); None if it cannot be made."""
+    try:
+        t = _bedrock(text, "Translate the user's message into plain English. Translate only; add nothing, remove "
+                           "nothing. Keep every number, date, time and field ID exactly as written. Output only "
+                           "the translation.")
+        return t if guard_ok(text.translate(str.maketrans("੦੧੨੩੪੫੬੭੮੯", "0123456789")), t) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def slot_message(field: dict, slot: dict, operator: str) -> dict:
     d = date.fromisoformat(slot["date"])
     vals = {"field_id": field["field_id"], "village": field.get("village_name", field["village_id"]),
@@ -79,6 +92,25 @@ def slot_message(field: dict, slot: dict, operator: str) -> dict:
             "operator": operator}
     en = TEMPLATE_EN.format(**vals, method=METHOD_EN[slot["method"]])
     pa, how = translate_pa(en, TEMPLATE_PA.format(**vals, method=METHOD_PA[slot["method"]]))
+    return {"en": en, "pa": pa, "translation": how}
+
+
+ASK_EN = ("StrawLink: field {field_id} ({village}). Satellite images suggest your paddy will be ready to harvest "
+          "between {lo} and {hi}. When you harvest, send a voice note or the date, and we will send a machine "
+          "for the straw.")
+ASK_PA = ("ਸਟ੍ਰਾਲਿੰਕ: ਖੇਤ {field_id} ({village})। ਸੈਟੇਲਾਈਟ ਤਸਵੀਰਾਂ ਮੁਤਾਬਕ ਤੁਹਾਡਾ ਝੋਨਾ {lo} ਤੋਂ {hi} ਵਿਚਕਾਰ ਕਟਾਈ ਲਈ ਤਿਆਰ "
+          "ਹੋਵੇਗਾ। ਕਟਾਈ ਹੋਣ 'ਤੇ ਵੌਇਸ ਨੋਟ ਜਾਂ ਤਾਰੀਖ਼ ਭੇਜੋ, ਅਸੀਂ ਪਰਾਲੀ ਲਈ ਮਸ਼ੀਨ ਭੇਜਾਂਗੇ।")
+
+
+def ask_message(field: dict) -> dict | None:
+    """Before the harvest: tell the farmer the window the satellite forecast gives and ask him to say when he cuts."""
+    fc = field.get("forecast") or {}
+    if not (fc.get("p10") and fc.get("p90")):
+        return None
+    vals = {"field_id": field["field_id"], "village": field.get("village_name", field["village_id"]),
+            "lo": date.fromisoformat(fc["p10"]).strftime("%d-%m-%Y"), "hi": date.fromisoformat(fc["p90"]).strftime("%d-%m-%Y")}
+    en = ASK_EN.format(**vals)
+    pa, how = translate_pa(en, ASK_PA.format(**vals))
     return {"en": en, "pa": pa, "translation": how}
 
 
@@ -129,6 +161,21 @@ def send_whatsapp(phone: str, field_id: str | None, body_pa: str, body_en: str) 
                           auth=(creds["sid"], creds["token"]), timeout=15,
                           data={"From": creds["from"], "To": f"whatsapp:{phone}", "Body": body_pa})
         status = "sent" if r.ok else f"error:{r.status_code}"
+        if not r.ok:
+            # Twilio says why in its own words (a code and a sentence, no secrets); keep it with the message
+            try:
+                why = r.json()
+                return log(phone, field_id, "out", body_pa, body_en=body_en, status=f"{status}:{why.get('code')}",
+                           error=str(why.get("message", ""))[:300])
+            except ValueError:
+                pass
+        elif body_en and body_en != body_pa:
+            # demo phones also get the English translation as a second message, right after the Punjabi one
+            e = requests.post(f"https://api.twilio.com/2010-04-01/Accounts/{creds['sid']}/Messages.json",
+                              auth=(creds["sid"], creds["token"]), timeout=15,
+                              data={"From": creds["from"], "To": f"whatsapp:{phone}", "Body": body_en})
+            return log(phone, field_id, "out", body_pa, body_en=body_en, status=status,
+                       english_copy="sent" if e.ok else f"error:{e.status_code}")
     return log(phone, field_id, "out", body_pa, body_en=body_en, status=status)
 
 
@@ -147,6 +194,50 @@ def notify_scheduled(stops: list[dict]) -> list[dict]:
         m = slot_message(f, s, ops.get(s["machine_id"], s["machine_id"]))
         sent.append(send_whatsapp(phone, s["field_id"], m["pa"], m["en"]))
     return sent
+
+
+# ---------------------------------------------------------------- voice notes
+
+
+def transcribe_voice(media_url: str, wait_s: int = 100) -> dict | None:
+    """A WhatsApp voice note → {text, language} with Amazon Transcribe (Punjabi, Hindi or English).
+
+    The recording is kept only while it is being transcribed.
+    """
+    creds = store.ssm_json(settings.TWILIO_PARAM)
+    if not creds or not settings.BUCKET:
+        return None
+    audio = requests.get(media_url, auth=(creds["sid"], creds["token"]), timeout=20)
+    audio.raise_for_status()
+    name = f"strawlink-voice-{uuid.uuid4().hex}"
+    key = f"raw/voice/{name}.ogg"
+    s3, tr = store._s3(), boto3.client("transcribe", region_name=settings.REGION)
+    s3.put_object(Bucket=settings.BUCKET, Key=key, Body=audio.content, ContentType="audio/ogg")
+    try:
+        tr.start_transcription_job(TranscriptionJobName=name, Media={"MediaFileUri": f"s3://{settings.BUCKET}/{key}"},
+                                   MediaFormat="ogg", IdentifyLanguage=True, LanguageOptions=settings.VOICE_LANGUAGES)
+        end = time.time() + wait_s
+        while time.time() < end:
+            job = tr.get_transcription_job(TranscriptionJobName=name)["TranscriptionJob"]
+            if job["TranscriptionJobStatus"] == "COMPLETED":
+                out = requests.get(job["Transcript"]["TranscriptFileUri"], timeout=20).json()
+                text = " ".join(t["transcript"] for t in out["results"]["transcripts"]).strip()
+                return {"text": text, "language": job.get("LanguageCode")} if text else None
+            if job["TranscriptionJobStatus"] == "FAILED":
+                print(json.dumps({"event": "voice_failed", "reason": job.get("FailureReason")}))
+                return None
+            time.sleep(1.5)
+        return None
+    finally:
+        s3.delete_object(Bucket=settings.BUCKET, Key=key)
+        try:
+            tr.delete_transcription_job(TranscriptionJobName=name)
+        except Exception:  # noqa: BLE001 — still running; it expires on its own
+            pass
+
+
+VOICE_UNCLEAR_EN = "StrawLink: we could not make out your voice note. Please send it again, or type your message."
+VOICE_UNCLEAR_PA = "ਸਟ੍ਰਾਲਿੰਕ: ਤੁਹਾਡਾ ਵੌਇਸ ਨੋਟ ਸਮਝ ਨਹੀਂ ਆਇਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਭੇਜੋ, ਜਾਂ ਲਿਖ ਕੇ ਭੇਜੋ।"
 
 
 # ---------------------------------------------------------------- inbound
@@ -192,7 +283,9 @@ def parse_inbound(text: str, on: date) -> dict:
             "A farmer in Punjab sent this WhatsApp message (Punjabi, Hindi or English) about paddy harvest and "
             "straw pickup. Return only JSON: {\"intent\": one of \"confirm_slot\" (agrees to the offered slot), "
             "\"harvest_date\" (says when harvest is/was), \"question\", \"other\"; \"date\": YYYY-MM-DD or null}. "
-            "Resolve relative dates against today.", max_tokens=100)
+            "Resolve relative dates against today. The text may be a transcript of a voice note with small "
+            "mistakes. If the farmer says he is harvesting, wants to harvest now, or has harvested, and names no "
+            "other day, the intent is \"harvest_date\" and the date is today.", max_tokens=100)
         j = json.loads(out[out.find("{"): out.rfind("}") + 1])
         if j.get("intent") in ("confirm_slot", "harvest_date", "question", "other"):
             if j.get("date"):
