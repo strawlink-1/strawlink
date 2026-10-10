@@ -29,6 +29,12 @@
   { "id": "t4", "text": "Most of the rest burned within two days of harvest, too fast for any plan that starts after it." },
   { "id": "t5", "text": "That is why StrawLink starts before the harvest.", "say": "That is why Straw Link starts before the harvest." },
 
+  { "id": "a1", "text": "Under the hood, StrawLink is serverless, on eleven AWS services.", "say": "Under the hood, Straw Link is serverless, on eleven A W S services." },
+  { "id": "a2", "text": "Satellite forecasts land in S3, and a Lambda loads them into DynamoDB.", "say": "Satellite forecasts land in S three, and a Lambda loads them into Dynamo D B." },
+  { "id": "a3", "text": "Every morning at six, EventBridge wakes the planner, a Lambda running an optimiser." },
+  { "id": "a4", "text": "A farmer's voice note comes in through API Gateway. Amazon Transcribe hears it, Bedrock understands and translates it, and the plan is redone.", "say": "A farmer's voice note comes in through A P I Gateway. Amazon Transcribe hears it, Bedrock understands and translates it, and the plan is redone." },
+  { "id": "a5", "text": "And Amplify puts the plan on the officer's map." },
+
   { "id": "w1", "text": "Because straw picked up in time is never burned." },
   { "id": "w2", "text": "For this one block, that is up to nine and a half tonnes of fine particles kept out of the air this season." },
   { "id": "w3", "text": "And it adapts to any data: give it another block's fields, machines and plants, and it plans that block." },
