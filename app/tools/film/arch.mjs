@@ -20,7 +20,7 @@ const TEXT = Object.fromEntries(JSON.parse(readFileSync(join(HERE, "narration.js
 const LEAD = 0.5, GAP = 0;
 let t = LEAD;
 const beats = ["a1", "a2", "a3", "a4"].map((id) => { const b = { id, at: t, dur: DUR[id], text: TEXT[id] }; t += DUR[id] + GAP; return b; });
-const total = t + 2.0;
+const total = t + 1.5;
 const B = Object.fromEntries(beats.map((b) => [b.id, b.at]));
 
 // kind: aws | ai | out (outside AWS).  on: the moment the box lights up.
@@ -127,7 +127,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
       });
     }
     // the counter: distinct AWS services lit so far, plus the three listed underneath at the end
-    const also = ease((t - (END - 2.6)) / 0.5);
+    const also = ease((t - (END - 2.3)) / 0.5);
     const litNow = new Set(NODES.filter((n) => SERVICE[n.id] && t >= n.on).map((n) => SERVICE[n.id])).size + (also > 0.5 ? 3 : 0);
     document.querySelector("#count b").textContent = litNow;
     document.getElementById("count").style.opacity = intro;

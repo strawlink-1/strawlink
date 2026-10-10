@@ -14,7 +14,9 @@ plan that puts the right machine on the right field on the right day.
 StrawLink is that plan, for one block of 200 fields west of Sangrur:
 
 1. **Forecast** each field's harvest date from Sentinel-2 satellite images.
-2. **Listen** to farmers: a WhatsApp message or a missed call overrides the forecast.
+2. **Listen** to farmers: a WhatsApp message, a voice note in Punjabi, Hindi or English (Amazon
+   Transcribe) or a missed call overrides the forecast. Before the harvest, StrawLink writes first,
+   with the window its forecast gives for that field.
 3. **Choose** how each field is cleared: baled and trucked to a plant with room, or sown straight
    through with a Super Seeder.
 4. **Rank** fields with a fair queue: tonnes × urgency × a bonus for not burning last season × dry.
@@ -43,8 +45,9 @@ and trucks drive the block's real roads, clear fields and carry bales to the pla
 |---|---|---|
 | ![WhatsApp thread in Punjabi beside the farmer's field](docs/img/farmers.png) | ![Wind and the villages downwind of fields with no machine](docs/img/air.png) | ![The 2025 season replayed: cleared and burned fields](docs/img/results-2025.png) |
 
-Screenshots are of the live site; `app/tools/screenshots.mjs` regenerates them. A draft video script
-and the submission text are in `docs/`.
+Screenshots are of the live site; `app/tools/screenshots.mjs` regenerates them. The video script
+and the submission text are in `docs/`; the demo film is generated from the live site by the
+scripts in `app/tools/film/`.
 
 ## Run it on your machine (no AWS account needed)
 
@@ -68,7 +71,7 @@ npm --prefix app/web run dev -- --port 5173
 Open http://localhost:5173. The local API mocks AWS in memory and loads the real pipeline outputs
 from `outputs/`.
 
-Tests: `app/.venv/Scripts/python.exe -m pytest -q app/tests` (16 API tests) and
+Tests: `app/.venv/Scripts/python.exe -m pytest -q app/tests` (17 API tests) and
 `… -m pytest -q pipeline/tests`.
 
 ## How it is built on AWS
@@ -77,7 +80,8 @@ Tests: `app/.venv/Scripts/python.exe -m pytest -q app/tests` (16 API tests) and
 Sentinel-2 (Earth Search STAC) ─► pipeline ─► S3 ─► loader Lambda ─► DynamoDB (6 tables)
                                                                         │
  web app (Amplify Hosting) ─► API Gateway (HTTP API) ─► API Lambda (FastAPI) ─┤
- WhatsApp (Twilio webhook) ─►                              │   │   │          │
+ WhatsApp (Twilio webhook) ─►            │                 │   │   │          │
+                                         └─► worker Lambda ─► Amazon Transcribe (voice notes) ─► Bedrock ─► re-plan ─► reply
                                                            │   │   └─► Amazon Bedrock: Punjabi translation, farmer assistant (Strands Agents)
                                                            │   └─────► Amazon Location Service: road routes
                                                            └─────────► planner Lambda (OR-Tools)

@@ -1,11 +1,15 @@
-# StrawLink — video script (extended version, proposed 10 Oct 2026 night)
+# StrawLink — video script (as filmed, 11 Oct 2026)
 
-About 335 spoken words plus the camera take. At the pace of Shambhvi's first recording this
-runs close to 2:50; the limit is 3:00. Lines marked NEW are additions to the version already
-filmed (2:17, `docs/video/strawlink-demo.mp4`); everything else is unchanged.
+The finished film, `docs/video/strawlink-demo.mp4`, runs 2:53 (limit 3:00). Paragraph 5 is
+Shambhvi's camera take with the phone; the rest is her voice recording, cut to the shots by
+`app/tools/film/uservoice.py` (cut points in `voice-cuts.json`). Lines marked NEW were added to
+the first, shorter cut.
 
-Record one file per paragraph (or one file with a clear pause between paragraphs). Paragraph 5
-is the camera take that is already filmed; do not re-record it.
+In her reading a few words differ from the text below, and the captions follow her voice:
+"forecasts each harvest and plans every machine's day, every morning"; "show that 185 … were
+burnt"; "75 more would have been cleared" (more than in the real 2025 season, when all 185
+burned; first-come booking would have cleared 74, shown on screen); and "which fields are
+downwind" for the Air page, which lists the villages and schools downwind of those fields.
 
 **1. The problem**
 
@@ -50,11 +54,6 @@ It is serverless, on eleven AWS services. EventBridge wakes the planner on Lambd
 **9. Why it matters**
 
 For this one block, that is up to nine and a half tonnes of fine particles kept out of the air. Give it another block's data, and it plans that block. StrawLink: every field picked up in time, so no one has to burn.
-
-## If it runs over three minutes
-
-Lines are dropped in this order: the plants line (4), the field-card line (6), the certificate (5b).
-The rain line and the Air paragraph stay.
 
 ## Checked against the live app (10 Oct 2026)
 
