@@ -285,27 +285,25 @@ try {
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(5);
     tw(S.card, { bg: 0.66 }, 26);
-    sweep(0, max, need("p1", "p2", "p3", "p4", "p5", "p6") + 10);
-    await say("p1", () => wordsIn("October in Punjab.", "The rice is harvested.", "Behind: the 2025 season on this block, read from satellite images."), { lead: 8 });
-    await say("p2", () => wordsIn("Straw covers the field."));
-    await say("p3", () => wordsIn("About three weeks", "to sow wheat. The straw is in the way."));
-    await say("p4", () => wordsIn("Machines are few.", "No one can tell him when one will come."));
-    await say("p5", () => wordsIn("Not picked up in time<br>means burned."));
-    await say("p6", () => wordsIn("The main reason for the fires.", "The smoke becomes the air of every village and city downwind.", "Dark fields: burned in 2025, as seen in the imagery."));
+    sweep(0, max, need("p1", "p2", "p3") + 10);
+    await say("p1", () => wordsIn("October in Punjab.", "Rice is harvested. Three weeks to sow wheat.", "Behind: the 2025 season on this block, read from satellite images."), { lead: 8 });
+    await say("p2", () => wordsIn("The straw is in the way."));
+    await say("p3", () => wordsIn("Not picked up in time<br>means burned.", "", "Dark fields: burned in 2025, as seen in the imagery."));
     await frames(10);
   });
 
   // 2 · the idea: knows, plans, tells
   await scene("02-idea", async () => {
-    await load("/simulator", SIM_READY);
+    await load("/forecast", `+(${DAY}?.max ?? 0) > 10`);
     setCard(CARD.title);
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(4);
     await say("i1", async () => { show(0, 14); await frames(40); show(1, 14); });
     hideAll(); await frames(9);
     setCard(CARD.idea);
-    await say("i2", async (n) => { show(0); await frames(6); show(1); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.24)); show(3); await frames(Math.round(n * 0.26)); show(4, 14); });
-    await frames(10);
+    await say("i2", async (n) => { show(0); await frames(6); show(1); await frames(Math.round(n * 0.34)); show(2); await frames(Math.round(n * 0.3)); show(3); });
+    show(4, 12);
+    await frames(22);
   });
 
   // 3 · how it knows: the forecast season, then the morning plan setting off
@@ -316,37 +314,35 @@ try {
     await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
     await frames(6);
-    sweep(0, planDay + 2, need("k1", "k2") - 30);
-    await say("k1", async () => { await wheel(-420, 50); });
-    await say("k2", async (n) => { await frames(Math.max(10, n - 60)); await ringOn(`document.querySelector(".stat")`); });
+    sweep(0, planDay + 2, need("k1") - 30);
+    await say("k1", async (n) => { await wheel(-420, 50); await frames(Math.max(10, n - 60)); await ringOn(`document.querySelector(".stat")`); });
     ringOff(4); await frames(5);
     // cut to the simulator at the start of the working day
     await js(`__ov.q("#tabs a", "Simulator").click(); 0`);
     await until(SIM_READY);
     for (let i = 0; i < 30; i++) { await js(`__film.step(50); 0`); await b.sleep(90); }
-    const early = Math.max(await js(`+${TIME}.min`), 7 * 60 + 30);
-    console.log("  day starts at", await js(`+${TIME}.min`), "min; film starts the run at", early);
-    await setTime(early);
-    await setSpeed(7);
+    await setTime(Math.max(await js(`+${TIME}.min`), 7 * 60 + 30));
+    await setSpeed(8);
     await frames(4);
-    await say("k3", async () => { await frames(40); await click(`document.querySelector(".run")`, 18); hideCursor(); });
-    await frames(8);
+    await say("k2", async () => { await frames(12); await click(`document.querySelector(".run")`, 16); hideCursor(); });
+    await frames(26);
   });
 
   // 4 · where the straw goes: close-ups of a baler, a truck and a Super Seeder at work
   await scene("04-straw", async () => {
     await load("/simulator", SIM_READY);
     await skip(2000);
-    const shot = async (id, test, speed) => {
+    const closeUp = async (test, speed = 9) => {
       const m = await findMoment(test);
-      if (m) { await follow(m.name); await setSpeed(speed); await skip(1900); await wheelNow(-900); await play(true); }
-      await say(id);
+      if (m) { await unfollow(); await follow(m.name); await setSpeed(speed); await skip(1900); await wheelNow(-900); await play(true); }
     };
-    await shot("g1", (n, t) => n.startsWith("Baler") && t.startsWith("baling"), 9);
-    await shot("g2", (n, t) => n.startsWith("Truck") && t.startsWith("carrying"), 9);
-    await shot("g3", (n, t) => n.startsWith("Seeder") && t.startsWith("sowing"), 9);
-    await play(false); await unfollow(); await setTime(11 * 60 + 40); await setSpeed(22); await skip(4200); await play(true);
-    await say("g4");
+    await closeUp((n, t) => n.startsWith("Baler") && t.startsWith("baling"));
+    await say("g1", async (n) => {
+      await frames(Math.round(n * 0.45));
+      await closeUp((nm, t) => nm.startsWith("Truck") && t.startsWith("carrying")); // a cut: nothing is filmed while the camera moves
+    });
+    await closeUp((n, t) => n.startsWith("Seeder") && t.startsWith("sowing"));
+    await say("g2");
     await frames(8);
   });
 
@@ -357,26 +353,26 @@ try {
     await setTime(11 * 60 + 20);
     console.log("  verdict on screen:", await js(`document.querySelector(".verdict")?.innerText ?? ""`));
     await frames(6);
-    await say("o1", async () => {
-      await frames(20);
-      zoom(camFor(await rectOf(`document.getElementById("above")`), { pad: 26, max: 1.6 }), 24);
-      await frames(30);
+    await say("o1", async (n) => {
+      zoom(camFor(await rectOf(`document.getElementById("above")`), { pad: 26, max: 1.6 }), 22);
+      await frames(Math.round(n * 0.4));
       await ringOn(`document.querySelector(".tile")`);
+      await frames(Math.round(n * 0.3));
+      await ringOn(`document.querySelector(".verdict")`);
     });
-    await say("o2", async () => { await ringOn(`document.querySelector(".verdict")`); });
     ringOff(6);
-    zoom(camFor({ x: 0, y: 50, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 22);
-    await frames(16);
-    await say("o3", async () => {
+    zoom(camFor({ x: 0, y: 50, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 20);
+    await frames(12);
+    await say("o2", async () => {
       await drag("Baler sets", 6);
       await waitOn(SIM_BUSY, 40);
       await waitOn(SIM_READY, 240);
       hideCursor();
       await ringOn(`document.querySelector(".note.limit") ?? document.getElementById("toast") ?? document.querySelector(".tile")`);
-      await frames(30);
+      await frames(34);
     });
     ringOff(6);
-    await say("o4", async () => {
+    await say("o3", async () => {
       await drag("Trucks", 6, 13);
       await drag("Super Seeders", 6, 13);
       await waitOn(SIM_BUSY, 40);
@@ -410,40 +406,34 @@ try {
       zoom(camFor(g, { pad: 16, max: 1.9 }), 22);
       await frames(28);
       await ringOn(`document.querySelector(".bars")`, { pad: 4 });
-      noteAt("First-come booking, same machines: 74 · burn detection from imagery, over-counts", g.x + 4, g.y + g.h + 10);
+      noteAt("75 of 185 = 40.5 % · first-come booking, same machines: 74 · burn detection from imagery, over-counts", g.x + 4, g.y + g.h + 10);
+      await frames(40);
     });
     ringOff(); noteOff(); home(22);
     tw(S.card, { o: 1, bg: 0.7 }, 12);
-    await say("t4", () => wordsIn("Within two days", "of harvest, most of the rest had burned.", "Too fast for any plan that starts after the harvest."));
+    await say("t4", () => wordsIn("Within two days", "of harvest, most of the rest had burned."));
     await say("t5", () => wordsIn("StrawLink starts<br>before the harvest."));
     await frames(8);
   });
 
-  // 8 · why it matters, any data, AWS, the close
+  // 8 · why it matters, any data, the close (the AWS scene, arch.mjs, comes just before this one)
   await scene("08-why", async () => {
     await load("/simulator", SIM_READY);
     await skip(1500);
     await setTime(8 * 60 + 20); await setSpeed(20); await play(true);
     Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
-    setCard("");
+    setCard(CARD.impact);
     Object.assign(S.card, { o: 1, bg: 0.84 });
     await frames(4);
-    await say("w1", () => wordsIn("Picked up in time,<br>never burned.", "", "", ""));
-    hideAll(); await frames(8);
-    setCard(CARD.impact);
-    await say("w2", async (n) => { show(0); await frames(Math.round(n * 0.2)); show(1, 14); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.25)); show(3, 16); });
+    await say("w1", async (n) => { show(0); await frames(Math.round(n * 0.2)); show(1, 14); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.25)); show(3, 16); });
     await frames(8);
     hideAll(); await frames(8);
     setCard(CARD.adapt);
-    await say("w3", async (n) => { show(0); await frames(Math.round(n * 0.38)); show(1); await frames(Math.round(n * 0.14)); show(2); await frames(Math.round(n * 0.14)); show(3); });
-    await say("w4", async () => { show(4, 14); });
-    hideAll(); await frames(8);
-    setCard(CARD.aws);
-    await say("w5", async () => { show(0); for (let i = 1; i <= 8; i++) { show(i, 8); await frames(6); } });
-    await frames(10);
+    await say("w2", async (n) => { show(0); await frames(Math.round(n * 0.3)); show(1); await frames(6); show(2); await frames(6); show(3); await frames(Math.round(n * 0.25)); show(4, 14); });
+    await frames(14);
     hideAll(); tw(S.card, { bg: 1 }, 12); await frames(12);
     setCard(CARD.end);
-    await say("w6", async () => { show(0, 14); await frames(30); show(1, 14); await frames(50); show(2, 12); await frames(18); show(3, 12); });
+    await say("w3", async () => { show(0, 14); await frames(30); show(1, 14); await frames(50); show(2, 12); await frames(18); show(3, 12); });
     await frames(34);
     hideAll(14);
     await frames(16);

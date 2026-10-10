@@ -1,41 +1,52 @@
-# StrawLink — video script (final, approved 10 Oct 2026)
+# StrawLink — video script (short version, 10 Oct 2026, awaiting approval)
 
-About 450 words. Read at a natural pace it runs roughly 2:50; the limit is 3:00.
-Leave about a second of silence between paragraphs.
+About 300 words. At Shambhvi's speaking pace (about two words a second) this runs close to
+2:50; the limit is 3:00. Leave about a second of silence between paragraphs.
+Paragraph 5 is said on camera with the phone; the rest is one audio recording.
 
 **1. The problem**
 
-In October, a farmer in Punjab harvests his rice. The field is left covered in straw. He has about three weeks to sow wheat, and the straw is in the way. Machines can pick it up. But they are few, and no one can tell him when one will come. Straw that is not picked up in time gets burned. That is the main reason for the fires, and the smoke becomes the air of every village and city downwind.
+Every October, a farmer in Punjab harvests his rice and has three weeks to sow wheat. The straw is in the way. If no machine picks it up in time, he burns it.
 
 **2. The idea**
 
-So we built StrawLink: an app that anticipates the need, before it becomes a fire. It knows which fields will be ready, plans a machine for each one, and tells the farmer exactly when, so he does not have to burn.
+So we built StrawLink: an app that anticipates the need, before it becomes a fire. It knows which fields will be ready, plans a machine for each one, and tells the farmer exactly when.
 
 **3. How it knows**
 
-It starts weeks before the harvest. From satellite images, StrawLink watches two hundred fields near Sangrur turn from green to gold, and works out when each will be cut. Then, every morning, it plans the day, and by half past seven the machines are on the road.
+From satellite images, it watches two hundred fields near Sangrur turn from green to gold, forecasts each harvest, and plans every machine's day each morning.
 
 **4. Where the straw goes**
 
-A baler packs the straw into bales, and a truck carries them to a plant, where straw is fuel instead of smoke. When the plants are full, a Super Seeder takes over and sows the wheat straight through the straw. Either way, nothing is burned.
+Balers and trucks take the straw to plants as fuel. Where plants are full, a Super Seeder sows wheat straight through it.
 
-**5. The farmer**
+**5. The farmer** (on camera, phone in hand)
 
-The farmer needs no app. A WhatsApp message, in Punjabi, tells him when his machine will arrive. If he harvests early, he says so, and the plan changes around him. Afterwards he gets a certificate, and nobody is ever reported or fined.
+The farmer needs no app. Before his harvest, a WhatsApp message in Punjabi tells him when his field should be ready. When he cuts, he just says so in a voice note, and a machine is on its way. Nobody is ever reported or fined.
 
 **6. The officer**
 
-And the officer in charge can finally answer the hardest question: are there enough machines? At this pace, everything harvested so far is cleared in ten days, with twenty-two left before sowing. Double the balers and nothing improves, because trucks are the limit. Add trucks, and the day clears twice as much.
+The officer can test a decision before spending money. Double the balers: nothing improves. Add trucks and seeders too, and the day clears twice as much.
 
 **7. The test**
 
-Would it have worked? We replayed the whole 2025 season on this block. That year, satellite images show 185 of the 200 fields were burned. With StrawLink running the machines, 75 of them would have been cleared before the fire. Most of the rest burned within two days of harvest, too fast for any plan that starts after it. That is why StrawLink starts before the harvest.
+Would it have worked? We replayed 2025. Satellite images show 185 of these 200 fields were burned. With StrawLink, 75 would have been cleared before the fire. Most of the rest burned within two days of harvest. That is why StrawLink starts before it.
 
-**8. Why it matters**
+**8. How it is built**
 
-Because straw picked up in time is never burned. For this one block, that is up to nine and a half tonnes of fine particles kept out of the air this season. And it adapts to any data: give it another block's fields, machines and plants, and it plans that block. The ones shown here are examples. It runs on AWS today. StrawLink: every field picked up in time, so no one has to burn.
+It is serverless, on eleven AWS services. EventBridge wakes the planner on Lambda every morning. A farmer's voice note goes through Transcribe and Bedrock, and Amplify puts the plan on the officer's map.
+
+**9. Why it matters**
+
+For this one block, that is up to nine and a half tonnes of fine particles kept out of the air. Give it another block's data, and it plans that block. StrawLink: every field picked up in time, so no one has to burn.
 
 ## Shown on screen, not spoken
 
+- Paragraph 6: "trucks are the limit" (the app's own note) and "about 10 days needed · 22 days left".
 - Paragraph 7: the two bars from the 2025 page, and the line "first-come booking, same machines: 74 · burn detection from imagery, over-counts".
-- Paragraph 8: "upper estimate" beside the 9.5 tonnes.
+- Paragraph 8: the full diagram, including S3, DynamoDB, API Gateway, Systems Manager, CloudFormation and CloudWatch.
+- Paragraph 9: "upper estimate" beside the 9.5 tonnes; "machines and plants shown are examples".
+
+## The longer version
+
+The first approved script (about 450 words) is in git history (commit 53ad29b).

@@ -19,34 +19,34 @@ const TEXT = Object.fromEntries(JSON.parse(readFileSync(join(HERE, "narration.js
 // narration beats: when each line starts (seconds) and how long it is
 const LEAD = 0.5, GAP = 0.3;
 let t = LEAD;
-const beats = ["a1", "a2", "a3", "a4", "a5"].map((id) => { const b = { id, at: t, dur: DUR[id], text: TEXT[id] }; t += DUR[id] + GAP; return b; });
-const total = t + 1.2;
+const beats = ["a1", "a2", "a3", "a4"].map((id) => { const b = { id, at: t, dur: DUR[id], text: TEXT[id] }; t += DUR[id] + GAP; return b; });
+const total = t + 1.6;
 const B = Object.fromEntries(beats.map((b) => [b.id, b.at]));
 
 // kind: aws | ai | out (outside AWS).  on: the moment the box lights up.
 const X = [128, 372, 616, 860, 1108], Y = [160, 318, 476];
-const a4 = B.a4, a4d = DUR.a4;
+const d1 = DUR.a1, d2 = DUR.a2, d3 = DUR.a3;
 const NODES = [
-  { id: "sat", x: X[0], y: Y[0], kind: "out", name: "Sentinel-2", sub: "satellite images", on: B.a2 },
-  { id: "s3", x: X[1], y: Y[0], kind: "aws", name: "S3", sub: "forecasts · certificates", on: B.a2 + 0.9 },
-  { id: "load", x: X[2], y: Y[0], kind: "aws", name: "Lambda", sub: "loader", on: B.a2 + 2.2 },
-  { id: "ddb", x: X[3], y: Y[0], kind: "aws", name: "DynamoDB", sub: "fields · plans · messages", on: B.a2 + 3.4 },
-  { id: "eb", x: X[0], y: Y[1], kind: "aws", name: "EventBridge", sub: "every day, 06:00", on: B.a3 + 1.2 },
-  { id: "plan", x: X[1], y: Y[1], kind: "aws", name: "Lambda", sub: "planner · OR-Tools", on: B.a3 + 2.6 },
-  { id: "api", x: X[3], y: Y[1], kind: "aws", name: "Lambda", sub: "API · FastAPI", on: B.a5 },
-  { id: "amp", x: X[4], y: (Y[0] + Y[1]) / 2, kind: "aws", name: "Amplify Hosting", sub: "the officer's map", on: B.a5 + 0.5 },
-  { id: "farmer", x: X[0], y: Y[2], kind: "out", name: "Farmer", sub: "WhatsApp · Twilio", on: a4 },
-  { id: "gw", x: X[1], y: Y[2], kind: "aws", name: "API Gateway", sub: "webhook · API", on: a4 + a4d * 0.2 },
-  { id: "work", x: X[2], y: Y[2], kind: "aws", name: "Lambda", sub: "message worker", on: a4 + a4d * 0.3 },
-  { id: "tr", x: X[3], y: Y[2], kind: "ai", name: "Transcribe", sub: "voice note → text", on: a4 + a4d * 0.42 },
-  { id: "br", x: X[4], y: Y[2], kind: "ai", name: "Bedrock", sub: "Nova Pro · Strands agent", on: a4 + a4d * 0.58 },
+  { id: "sat", x: X[0], y: Y[0], kind: "out", name: "Sentinel-2", sub: "satellite images", on: B.a1 + d1 * 0.3 },
+  { id: "s3", x: X[1], y: Y[0], kind: "aws", name: "S3", sub: "forecasts · certificates", on: B.a1 + d1 * 0.5 },
+  { id: "load", x: X[2], y: Y[0], kind: "aws", name: "Lambda", sub: "loader", on: B.a1 + d1 * 0.7 },
+  { id: "ddb", x: X[3], y: Y[0], kind: "aws", name: "DynamoDB", sub: "fields · plans · messages", on: B.a1 + d1 * 0.9 },
+  { id: "eb", x: X[0], y: Y[1], kind: "aws", name: "EventBridge", sub: "every day, 06:00", on: B.a2 },
+  { id: "plan", x: X[1], y: Y[1], kind: "aws", name: "Lambda", sub: "planner · OR-Tools", on: B.a2 + d2 * 0.4 },
+  { id: "api", x: X[3], y: Y[1], kind: "aws", name: "Lambda", sub: "API · FastAPI", on: B.a4 },
+  { id: "amp", x: X[4], y: (Y[0] + Y[1]) / 2, kind: "aws", name: "Amplify Hosting", sub: "the officer's map", on: B.a4 + 0.5 },
+  { id: "farmer", x: X[0], y: Y[2], kind: "out", name: "Farmer", sub: "WhatsApp · Twilio", on: B.a3 },
+  { id: "gw", x: X[1], y: Y[2], kind: "aws", name: "API Gateway", sub: "webhook · API", on: B.a3 + d3 * 0.2 },
+  { id: "work", x: X[2], y: Y[2], kind: "aws", name: "Lambda", sub: "message worker", on: B.a3 + d3 * 0.35 },
+  { id: "tr", x: X[3], y: Y[2], kind: "ai", name: "Transcribe", sub: "voice note → text", on: B.a3 + d3 * 0.55 },
+  { id: "br", x: X[4], y: Y[2], kind: "ai", name: "Bedrock", sub: "Nova Pro · Strands agent", on: B.a3 + d3 * 0.8 },
 ];
 const EDGES = [
-  ["sat", "s3", B.a2 + 0.4], ["s3", "load", B.a2 + 1.6], ["load", "ddb", B.a2 + 2.8],
-  ["eb", "plan", B.a3 + 1.9], ["plan", "ddb", B.a3 + 3.4],
-  ["farmer", "gw", a4 + a4d * 0.1], ["gw", "work", a4 + a4d * 0.25], ["work", "tr", a4 + a4d * 0.36], ["tr", "br", a4 + a4d * 0.5],
-  ["work", "plan", a4 + a4d * 0.8], ["work", "farmer", a4 + a4d * 0.9, true],
-  ["ddb", "api", B.a5 - 0.2], ["api", "amp", B.a5 + 0.3],
+  ["sat", "s3", B.a1 + d1 * 0.4], ["s3", "load", B.a1 + d1 * 0.6], ["load", "ddb", B.a1 + d1 * 0.8],
+  ["eb", "plan", B.a2 + d2 * 0.2], ["plan", "ddb", B.a2 + d2 * 0.65],
+  ["farmer", "gw", B.a3 + d3 * 0.1], ["gw", "work", B.a3 + d3 * 0.28], ["work", "tr", B.a3 + d3 * 0.45], ["tr", "br", B.a3 + d3 * 0.68],
+  ["work", "plan", B.a3 + d3 * 0.95], ["work", "farmer", B.a4 - 0.3, true],
+  ["ddb", "api", B.a4 - 0.1], ["api", "amp", B.a4 + 0.3],
 ].map(([from, to, on, bend]) => ({ from, to, on, bend: !!bend }));
 
 const html = `<!doctype html><meta charset="utf-8"><style>
@@ -127,7 +127,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
       });
     }
     // the counter: distinct AWS services lit so far, plus the three listed underneath at the end
-    const also = ease((t - (END - 3.4)) / 0.6);
+    const also = ease((t - (END - 2.6)) / 0.6);
     const litNow = new Set(NODES.filter((n) => SERVICE[n.id] && t >= n.on).map((n) => SERVICE[n.id])).size + (also > 0.5 ? 3 : 0);
     document.querySelector("#count b").textContent = litNow;
     document.getElementById("count").style.opacity = intro;
