@@ -1,43 +1,38 @@
 [
-  { "id": "t1", "text": "Every October, farmers in Punjab have about three weeks between harvesting rice and sowing wheat." },
-  { "id": "t2", "text": "Straw still on the field gets burned, and the smoke reaches every village and city downwind." },
-  { "id": "t3", "text": "The machines that clear straw without fire already exist." },
-  { "id": "t4", "text": "What is missing is a plan: the right machine, on the right field, on the right day." },
-  { "id": "t5", "text": "StrawLink is that plan.", "say": "Straw Link is that plan." },
+  { "id": "p1", "text": "In October, a farmer in Punjab harvests his rice." },
+  { "id": "p2", "text": "The field is left covered in straw." },
+  { "id": "p3", "text": "He has about three weeks to sow wheat, and the straw is in the way." },
+  { "id": "p4", "text": "Machines can pick it up. But they are few, and no one can tell him when one will come." },
+  { "id": "p5", "text": "Straw that is not picked up in time gets burned." },
+  { "id": "p6", "text": "That is the main reason for the fires, and the smoke becomes the air of every village and city downwind." },
 
-  { "id": "o1", "text": "This is one block near Sangrur: two hundred paddy fields, real roads, and three plants that take straw." },
-  { "id": "o2", "text": "Gold fields are harvested and waiting. Green fields are still standing." },
+  { "id": "i1", "text": "So we built StrawLink: an app that anticipates the need, before it becomes a fire.", "say": "So we built Straw Link: an app that anticipates the need, before it becomes a fire." },
+  { "id": "i2", "text": "It knows which fields will be ready, plans a machine for each one, and tells the farmer exactly when, so he does not have to burn." },
 
-  { "id": "r1", "text": "Press run, and today's plan plays out." },
-  { "id": "r2", "text": "Baler sets bale the straw." },
-  { "id": "r3", "text": "Trucks carry the bales to a plant that still has room." },
-  { "id": "r4", "text": "Where the plants are full, a Super Seeder sows wheat straight through the straw." },
-  { "id": "r5", "text": "The scoreboard counts fields cleared, straw handled, and whether this fleet can finish before the sowing deadline." },
+  { "id": "k1", "text": "It starts weeks before the harvest." },
+  { "id": "k2", "text": "From satellite images, StrawLink watches two hundred fields near Sangrur turn from green to gold, and works out when each will be cut.", "say": "From satellite images, Straw Link watches two hundred fields near Sangrur turn from green to gold, and works out when each will be cut." },
+  { "id": "k3", "text": "Then, every morning, it plans the day, and by half past seven the machines are on the road." },
 
-  { "id": "s1", "text": "Nothing here is scripted. Every slider asks the real planner, running on AWS.", "say": "Nothing here is scripted. Every slider asks the real planner, running on A W S." },
-  { "id": "s2", "text": "Double the baler sets, and nothing improves, because every truck trip is already used." },
-  { "id": "s3", "text": "Add trucks and seeders too, and the same day clears twice as many fields." },
-  { "id": "s4", "text": "Now an officer knows which machine to hire, before spending a single rupee." },
-  { "id": "s5", "text": "Add rain, and the planner keeps machines off wet fields until they dry." },
+  { "id": "g1", "text": "A baler packs the straw into bales," },
+  { "id": "g2", "text": "and a truck carries them to a plant, where straw is fuel instead of smoke." },
+  { "id": "g3", "text": "When the plants are full, a Super Seeder takes over and sows the wheat straight through the straw." },
+  { "id": "g4", "text": "Either way, nothing is burned." },
 
-  { "id": "f2", "text": "Satellite images show each field turning from green to gold, and a model forecasts every harvest date." },
+  { "id": "o1", "text": "And the officer in charge can finally answer the hardest question: are there enough machines?" },
+  { "id": "o2", "text": "At this pace, everything harvested so far is cleared in ten days, with twenty-two left before sowing." },
+  { "id": "o3", "text": "Double the balers and nothing improves, because trucks are the limit." },
+  { "id": "o4", "text": "Add trucks, and the day clears twice as much." },
 
-  { "id": "k1", "text": "Click any field to see when its machine comes, and why." },
-  { "id": "w1", "text": "Farmers need no app. They ask on WhatsApp, in Punjabi." },
-  { "id": "w3", "text": "An assistant on Amazon Bedrock answers, using only the current plan." },
-  { "id": "w2", "text": "A harvest date from the farmer overrides the satellite, and the day is planned again." },
-  { "id": "w4", "text": "A cleared field earns a certificate. StrawLink never reports or penalises anyone.", "say": "A cleared field earns a certificate. Straw Link never reports or penalises anyone." },
+  { "id": "t1", "text": "Would it have worked? We replayed the whole 2025 season on this block.", "say": "Would it have worked? We replayed the whole twenty twenty-five season on this block." },
+  { "id": "t2", "text": "That year, satellite images show 185 of the 200 fields were burned.", "say": "That year, satellite images show one hundred and eighty-five of the two hundred fields were burned." },
+  { "id": "t3", "text": "With StrawLink running the machines, 75 of them would have been cleared before the fire.", "say": "With Straw Link running the machines, seventy-five of them would have been cleared before the fire." },
+  { "id": "t4", "text": "Most of the rest burned within two days of harvest, too fast for any plan that starts after it." },
+  { "id": "t5", "text": "That is why StrawLink starts before the harvest.", "say": "That is why Straw Link starts before the harvest." },
 
-  { "id": "p1", "text": "Every plant sees how much straw is coming, and when its depot will be full." },
-
-  { "id": "a1", "text": "For fields no machine reaches, the Air page shows which villages and schools are downwind this afternoon." },
-
-  { "id": "b1", "text": "We replayed the entire 2025 season, and report it honestly.", "say": "We replayed the entire twenty twenty-five season, and report it honestly." },
-  { "id": "b2", "text": "With the same information, our planner and first-come booking tie, at about 40% of fields reached.", "say": "With the same information, our planner and first-come booking tie, at about forty percent of fields reached." },
-  { "id": "b3", "text": "Most fields burned within two days of harvest. Knowing early matters most, so the forecast and the farmer's message come first." },
-
-  { "id": "c1", "text": "StrawLink runs entirely on AWS.", "say": "Straw Link runs entirely on A W S." },
-  { "id": "c2", "text": "The satellite signals, roads and planner are real. The fleet and plants are synthetic today, one config file away from a real block." },
-  { "id": "i1", "text": "Clear this one block in time, and up to nine and a half tonnes of fine particles never reach the air." },
-  { "id": "c3", "text": "StrawLink. Every field cleared in time, so no one has to burn.", "say": "Straw Link. Every field cleared in time, so no one has to burn." }
+  { "id": "w1", "text": "Because straw picked up in time is never burned." },
+  { "id": "w2", "text": "For this one block, that is up to nine and a half tonnes of fine particles kept out of the air this season." },
+  { "id": "w3", "text": "And it adapts to any data: give it another block's fields, machines and plants, and it plans that block." },
+  { "id": "w4", "text": "The ones shown here are examples." },
+  { "id": "w5", "text": "It runs on AWS today.", "say": "It runs on A W S today." },
+  { "id": "w6", "text": "StrawLink: every field picked up in time, so no one has to burn.", "say": "Straw Link: every field picked up in time, so no one has to burn." }
 ]

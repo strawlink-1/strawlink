@@ -4,8 +4,7 @@
 //   node app/tools/film/film.mjs <web app url> [scene names…]      (needs FFMPEG, or ffmpeg on PATH)
 //   node app/tools/film/assemble.mjs                                 (joins scenes, adds the voice)
 //
-// The farmers scene sends real messages and marks a field cleared; it calls POST /demo/reset on
-// API_URL before and after.
+// Scene 5 (the farmer) is a camera take, prepared by clip.mjs. Nothing here writes to the API.
 import { spawn } from "node:child_process";
 import { once } from "node:events";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -23,7 +22,7 @@ const STEP = 1000 / FPS;
 const OVERLAY = readFileSync(join(HERE, "overlay.js"), "utf8");
 const TEXT = Object.fromEntries(JSON.parse(readFileSync(join(HERE, "narration.json"), "utf8")).map((l) => [l.id, l.text]));
 const DUR = JSON.parse(readFileSync(join(OUT, "voice", "durations.json"), "utf8"));
-mkdirSync(join(OUT, "scenes"), { recursive: true });
+mkdirSync(join(OUT, "cut"), { recursive: true });
 
 // The app sits in the frame like a window, leaving a band underneath for subtitles.
 const HOME = { s: 0.86, x: (W - W * 0.86) / 2, y: 12 };
@@ -74,16 +73,33 @@ async function waitOn(expr, maxFrames = 300) {
   return false;
 }
 
+const MAP_LOST = `(() => { const c = document.querySelector("#stage canvas"), g = c && (c.getContext("webgl2") || c.getContext("webgl")); return !g || g.isContextLost() || document.body.innerText.includes("could not be drawn"); })()`;
 async function load(path, ready) {
-  await b.goto(BASE + path);
-  for (let i = 0; i < 300; i++) {
-    await b.sleep(100);
-    if (await js(`document.readyState !== "loading" && !!document.getElementById("root") && typeof __film === "object"`).catch(() => false)) break;
+  // The satellite ground is heavy on the graphics card; now and then headless Chrome drops the
+  // map's WebGL context while it loads. Loading the page again (tiles now cached) gets it back.
+  for (let attempt = 1; attempt <= 8; attempt++) {
+    // the simulator is entered through another page's tab: opened directly, its map is the one that drops out
+    const viaTab = path === "/simulator";
+    await b.goto(BASE + (viaTab ? "/forecast" : path));
+    for (let i = 0; i < 300; i++) {
+      await b.sleep(100);
+      if (await js(`document.readyState !== "loading" && !!document.getElementById("root") && typeof __film === "object"`).catch(() => false)) break;
+    }
+    await js(OVERLAY);
+    await js(`__ov.apply(${JSON.stringify(S)}); 0`);
+    await until(`!!document.getElementById("side-inner")?.innerText`, { label: "app shell" });
+    if (viaTab) {
+      for (let i = 0; i < 30; i++) { await js(`__film.step(50); 0`); await b.sleep(90); }
+      await js(`__ov.q("#tabs a", "Simulator").click(); 0`);
+    }
+    if (ready) await until(ready);
+    // the satellite ground arrives in real time, not film time: give it a few real seconds
+    for (let i = 0; i < 45; i++) { await js(`__film.step(50); 0`); await b.sleep(90); }
+    if (!(await js(MAP_LOST))) return;
+    console.log(`  ! the 3D map lost its graphics context (attempt ${attempt}); loading again`);
+    await b.goto("about:blank"); await b.sleep(5000);
   }
-  await js(OVERLAY);
-  await js(`__ov.apply(${JSON.stringify(S)}); 0`);
-  await until(`!!document.getElementById("side-inner")?.innerText`, { label: "app shell" });
-  if (ready) await until(ready);
+  throw new Error("the 3D map would not start");
 }
 
 /** A narration line: note where it starts, show it as a subtitle, run the shot, and stay at least as long as the voice. */
@@ -215,21 +231,32 @@ async function findMoment(test, { from = 8 * 60 + 30, to = 17 * 60, by = 10 } = 
 const resetDemo = () => fetch(`${API}/demo/reset`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" }).then((r) => r.ok).catch(() => false);
 
 // ---------------------------------------------------------------- cards
+/** A card of words: a headline, a line under it, and small print. */
+const words = (big, mid = "", small = "") => `<div class="in">${big ? `<div data-k="0" class="big">${big}</div>` : ""}${mid ? `<div data-k="1" class="mid">${mid}</div>` : ""}${small ? `<div data-k="2" class="small">${small}</div>` : ""}</div>`;
 const CARD = {
-  weeks: `<div class="in"><div data-k="0" class="big">About three weeks</div><div data-k="1" class="mid">between harvesting rice and sowing wheat.</div><div data-k="4" class="small">Behind: the 2025 season on this block, read from satellite images.</div></div>`,
-  burned: `<div class="in"><div data-k="2" class="big">Straw left on the field<br>is burned.</div><div data-k="3" class="mid">The smoke reaches every village and city downwind.</div><div data-k="4" class="small">Dark fields: burned in 2025, as seen in the imagery.</div></div>`,
-  machines: `<div class="in"><div data-k="0" class="big">The machines exist.</div><div class="chips"><span data-k="1" class="chip plain">Balers</span><span data-k="2" class="chip plain">Trucks</span><span data-k="3" class="chip plain">Super Seeders</span></div></div>`,
-  plan: `<div class="in"><div data-k="0" class="big">The plan is missing.</div><div class="chips"><span data-k="1" class="chip">the right machine</span><span data-k="2" class="chip">on the right field</span><span data-k="3" class="chip">on the right day</span></div></div>`,
-  title: `<div class="in"><div data-k="0" class="logo"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Every paddy field cleared before wheat sowing.</div></div>`,
-  aws: `<div class="in"><div data-k="0" class="eyebrow">Running on AWS today</div><div class="chips">${["Amplify Hosting", "API Gateway", "Lambda", "DynamoDB", "S3", "Bedrock", "EventBridge"].map((s, i) => `<span data-k="${i + 1}" class="chip plain">${s}</span>`).join("")}</div></div>`,
-  real: `<div class="in"><div class="cols"><div data-k="0" class="col"><h4 style="color:#7fd3a4">Real</h4><p>Satellite signals, weather and wind, roads, and the planner behind every slider.</p></div><div data-k="1" class="col"><h4 style="color:#f2b632">Synthetic today</h4><p>Machines and plants, labelled in the app. One config file away from a real block.</p></div></div></div>`,
-  impact: `<div class="in"><div data-k="0" class="eyebrow">One block · 200 fields · 1,452 tonnes of straw</div><div data-k="1" class="num">up to 9.5 t</div><div data-k="2" class="mid">of fine particles (PM2.5) kept out of the air.</div><div data-k="3" class="small">Upper estimate: assumes every field would otherwise be burned. Emission factors: Andreae 2019, IPCC 2006.</div></div>`,
-  end: `<div class="in" style="text-align:center"><div data-k="0" class="logo" style="justify-content:center"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Every field cleared in time, so no one has to burn.</div><div data-k="2" class="small" style="font-size:24px;color:#f2b632">main.d16side0ke5w9y.amplifyapp.com</div><div data-k="3" class="small">Yash and Shambhvi · AWS Environmental Hacks 2026</div></div>`,
+  title: `<div class="in"><div data-k="0" class="logo"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Anticipates the need, before it becomes a fire.</div></div>`,
+  idea: `<div class="in"><div data-k="0" class="eyebrow">StrawLink</div><div class="chips" style="flex-direction:column;align-items:flex-start;margin-top:0"><span data-k="1" class="chip">knows which fields will be ready</span><span data-k="2" class="chip">plans a machine for each one</span><span data-k="3" class="chip">tells the farmer exactly when</span></div><div data-k="4" class="mid">So he does not have to burn.</div></div>`,
+  impact: `<div class="in"><div data-k="0" class="eyebrow">One block · 200 fields · 1,452 tonnes of straw</div><div data-k="1" class="num">up to 9.5 t</div><div data-k="2" class="mid">of fine particles (PM2.5) kept out of the air this season.</div><div data-k="3" class="small">Upper estimate: assumes every field would otherwise be burned. Emission factors: Andreae 2019, IPCC 2006.</div></div>`,
+  adapt: `<div class="in"><div data-k="0" class="big">Adapts to any data.</div><div class="chips"><span data-k="1" class="chip">another block's fields</span><span data-k="2" class="chip">its machines</span><span data-k="3" class="chip">its plants</span></div><div data-k="4" class="small">The machines and plants shown in this film are examples, labelled synthetic in the app.</div></div>`,
+  aws: `<div class="in"><div data-k="0" class="eyebrow">Running on AWS today</div><div class="chips">${["Amplify Hosting", "API Gateway", "Lambda", "DynamoDB", "S3", "Bedrock", "Transcribe", "EventBridge"].map((s, i) => `<span data-k="${i + 1}" class="chip plain">${s}</span>`).join("")}</div></div>`,
+  end: `<div class="in" style="text-align:center"><div data-k="0" class="logo" style="justify-content:center"><span class="mark"></span>StrawLink</div><div data-k="1" class="mid" style="max-width:none">Every field picked up in time, so no one has to burn.</div><div data-k="2" class="small" style="font-size:24px;color:#f2b632">main.d16side0ke5w9y.amplifyapp.com</div><div data-k="3" class="small">Yash and Shambhvi · AWS Environmental Hacks 2026</div></div>`,
 };
 const zeros = () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 function setCard(html, cls = "") { S.card.html = html; S.card.cls = cls; S.card.k = zeros(); }
 const show = (i, n = 10) => tw(S.card.k, { [i]: 1 }, n);
 const hideAll = (n = 8) => tw(S.card.k, Object.fromEntries(S.card.k.map((_, i) => [i, 0])), n);
+/** Swap to a card of words and bring its lines in one after another. */
+async function wordsIn(big, mid, small, cls = "left") {
+  hideAll(6); await frames(7);
+  setCard(words(big, mid, small), cls);
+  show(0); await frames(12); show(1); await frames(6); show(2, 16);
+}
+const need = (...ids) => ids.reduce((n, id) => n + Math.ceil((DUR[id] + 0.25) * FPS), 0);
+/** Sweep the season slider from one day to another over n frames. */
+function sweep(from, to, n) {
+  let last = from;
+  hook(n, async (i, N) => { const d = Math.round(from + (to - from) * ease(Math.min(1, (i + 1) / N))); if (d !== last) { last = d; await js(`__ov.set(${DAY}, ${d}); 0`); } });
+}
 
 // ---------------------------------------------------------------- scenes
 async function scene(name, run) {
@@ -239,106 +266,117 @@ async function scene(name, run) {
   Object.assign(S, fresh());
   const t0 = Date.now();
   ff = spawn(FFMPEG, ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-    "-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p", "-r", String(FPS), join(OUT, "scenes", `${name}.mp4`)], { stdio: ["pipe", "inherit", "inherit"] });
+    "-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p", "-r", String(FPS), join(OUT, "cut", `${name}.mp4`)], { stdio: ["pipe", "inherit", "inherit"] });
   try { await run(); } finally { ff.stdin.end(); await once(ff, "close"); }
-  writeFileSync(join(OUT, "scenes", `${name}.json`), JSON.stringify({ frames: F, marks }, null, 1));
+  writeFileSync(join(OUT, "cut", `${name}.json`), JSON.stringify({ frames: F, marks }, null, 1));
   console.log(`  ${F} frames = ${(F / FPS).toFixed(1)} s of film, shot in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
 }
 
 b = await launch();
 try {
-  // 1 · the problem, over the real 2025 season, then the idea in three cards
-  await scene("01-intro", async () => {
+  // 1 · the problem, told over the real 2025 season on this block (fields darken as they burn)
+  await scene("01-problem", async () => {
     await load("/results", `+(${DAY}?.max ?? 0) > 20`);
     const max = await js(`+${DAY}.max`);
-    await js(`__ov.set(${DAY}, 3); 0`);
+    await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
     Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
-    setCard(CARD.weeks, "left");
+    setCard("", "left");
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(5);
-    tw(S.card, { bg: 0.74 }, 26);
-    let lastDay = 3;
-    hook(Math.ceil((DUR.t1 + DUR.t2 + 1.2) * FPS), async (i, n) => {
-      const d = Math.round(3 + (max - 3) * ease(i / n));
-      if (d !== lastDay) { lastDay = d; await js(`__ov.set(${DAY}, ${d}); 0`); }
-    });
-    await say("t1", async () => { show(0); show(4, 20); await frames(42); show(1); }, { sub: false, lead: 10 });
-    await say("t2", async () => { hideAll(); await frames(9); setCard(CARD.burned, "left"); show(2); show(4, 20); await frames(70); show(3); }, { sub: false });
-    tw(S.card, { bg: 1 }, 12); hideAll(); await frames(12);
-    setCard(CARD.machines);
-    await say("t3", async () => { show(0); await frames(24); show(1); await frames(8); show(2); await frames(8); show(3); }, { sub: false });
-    hideAll(); await frames(8);
-    setCard(CARD.plan);
-    await say("t4", async () => { show(0); await frames(46); show(1); await frames(26); show(2); await frames(26); show(3); }, { sub: false });
-    hideAll(); await frames(8);
+    tw(S.card, { bg: 0.66 }, 26);
+    sweep(0, max, need("p1", "p2", "p3", "p4", "p5", "p6") + 10);
+    await say("p1", () => wordsIn("October in Punjab.", "The rice is harvested.", "Behind: the 2025 season on this block, read from satellite images."), { lead: 8 });
+    await say("p2", () => wordsIn("Straw covers the field."));
+    await say("p3", () => wordsIn("About three weeks", "to sow wheat. The straw is in the way."));
+    await say("p4", () => wordsIn("Machines are few.", "No one can tell him when one will come."));
+    await say("p5", () => wordsIn("Not picked up in time<br>means burned."));
+    await say("p6", () => wordsIn("The main reason for the fires.", "The smoke becomes the air of every village and city downwind.", "Dark fields: burned in 2025, as seen in the imagery."));
+    await frames(10);
+  });
+
+  // 2 · the idea: knows, plans, tells
+  await scene("02-idea", async () => {
+    await load("/simulator", SIM_READY);
     setCard(CARD.title);
-    await say("t5", async () => { show(0, 14); await frames(22); show(1, 14); }, { sub: false });
+    Object.assign(S.card, { o: 1, bg: 1 });
+    await frames(4);
+    await say("i1", async () => { show(0, 14); await frames(40); show(1, 14); });
+    hideAll(); await frames(9);
+    setCard(CARD.idea);
+    await say("i2", async (n) => { show(0); await frames(6); show(1); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.24)); show(3); await frames(Math.round(n * 0.26)); show(4, 14); });
+    await frames(10);
+  });
+
+  // 3 · how it knows: the forecast season, then the morning plan setting off
+  await scene("03-knows", async () => {
+    await load("/forecast", `+(${DAY}?.max ?? 0) > 10`);
+    const max = await js(`+${DAY}.max`);
+    const planDay = await js(`(() => { const m = [...document.querySelectorAll(".scrub-marks span")].find((e) => e.textContent.includes("plan")); return m ? Math.round(parseFloat(m.style.left) / 100 * ${max}) : Math.round(${max} * 0.6); })()`);
+    await js(`__ov.set(${DAY}, 0); 0`);
+    await skip(1500);
+    await frames(6);
+    sweep(0, planDay + 2, need("k1", "k2") - 30);
+    await say("k1", async () => { await wheel(-420, 50); });
+    await say("k2", async (n) => { await frames(Math.max(10, n - 60)); await ringOn(`document.querySelector(".stat")`); });
+    ringOff(4); await frames(5);
+    // cut to the simulator at the start of the working day
+    await js(`__ov.q("#tabs a", "Simulator").click(); 0`);
+    await until(SIM_READY);
+    for (let i = 0; i < 30; i++) { await js(`__film.step(50); 0`); await b.sleep(90); }
+    const early = Math.max(await js(`+${TIME}.min`), 7 * 60 + 30);
+    console.log("  day starts at", await js(`+${TIME}.min`), "min; film starts the run at", early);
+    await setTime(early);
+    await setSpeed(7);
+    await frames(4);
+    await say("k3", async () => { await frames(40); await click(`document.querySelector(".run")`, 18); hideCursor(); });
     await frames(8);
   });
 
-  // 2 · the block
-  await scene("02-overview", async () => {
-    await load("/simulator", SIM_READY);
-    await skip(2500);
-    setCard(CARD.title); S.card.k[0] = 1; S.card.k[1] = 1;
-    Object.assign(S.card, { o: 1, bg: 1 });
-    await frames(3);
-    tw(S.card, { o: 0 }, 22);
-    await say("o1", async () => { await orbit(-170, 0, 170); }, { lead: 12 });
-    await say("o2", async () => { await wheel(-950, 55); await frames(110); await wheel(600, 40); });
-    await frames(6);
-  });
-
-  // 3 · run the day: the plan plays out; close-ups of a baler, a truck and a Super Seeder
-  await scene("03-run", async () => {
+  // 4 · where the straw goes: close-ups of a baler, a truck and a Super Seeder at work
+  await scene("04-straw", async () => {
     await load("/simulator", SIM_READY);
     await skip(2000);
-    await setSpeed(12);
-    await frames(6);
-    await say("r1", async () => { await click(`document.querySelector(".run")`, 18); hideCursor(); });
     const shot = async (id, test, speed) => {
       const m = await findMoment(test);
       if (m) { await follow(m.name); await setSpeed(speed); await skip(1900); await wheelNow(-900); await play(true); }
       await say(id);
     };
-    await shot("r2", (n, t) => n.startsWith("Baler") && t.startsWith("baling"), 9);
-    await shot("r3", (n, t) => n.startsWith("Truck") && t.startsWith("carrying"), 9);
-    await shot("r4", (n, t) => n.startsWith("Seeder") && t.startsWith("sowing"), 9);
+    await shot("g1", (n, t) => n.startsWith("Baler") && t.startsWith("baling"), 9);
+    await shot("g2", (n, t) => n.startsWith("Truck") && t.startsWith("carrying"), 9);
+    await shot("g3", (n, t) => n.startsWith("Seeder") && t.startsWith("sowing"), 9);
     await play(false); await unfollow(); await setTime(11 * 60 + 40); await setSpeed(22); await skip(4200); await play(true);
-    await say("r5", async () => {
-      await frames(50);
-      const above = await rectOf(`document.getElementById("above")`);
-      zoom(camFor(above, { pad: 26, max: 1.6 }), 24);
-      await frames(26);
-      await ringOn(`document.querySelector(".tile")`, { dim: false });
-      await frames(40);
-      await ringOn(`document.querySelector(".verdict")`);
-      await frames(46);
-      ringOff(); home(24);
-    });
+    await say("g4");
     await frames(8);
   });
 
-  // 4 · the sliders ask the planner: balers alone, then trucks and seeders, then rain
-  await scene("04-sliders", async () => {
+  // 6 · the officer: the scoreboard, then the sliders asking the planner (scene 5 is the camera take, clip.mjs)
+  await scene("06-officer", async () => {
     await load("/simulator", SIM_READY);
     await skip(1500);
     await setTime(11 * 60 + 20);
-    const region = { x: 0, y: 50, w: 965, h: 480 };
+    console.log("  verdict on screen:", await js(`document.querySelector(".verdict")?.innerText ?? ""`));
     await frames(6);
-    await say("s1", async () => { zoom(camFor(region, { pad: 0, max: 1.4 }), 30); await frames(46); await ringOn(`(() => { const a = __ov.rect(__ov.slider("Baler sets").closest(".slider")), z = __ov.rect(__ov.slider("Trucks").closest(".slider")); return { getBoundingClientRect: null, __r: { x: a.x, y: a.y, w: a.w, h: z.y + z.h - a.y } }; })()`, { pad: 8 }); await frames(70); ringOff(); });
-    await say("s2", async () => {
+    await say("o1", async () => {
+      await frames(20);
+      zoom(camFor(await rectOf(`document.getElementById("above")`), { pad: 26, max: 1.6 }), 24);
+      await frames(30);
+      await ringOn(`document.querySelector(".tile")`);
+    });
+    await say("o2", async () => { await ringOn(`document.querySelector(".verdict")`); });
+    ringOff(6);
+    zoom(camFor({ x: 0, y: 50, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 22);
+    await frames(16);
+    await say("o3", async () => {
       await drag("Baler sets", 6);
       await waitOn(SIM_BUSY, 40);
       await waitOn(SIM_READY, 240);
       hideCursor();
-      await ringOn(`document.getElementById("toast") ?? document.querySelector(".tile")`);
-      await frames(34);
-      await ringOn(`document.querySelector(".note.limit") ?? document.querySelector(".tile")`);
+      await ringOn(`document.querySelector(".note.limit") ?? document.getElementById("toast") ?? document.querySelector(".tile")`);
+      await frames(30);
     });
     ringOff(6);
-    await say("s3", async () => {
+    await say("o4", async () => {
       await drag("Trucks", 6, 13);
       await drag("Super Seeders", 6, 13);
       await waitOn(SIM_BUSY, 40);
@@ -347,203 +385,67 @@ try {
       await ringOn(`document.getElementById("toast") ?? document.querySelector(".tile")`);
       await frames(30);
       await ringOn(`document.querySelector(".tile")`);
-    });
-    await say("s4", async () => { ringOff(); home(26); await setSpeed(22); await play(true); });
-    await say("s5", async () => {
-      await drag("Rain", 15, 20);
-      await waitOn(SIM_BUSY, 40);
-      await waitOn(SIM_READY, 200);
-      hideCursor();
-      await frames(20);
-      await ringOn(`document.querySelector(".verdict")`);
-    });
-    await frames(16);
-  });
-
-  // 5 · the forecast: fields turn from green to gold as the season goes by
-  await scene("05-forecast", async () => {
-    await load("/forecast", `+(${DAY}?.max ?? 0) > 10`);
-    const max = await js(`+${DAY}.max`);
-    const planDay = await js(`(() => { const m = [...document.querySelectorAll(".scrub-marks span")].find((e) => e.textContent.includes("plan")); return m ? Math.round(parseFloat(m.style.left) / 100 * ${max}) : Math.round(${max} * 0.6); })()`);
-    await js(`__ov.set(${DAY}, 0); 0`);
-    await skip(1500);
-    await frames(6);
-    await say("f2", async (need) => {
-      let last = 0;
-      hook(need - 24, async (i, n) => { const d = Math.round((planDay + 2) * ease(i / n)); if (d !== last) { last = d; await js(`__ov.set(${DAY}, ${d}); 0`); } });
-      await wheel(-420, 50);
-      await frames(Math.max(10, need - 70));
-      await ringOn(`document.querySelector(".stat")`);
-    });
-    await frames(8);
-  });
-
-  // 6 · one field and its farmer: the field card, the WhatsApp thread, the certificate
-  await scene("06-farmers", async () => {
-    await resetDemo();
-    await load("/simulator", SIM_READY);
-    await skip(1500);
-    const m = await findMoment((n, t) => n.startsWith("Baler") && t.startsWith("baling"), { from: 9 * 60 });
-    await follow(m?.name ?? "Baler 1");
-    await skip(2200);
-    // find a spot beside the tractor that is on the field (the tractor itself would toggle following)
-    const c = await stageCentre();
-    let spot = null;
-    for (const [dx, dy] of [[30, 8], [-30, 8], [24, 24], [-26, -10], [38, -4], [0, 30]]) {
-      await tapMap({ x: c.x + dx, y: c.y + dy });
-      await skip(500);
-      if (await js(`!!document.getElementById("fieldcard")`)) { spot = { x: c.x + dx, y: c.y + dy }; break; }
-    }
-    if (!spot) console.log("  ! could not select the field under the machine");
-    await js(`document.querySelector("#fieldcard .x")?.click(); 0`);
-    await skip(400);
-    await frames(6);
-    await say("k1", async () => {
-      if (!spot) return;
-      S.cur.x = spot.x + 150; S.cur.y = spot.y + 110;
-      tw(S.cur, { ...spot, o: 1 }, 18); await frames(18);
-      await press(); await tapMap(spot);
-      await waitOn(`!!document.getElementById("fieldcard")`, 30);
-      hideCursor();
-      zoom(camFor(await rectOf(`document.getElementById("fieldcard")`), { pad: 110, max: 1.5 }), 24);
-      await frames(20);
-      await ringOn(`document.getElementById("fieldcard")`, { pad: 4 });
-    });
-    ringOff(); home(18); await frames(14);
-    await click(`__ov.q("#tabs a", "Farmers")`, 16);
-    hideCursor();
-    await waitOn(`!!document.querySelector(".phone")`, 60);
-    await skip(900);
-    const phone = await rectOf(`document.querySelector(".phone")`);
-    await say("w1", async () => {
-      zoom(camFor({ x: phone.x - 10, y: phone.y - 90, w: phone.w + 330, h: phone.h + 110 }, { pad: 0, max: 1.75 }), 24);
       await frames(30);
-      await click(`document.querySelectorAll(".quick .chip")[2]`, 16);
-      hideCursor();
     });
-    await say("w3", async () => {
-      await waitOn(`document.querySelectorAll(".thread .bubble.out:not(.quiet)").length >= 1`, 260);
-      await ringOn(`[...document.querySelectorAll(".thread .bubble.out:not(.quiet)")].pop()`, { pad: 4 });
-      const r = await rectOf(`document.querySelector(".phone")`);
-      noteAt("The assistant's answer, in Punjabi, from today's plan", r.x + r.w + 18, r.y + r.h * 0.42);
-    });
-    ringOff(); noteOff();
-    await say("w2", async () => {
-      await click(`document.querySelectorAll(".quick .chip")[0]`, 14);
-      hideCursor();
-      await frames(36);
-      // cut: the planner re-plans the stored day (about twelve seconds); the film skips the wait
-      await until(`document.querySelectorAll(".thread .bubble.out:not(.quiet)").length >= 2`, { max: 60000 });
-      await skip(400);
-      await ringOn(`[...document.querySelectorAll(".thread .bubble.out:not(.quiet)")].pop()`, { pad: 4 });
-      const r = await rectOf(`document.querySelector(".phone")`);
-      noteAt("Harvest recorded, day re-planned", r.x + r.w + 18, r.y + r.h * 0.62);
-    });
-    ringOff(); noteOff();
-    await say("w4", async () => {
-      const btn = `__ov.q("#side-inner button.btn", "mark cleared")`;
-      await scrollSide(btn, 18, 300);
-      await frames(20);
-      const r = await rectOf(btn);
-      zoom(camFor({ x: 0, y: r.y - 210, w: 660, h: 340 }, { pad: 0, max: 1.75 }), 20);
-      await frames(22);
-      await click(btn, 14);
-      hideCursor();
-      await waitOn(`!!__ov.q("#side-inner a.btn", "certificate")`, 120);
-      await ringOn(`__ov.q("#side-inner a.btn", "certificate")`, { pad: 4 });
-      await frames(34);
-      ringOff(4);
-      // the public certificate page behind the QR code
-      await js(`(() => { const a = __ov.q("#side-inner a.btn", "certificate"); history.pushState({}, "", a.getAttribute("href")); dispatchEvent(new PopStateEvent("popstate")); })(); 0`);
-      Object.assign(S.cam, HOME);
-      await until(`!!document.querySelector(".cert dl")`, { max: 30000 });
-      await skip(300);
-      Object.assign(S.cam, camFor(await rectOf(`document.querySelector(".cert")`), { pad: 40, max: 1.45 }));
-    });
-    await frames(10);
-    await resetDemo();
+    console.log("  scoreboard after:", await js(`document.querySelector(".tile")?.innerText.replace(/\\n/g, " ") ?? ""`));
+    ringOff(); await frames(8);
   });
 
-  // 7 · the plants
-  await scene("07-plants", async () => {
-    await load("/plants", `document.querySelectorAll(".plant").length > 0`);
-    await skip(2500);
-    await frames(6);
-    await say("p1", async () => {
-      await frames(34);
-      await scrollSide(`__ov.q(".group h2", "Plants")`, 20, 40);
-      await frames(22);
-      zoom(camFor({ x: 0, y: 60, w: 760, h: 420 }, { pad: 0, max: 1.6 }), 22);
-      await frames(24);
-      await ringOn(`document.querySelector(".plant .alert")?.closest(".plant") ?? document.querySelector(".plant")`, { pad: 4 });
-    });
-    await frames(6);
-  });
-
-  // 8 · who is downwind
-  await scene("08-air", async () => {
-    await load("/air", `!!document.querySelector(".compass") && !!__ov.q(".group h2", "If this straw")`);
-    await skip(2500);
-    await frames(6);
-    await say("a1", async () => {
-      await orbit(110, 0, 80);
-      await frames(74);
-      await ringOn(`document.querySelector(".stat-row")`, { pad: 4 });
-      await frames(40);
-      ringOff(6);
-      await scrollSide(`__ov.q(".group h2", "If this straw")`, 18, 30);
-      await frames(20);
-      const g = await rectOf(`__ov.q(".group h2", "If this straw").closest(".group")`);
-      zoom(camFor({ x: 0, y: g.y - 12, w: 640, h: Math.min(g.h + 24, 380) }, { pad: 0, max: 1.75 }), 20);
-      await frames(22);
-      await ringOn(`__ov.q(".group h2", "If this straw").closest(".group").querySelector(".rank")`, { pad: 4 });
-    });
-    await frames(8);
-  });
-
-  // 9 · the 2025 replay and its honest result
-  await scene("09-test2025", async () => {
+  // 7 · the 2025 replay
+  await scene("07-test", async () => {
     await load("/results", `+(${DAY}?.max ?? 0) > 20`);
     const max = await js(`+${DAY}.max`);
     await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
-    let last = 0;
-    const total = Math.ceil((DUR.b1 + DUR.b2 + DUR.b3 + 0.75) * FPS);
-    hook(total, async (i, n) => { const d = Math.round(max * Math.min(1, (i / n) * 1.08)); if (d !== last) { last = d; await js(`__ov.set(${DAY}, ${d}); 0`); } });
+    console.log("  bars on screen:", await js(`(document.querySelector(".bars")?.closest(".group")?.textContent ?? "").slice(0, 300)`));
+    sweep(0, max, need("t1", "t2", "t3"));
+    setCard("", "left");
     await frames(6);
-    await say("b1");
-    await say("b2", async () => {
-      zoom(camFor(await rectOf(`document.querySelector(".bars").closest(".group")`), { pad: 16, max: 1.9 }), 24);
-      await frames(34);
+    await say("t1");
+    tw(S.card, { o: 1, bg: 0.7 }, 10);
+    await say("t2", () => wordsIn("185 of 200", "fields burned in 2025.", "Seen in satellite images. Burn detection from imagery over-counts."));
+    hideAll(6); tw(S.card, { o: 0 }, 10);
+    await say("t3", async () => {
+      const g = await rectOf(`document.querySelector(".bars").closest(".group")`);
+      zoom(camFor(g, { pad: 16, max: 1.9 }), 22);
+      await frames(28);
       await ringOn(`document.querySelector(".bars")`, { pad: 4 });
+      noteAt("First-come booking, same machines: 74 · burn detection from imagery, over-counts", g.x + 4, g.y + g.h + 10);
     });
-    await say("b3", async () => { ringOff(); home(26); });
-    await frames(6);
+    ringOff(); noteOff(); home(22);
+    tw(S.card, { o: 1, bg: 0.7 }, 12);
+    await say("t4", () => wordsIn("Within two days", "of harvest, most of the rest had burned.", "Too fast for any plan that starts after the harvest."));
+    await say("t5", () => wordsIn("StrawLink starts<br>before the harvest."));
+    await frames(8);
   });
 
-  // 10 · built on AWS, what is real, the impact, the close
-  await scene("10-close", async () => {
+  // 8 · why it matters, any data, AWS, the close
+  await scene("08-why", async () => {
     await load("/simulator", SIM_READY);
     await skip(1500);
     await setTime(8 * 60 + 20); await setSpeed(20); await play(true);
     Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
-    setCard(CARD.aws);
-    Object.assign(S.card, { o: 1, bg: 0.86 });
+    setCard("");
+    Object.assign(S.card, { o: 1, bg: 0.84 });
     await frames(4);
-    await say("c1", async () => { show(0); for (let i = 1; i <= 7; i++) { show(i, 8); await frames(7); } }, { sub: false, lead: 4 });
-    await frames(10);
-    hideAll(); await frames(9);
-    setCard(CARD.real);
-    await say("c2", async () => { show(0, 12); await frames(96); show(1, 12); }, { sub: false });
-    hideAll(); await frames(9);
+    await say("w1", () => wordsIn("Picked up in time,<br>never burned.", "", "", ""));
+    hideAll(); await frames(8);
     setCard(CARD.impact);
-    await say("i1", async () => { show(0); await frames(34); show(1, 14); await frames(40); show(2); await frames(50); show(3, 16); }, { sub: false });
-    await frames(14);
+    await say("w2", async (n) => { show(0); await frames(Math.round(n * 0.2)); show(1, 14); await frames(Math.round(n * 0.3)); show(2); await frames(Math.round(n * 0.25)); show(3, 16); });
+    await frames(8);
+    hideAll(); await frames(8);
+    setCard(CARD.adapt);
+    await say("w3", async (n) => { show(0); await frames(Math.round(n * 0.38)); show(1); await frames(Math.round(n * 0.14)); show(2); await frames(Math.round(n * 0.14)); show(3); });
+    await say("w4", async () => { show(4, 14); });
+    hideAll(); await frames(8);
+    setCard(CARD.aws);
+    await say("w5", async () => { show(0); for (let i = 1; i <= 8; i++) { show(i, 8); await frames(6); } });
+    await frames(10);
     hideAll(); tw(S.card, { bg: 1 }, 12); await frames(12);
     setCard(CARD.end);
-    await say("c3", async () => { show(0, 14); await frames(30); show(1, 14); await frames(54); show(2, 12); await frames(20); show(3, 12); }, { sub: false });
+    await say("w6", async () => { show(0, 14); await frames(30); show(1, 14); await frames(50); show(2, 12); await frames(18); show(3, 12); });
     await frames(34);
-    tw(S.card, { bg: 1 }, 14); hideAll(14);
+    hideAll(14);
     await frames(16);
   });
 } finally {

@@ -14,12 +14,14 @@ const FPS = 30, RATE = 24000;
 const target = resolve(process.argv[2] || join(HERE, "..", "..", "..", "docs", "video", "strawlink-demo.mp4"));
 mkdirSync(dirname(target), { recursive: true });
 
-const scenes = readdirSync(join(OUT, "scenes")).filter((f) => f.endsWith(".json")).sort().map((f) => f.replace(".json", ""));
+const scenes = readdirSync(join(OUT, "cut")).filter((f) => f.endsWith(".json")).sort().map((f) => f.replace(".json", ""));
 let frames = 0;
 const cues = [];
 for (const name of scenes) {
-  const s = JSON.parse(readFileSync(join(OUT, "scenes", `${name}.json`), "utf8"));
+  const s = JSON.parse(readFileSync(join(OUT, "cut", `${name}.json`), "utf8"));
   for (const m of s.marks) cues.push({ id: m.id, at: (frames + m.frame) / FPS });
+  // a scene filmed with a camera brings its own sound (24 kHz mono, beside the scene)
+  if (s.audio) cues.push({ id: name, at: frames / FPS, file: join(OUT, "cut", s.audio) });
   console.log(`${name}: ${(s.frames / FPS).toFixed(1)} s`);
   frames += s.frames;
 }
@@ -40,7 +42,7 @@ function samples(file) {
 const track = new Int16Array(Math.ceil((total + 0.5) * RATE));
 let prevEnd = 0;
 for (const c of cues) {
-  const a = samples(join(OUT, "voice", `${c.id}.wav`)), at = Math.round(c.at * RATE);
+  const a = samples(c.file ?? join(OUT, "voice", `${c.id}.wav`)), at = Math.round(c.at * RATE);
   if (c.at < prevEnd - 0.02) console.log(`  ! ${c.id} starts ${(prevEnd - c.at).toFixed(2)} s before the previous line ends`);
   for (let i = 0; i < a.length && at + i < track.length; i++) track[at + i] = Math.max(-32768, Math.min(32767, track[at + i] + a[i]));
   prevEnd = c.at + a.length / RATE;
@@ -53,7 +55,7 @@ const wav = join(OUT, "narration.wav");
 writeFileSync(wav, Buffer.concat([header, Buffer.from(track.buffer, track.byteOffset, track.byteLength)]));
 
 const list = join(OUT, "scenes.txt");
-writeFileSync(list, scenes.map((n) => `file '${join(OUT, "scenes", `${n}.mp4`).replace(/\\/g, "/")}'`).join("\n"));
+writeFileSync(list, scenes.map((n) => `file '${join(OUT, "cut", `${n}.mp4`).replace(/\\/g, "/")}'`).join("\n"));
 const r = spawnSync(FFMPEG, ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", list, "-i", wav,
   // frames were captured as full-range JPEG; convert once to the standard video range so every player shows the same colours
   "-vf", "scale=in_color_matrix=bt601:in_range=pc:out_color_matrix=bt709:out_range=tv,format=yuv420p",
