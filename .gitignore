@@ -16,3 +16,6 @@ app/.build/
 app/.build-deps/
 app/.film/
 docs/video/
+
+# the blog post is published on AWS Builder Center, not here
+docs/blog-post.md
