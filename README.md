@@ -4,6 +4,8 @@
 
 WeMakeDevs × AWS Environmental Hacks 2026 — Air track.
 
+**Video (3 min):** https://youtu.be/IEd7r5U8gP8
+
 **Live:** https://main.d16side0ke5w9y.amplifyapp.com · API: https://u1feqhbpaa.execute-api.ap-south-1.amazonaws.com
 
 Each October, farmers in Punjab have about three weeks between the rice harvest and wheat sowing.
