@@ -105,6 +105,7 @@ def meta():
             "live_dates": live_dates(), "villages": villages["features"],
             "plants": settings.synthetic().get("plants", []), "assumptions": settings.assumptions(),
             "params": {k: v for k, v in settings.params().items() if not isinstance(v, (dict, list))},
+            "weather_replay_days": settings.params().get("weather_replay_days", []),
             "fields_note": fc.get("note"), "demo_fields": msg.demo_fields(), "forecast_report": report,
             "bedrock_model": settings.BEDROCK_MODEL_ID or None}
 
@@ -204,17 +205,48 @@ def post_replan(body: dict = Body(default={})):
     return notify_and_replan(on, body.get("trigger", "manual"))
 
 
+def _past_day(text) -> "date | None":
+    """A day whose real weather can be replayed: an ISO date that is not in the future."""
+    if not text:
+        return None
+    try:
+        d = date.fromisoformat(str(text))
+    except ValueError as e:
+        raise HTTPException(422, "weather_date must be YYYY-MM-DD") from e
+    if d > settings.today() or d.year < 1950:
+        raise HTTPException(422, "weather_date must be a past day")
+    return d
+
+
+@app.get("/weather")
+def weather(date: str | None = None, like: str | None = None):
+    """Rain over 3 days for each village, as the planner reads it from Open-Meteo. `like` replays
+    the real rain of a past day instead of the plan day's forecast."""
+    on = plan_date(date)
+    rain, meta = planning.rain_by_village(on, _past_day(like))
+    p = settings.params()
+    wet = float(p["rain_wet_threshold_mm"])
+    names = {v["properties"]["village_id"]: v["properties"]["name"] for v in settings.geojson("data/fields/villages.geojson")["features"]}
+    return {"plan_date": on.isoformat(), "weather_date": meta["weather_date"], "replay": meta["replay"],
+            "source": meta["source"], "wet_above_mm": wet, "dry_days_after_rain": p.get("dry_days_after_rain"),
+            "replay_days": p.get("weather_replay_days", []),
+            "villages": [{"village_id": v, "name": names.get(v, v), "rain_mm_3d": meta["observed_by_village"][v],
+                          "with_demo_events_mm": mm, "too_wet": mm >= wet} for v, mm in sorted(rain.items())]}
+
+
 @app.post("/simulate")
 def simulate(body: dict = Body(default={})):
     """What-if plan for one day: fleet size, rain and date come from the request; nothing is stored."""
     on = plan_date(body.get("date"))
     base = {t: sum(m["type"] == t for m in planning.machines()) for t in ("baler_set", "seeder", "truck")}
     fleet = {t: max(0, min(8, int(body.get(t, base[t])))) for t in base}
+    weather_on = _past_day(body.get("weather_date"))
     try:
         return planning.scenario(on, fleet, rain_mm=max(0.0, min(100.0, float(body.get("rain_mm", 0)))),
                                  rain_village=str(body.get("rain_village", "all")),
                                  confirmed=tuple(str(x) for x in body.get("confirmed", [])[:200]),
-                                 time_limit_s=max(1.0, min(12.0, float(body.get("time_limit_s", 3)))))
+                                 time_limit_s=max(1.0, min(12.0, float(body.get("time_limit_s", 3)))),
+                                 weather_on=weather_on)
     except Exception as e:  # noqa: BLE001 — a scenario the planner rejects is the caller's to fix
         raise HTTPException(422, f"could not plan this scenario: {e}") from e
 

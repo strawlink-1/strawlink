@@ -35,6 +35,8 @@ export type Meta = {
   assumptions: { key: string; value: string; note: string; source: string }[];
   params: Record<string, string | number>;
   fields_note?: string; demo_fields: string[]; bedrock_model?: string | null;
+  /** real past days whose rain the simulator can replay */
+  weather_replay_days?: string[];
   forecast_report?: { validation?: { p50_mae_days: number; coverage_p10_p90: number; mean_width_days: number; n: number } } | null;
 };
 

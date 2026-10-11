@@ -117,6 +117,34 @@ def test_simulate_answers_the_sliders_and_stores_nothing(client):
     assert client.get("/plan").json()["plan_id"] == stored
 
 
+def test_rain_is_read_per_village_and_a_past_day_can_be_replayed(client, monkeypatch):
+    from api import planning
+
+    asked = {}
+
+    def weather(points, start, end):
+        # two villages get 6.4 mm over the three days, the others 2.9 (the real pattern of 27 Sep 2022)
+        asked.update(points=points, start=start, end=end)
+        ids = sorted(planning.village_points())
+        return [{end: 6.4 if v in ("V01", "V04") else 2.9} for v in ids]
+
+    monkeypatch.setattr(planning, "_rain_points", weather)
+    client.post("/replan", json={})
+    w = client.get("/weather", params={"like": "2022-09-27"}).json()
+    assert w["replay"] is True and w["weather_date"] == "2022-09-27" and w["source"] == "open-meteo"
+    assert len(asked["points"]) == 4 and asked["end"] == "2022-09-27" and asked["start"] == "2022-09-25"
+    assert {v["village_id"]: v["too_wet"] for v in w["villages"]} == {"V01": True, "V02": False, "V03": False, "V04": True}
+    r = client.post("/simulate", json={"weather_date": "2022-09-27", "time_limit_s": 2}).json()
+    assert r["inputs"]["saved"] is False and r["inputs"]["weather_replay"] is True
+    assert r["inputs"]["rain_by_village"] == {"V01": 6.4, "V02": 2.9, "V03": 2.9, "V04": 6.4}
+    village = {f["properties"]["field_id"]: f["properties"]["village_id"] for f in client.get("/fields").json()["features"]}
+    visited = {s["field_id"] for a in r["plan"]["assignments"] if a["type"] != "truck" for s in a["stops"]}
+    # machines work only where it is dry, and the wet villages' harvested fields are marked wet
+    assert visited and {village[f] for f in visited} <= {"V02", "V03"}
+    assert {village[f] for f, st in r["status"].items() if st == "wet"} == {"V01", "V04"}
+    assert client.post("/simulate", json={"weather_date": "2999-01-01"}).status_code == 422
+
+
 def test_demo_reset_undoes_events(client):
     client.post("/events/rain", json={"village_id": "all", "mm": 20})
     client.post("/events/confirm", json={"field_id": "F0150", "date": "2026-10-23", "source": "farmer"})

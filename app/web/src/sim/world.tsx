@@ -18,6 +18,8 @@ export type Inputs = {
   truck: number;
   rain_mm: number;
   rain_village: string;
+  /** "" = the forecast for the plan day; a past date = replay that day's real rain */
+  weather_date: string;
   /** fields a farmer has confirmed as harvested today */
   confirmed: string[];
 };
@@ -28,7 +30,11 @@ export type SimResult = {
   status: Record<string, Status>;
   machines: { machine_id: string; type: MachineType; base: LonLat }[];
   /** saved: this is the stored plan (nothing was changed), not a what-if solved for these inputs */
-  inputs: { fleet: Record<MachineType, number>; rain_wet_threshold_mm: number; time_limit_s: number; saved?: boolean };
+  inputs: {
+    fleet: Record<MachineType, number>; rain_wet_threshold_mm: number; time_limit_s: number; saved?: boolean;
+    /** rain over 3 days for each village as the weather service reports it, before any what-if rain */
+    rain_by_village?: Record<string, number> | null; weather_source?: string; weather_date?: string; weather_replay?: boolean;
+  };
 };
 
 type Machines = { machines: { machine_id: string; type: string }[] };
@@ -84,7 +90,7 @@ const toLines = (fc: GeoJSON.FeatureCollection | undefined, geo: Geo): RoadLine[
 
 export function WorldProvider({ children }: { children: ReactNode }) {
   const { meta, metaError, date: today, version, bump } = useApp();
-  const [inputs, setAll] = useState<Inputs>({ date: "", baler_set: 3, seeder: 3, truck: 3, rain_mm: 0, rain_village: "all", confirmed: [] });
+  const [inputs, setAll] = useState<Inputs>({ date: "", baler_set: 3, seeder: 3, truck: 3, rain_mm: 0, rain_village: "all", weather_date: "", confirmed: [] });
   const [defaults, setDefaults] = useState<Inputs | null>(null);
   const [sim, setSim] = useState<SimResult | null>(null);
   const [planning, setPlanning] = useState(false);
@@ -102,7 +108,7 @@ export function WorldProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (defaults || !today || !fleet.data) return;
     const n = (t: string) => fleet.data!.machines.filter((m) => m.type === t).length;
-    const start: Inputs = { date: today, baler_set: n("baler_set"), seeder: n("seeder"), truck: n("truck"), rain_mm: 0, rain_village: "all", confirmed: [] };
+    const start: Inputs = { date: today, baler_set: n("baler_set"), seeder: n("seeder"), truck: n("truck"), rain_mm: 0, rain_village: "all", weather_date: "", confirmed: [] };
     setDefaults(start);
     setAll(start);
   }, [defaults, today, fleet.data]);

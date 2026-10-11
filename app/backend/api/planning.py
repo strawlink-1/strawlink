@@ -55,38 +55,55 @@ def block_centroid() -> tuple[float, float]:
             sum(v["geometry"]["coordinates"][1] for v in vs) / len(vs))
 
 
+def village_points() -> dict[str, tuple[float, float]]:
+    """village_id → (lon, lat): where the weather service is asked about each village."""
+    return {v["properties"]["village_id"]: (round(v["geometry"]["coordinates"][0], 4), round(v["geometry"]["coordinates"][1], 4))
+            for v in settings.geojson("data/fields/villages.geojson")["features"]}
+
+
 @lru_cache(maxsize=64)
-def _rain_series(lon: float, lat: float, start: str, end: str) -> dict[str, float]:
+def _rain_points(points: tuple[tuple[float, float], ...], start: str, end: str) -> list[dict[str, float]]:
+    """Daily rain (mm) at each (lon, lat), one Open-Meteo call: the forecast API for recent and
+    coming days, the archive for older ones. An empty list means the weather service did not answer."""
     recent = date.fromisoformat(end) >= settings.today() - timedelta(days=5)
     url = ("https://api.open-meteo.com/v1/forecast" if recent
            else "https://archive-api.open-meteo.com/v1/archive")
     try:
-        r = requests.get(url, params={"latitude": lat, "longitude": lon, "daily": "precipitation_sum",
-                                      "timezone": "Asia/Kolkata", "start_date": start, "end_date": end},
-                         timeout=15)
+        r = requests.get(url, params={"latitude": ",".join(str(p[1]) for p in points),
+                                      "longitude": ",".join(str(p[0]) for p in points),
+                                      "daily": "precipitation_sum", "timezone": "Asia/Kolkata",
+                                      "start_date": start, "end_date": end}, timeout=15)
         r.raise_for_status()
-        d = r.json()["daily"]
-        return {t: float(v or 0.0) for t, v in zip(d["time"], d["precipitation_sum"])}
+        data = r.json()
+        data = data if isinstance(data, list) else [data]
+        return [{t: float(v or 0.0) for t, v in zip(d["daily"]["time"], d["daily"]["precipitation_sum"])} for d in data]
     except Exception:  # noqa: BLE001 — weather unavailable → treat as no rain, flagged in response
-        return {}
+        return []
 
 
-def rain_by_village(on: date) -> tuple[dict[str, float], dict]:
-    """rain_mm over the 3 days ending `on`: Open-Meteo + injected demo rain events."""
-    lon, lat = block_centroid()
-    days = [(on - timedelta(days=k)).isoformat() for k in range(3)]
-    series = _rain_series(round(lon, 3), round(lat, 3), days[-1], days[0])
-    base = sum(series.get(d, 0.0) for d in days)
+def rain_by_village(on: date, weather_on: date | None = None) -> tuple[dict[str, float], dict]:
+    """rain_mm over 3 days for each village, read from Open-Meteo at the village itself.
+
+    Normally the 3 days ending on the plan day, plus any demo rain event stored for those days.
+    `weather_on` replays the real rain of another day instead (the simulator's "real rain of …")."""
+    ref = weather_on or on
+    days = [(ref - timedelta(days=k)).isoformat() for k in range(3)]
+    points = village_points()
     villages = sorted({f["properties"]["village_id"] for f in settings.geojson("data/fields/fields.geojson")["features"]})
-    out = {v: base for v in villages}
-    injected = [e for e in store.query("events", "field_id", "RAIN") if e.get("date") in days]
+    asked = [v for v in villages if v in points]
+    series = _rain_points(tuple(points[v] for v in asked), days[-1], days[0]) if asked else []
+    seen = {v: round(sum(s.get(d, 0.0) for d in days), 1) for v, s in zip(asked, series)}
+    mean = round(sum(seen.values()) / len(seen), 1) if seen else 0.0
+    out = {v: seen.get(v, mean) for v in villages}
+    injected = [] if weather_on else [e for e in store.query("events", "field_id", "RAIN") if e.get("date") in days]
     for e in injected:
         targets = villages if e.get("village_id") in (None, "all", "ALL") else [e["village_id"]]
         for v in targets:
             out[v] = out.get(v, 0.0) + float(e["mm"])
     return {k: round(v, 1) for k, v in out.items()}, {
-        "source": "open-meteo" if series else "unavailable", "observed_mm_3d": round(base, 1),
-        "injected_events": len(injected)}
+        "source": "open-meteo" if series else "unavailable", "observed_mm_3d": mean,
+        "observed_by_village": {v: seen.get(v, mean) for v in villages},
+        "weather_date": ref.isoformat(), "replay": weather_on is not None, "injected_events": len(injected)}
 
 
 # ---------------------------------------------------------------- state
@@ -114,12 +131,12 @@ def plants() -> list[dict]:
             for p in settings.synthetic().get("plants", [])]
 
 
-def build_state(on: date, time_limit_s: float | None = None) -> tuple[dict, dict]:
+def build_state(on: date, time_limit_s: float | None = None, weather_on: date | None = None) -> tuple[dict, dict]:
     import os
 
     time_limit_s = time_limit_s or float(os.environ.get("PLANNER_TIME_LIMIT_S", "12"))
     p = settings.params()
-    rain, rain_meta = rain_by_village(on)
+    rain, rain_meta = rain_by_village(on, weather_on)
     fields = []
     for f in sorted(store.scan("fields"), key=lambda f: f["field_id"]):
         fc = effective_forecast(f)
@@ -235,12 +252,12 @@ def fleet_of(base: list[dict], want: dict[str, int]) -> list[dict]:
 
 
 def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village: str = "all",
-             confirmed: tuple[str, ...] = (), time_limit_s: float = 3.0) -> dict:
+             confirmed: tuple[str, ...] = (), time_limit_s: float = 3.0, weather_on: date | None = None) -> dict:
     """Plan one day under what-if inputs. Nothing is stored: the saved plan and fields are untouched.
 
     With nothing changed (the real fleet, no extra rain, no extra confirmations) the answer is the
     saved plan itself, so the simulator starts from the plan farmers have been told about."""
-    state, meta = build_state(on, time_limit_s)
+    state, meta = build_state(on, time_limit_s, weather_on)
     real_fleet = [m["machine_id"] for m in state["machines"]]
     wet_above = float(state["params"]["rain_wet_threshold_mm"])
     for f in state["fields"]:
@@ -250,7 +267,8 @@ def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village
             # a farmer's word that the field is harvested today overrides the satellite forecast
             f.update(p10=on.isoformat(), p50=on.isoformat(), p90=on.isoformat(), source="confirmed", status="ready")
     state["machines"] = fleet_of(state["machines"], fleet)
-    untouched = not rain_mm and not confirmed and [m["machine_id"] for m in state["machines"]] == real_fleet
+    untouched = (not rain_mm and not confirmed and not weather_on
+                 and [m["machine_id"] for m in state["machines"]] == real_fleet)
     plan = load_plan(on, "strawlink") if untouched else None
     saved = plan is not None
     if not saved:
@@ -271,7 +289,11 @@ def scenario(on: date, fleet: dict[str, int], rain_mm: float = 0.0, rain_village
         "inputs": {"fleet": {t: sum(m["type"] == t for m in state["machines"]) for t in _PREFIX},
                    "rain_mm": rain_mm, "rain_village": rain_village, "rain_wet_threshold_mm": wet_above,
                    "confirmed": sorted(confirmed), "saved": saved,
-                   "observed_rain_mm_3d": meta.get("observed_mm_3d"), "time_limit_s": time_limit_s},
+                   "observed_rain_mm_3d": meta.get("observed_mm_3d"),
+                   # what the weather service says for each village, before any what-if rain is added
+                   "rain_by_village": meta.get("observed_by_village"), "weather_source": meta.get("source"),
+                   "weather_date": meta.get("weather_date"), "weather_replay": bool(weather_on),
+                   "time_limit_s": time_limit_s},
     }
 
 

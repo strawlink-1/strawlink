@@ -401,23 +401,32 @@ try {
       await ringOn(`document.querySelector(".tile")`);
     });
     console.log("  scoreboard after:", await js(`document.querySelector(".tile")?.innerText.replace(/\\n/g, " ") ?? ""`));
-    const WHERE = `document.querySelector('select[aria-label="Where it rains"]')`;
+    // Rain is not typed in: the planner reads it from the weather service for every village. To show
+    // that with real rain (the demo day's forecast is dry), the film replays the rain of 27 Sep 2022,
+    // when two of the four villages were too wet and two were not.
+    const WEATHER = `document.querySelector('select[aria-label="Which weather the plan uses"]')`;
     await say("r1", async () => {
       ringOff(4);
       zoom(camFor({ x: 0, y: 150, w: 965, h: 480 }, { pad: 0, max: 1.4 }), 14);
-      await point(WHERE, 16);
+      await scrollSide(`document.querySelector(".weather")`, 10, 200);
+      await frames(10);
+      await point(WEATHER, 16);
       await press();
-      const village = await js(`(() => { const e = ${WHERE}; const o = [...e.options].filter((x) => x.value && !/whole/i.test(x.textContent))[2] ?? e.options[1]; Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value").set.call(e, o.value); e.dispatchEvent(new Event("change", { bubbles: true })); return o.textContent; })()`);
-      console.log("  rain over:", village);
-      await frames(8);
-      await drag("Rain", 15, 12);
+      const day = await js(`(() => { const e = ${WEATHER}; const o = [...e.options].find((x) => x.value === "2022-09-27") ?? e.options[1]; Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value").set.call(e, o.value); e.dispatchEvent(new Event("change", { bubbles: true })); return o.textContent; })()`);
+      console.log("  weather:", day);
+      await frames(6);
       await planned();
       hideCursor();
+      const w = await rectOf(`document.querySelector(".weather")`);
+      await ringOn(`document.querySelector(".weather")`, { pad: 4 });
+      noteAt("Rain is read automatically from the weather service (Open-Meteo), village by village", w.x + w.w + 30, w.y + 46);
+      await frames(64);
       await ringOn(`document.getElementById("toast") ?? document.querySelector(".tile")`);
     });
-    console.log("  after rain:", await js(`(document.getElementById("toast")?.innerText ?? "") + " | " + (document.querySelector(".tile")?.innerText.replace(/\\n/g, " ") ?? "")`));
+    noteOff(6);
+    console.log("  after rain:", await js(`(document.querySelector(".weather")?.innerText ?? "").split(String.fromCharCode(10)).join(" ") + " | " + (document.getElementById("toast")?.innerText ?? "")`));
     // off camera: back to the saved plan, find a baler at work and a spot on the field it is working
-    S.ring.o = 0; S.cur.o = 0;
+    S.ring.o = 0; S.cur.o = 0; S.note.o = 0;
     await js(`__ov.q("#side-inner button.link", "Reset")?.click(); 0`);
     await skip(500); await until(SIM_READY, { max: 400000 }); await skip(600); await until(SIM_READY, { max: 400000 });
     tweens = tweens.filter((t) => t.obj !== S.cam);

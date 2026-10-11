@@ -72,7 +72,7 @@ def client(loaded, monkeypatch_session):
 
     from api import main, planning
 
-    monkeypatch_session.setattr(planning, "_rain_series", lambda *a: {})
+    monkeypatch_session.setattr(planning, "_rain_points", lambda *a: [])
     monkeypatch_session.setattr(main, "road_route", lambda pts: (pts, "straight"))
     return TestClient(main.app)
 

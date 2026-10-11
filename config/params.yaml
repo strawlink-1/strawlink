@@ -11,6 +11,10 @@ urgency_tau_days: 5          # ASSUMPTION
 loyalty_bonus: 0.2           # ASSUMPTION
 rain_wet_threshold_mm: 5     # ASSUMPTION
 dry_days_after_rain: 2       # ASSUMPTION
+# Real past days whose rain the simulator can replay (Open-Meteo archive, read per village):
+#   2022-09-27  rain on Alal and Sultanpur (6.4 mm over 3 days), Mulowal and Ranike stay workable (2.9 mm)
+#   2025-10-07  rain on the whole block (26-30 mm over 3 days)
+weather_replay_days: ["2022-09-27", "2025-10-07"]
 haul_radius_km: 30           # ASSUMPTION for bale route
 cluster_radius_m: 800        # ASSUMPTION
 exposure_sector_deg: 30      # ASSUMPTION

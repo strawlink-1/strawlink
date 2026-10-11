@@ -47,6 +47,10 @@ function Controls() {
   const cut = cells.filter((c) => inputs.confirmed.includes(c.id) || (c.props.harvest_window && c.props.harvest_window.p50 <= inputs.date)).length;
   const wetAbove = sim?.inputs.rain_wet_threshold_mm ?? Number(meta?.params.rain_wet_threshold_mm ?? 5);
   const changed = defaults && JSON.stringify(defaults) !== JSON.stringify(inputs);
+  // rain the weather service reports for each village; the planner reads it before every plan
+  const seen = sim?.inputs.rain_by_village ?? null;
+  const replayDays = meta?.weather_replay_days ?? [];
+  const longDate = (d: string) => new Date(`${d}T00:00:00`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   // what each kind of machine does in the plan the planner returned: stops per machine type
   const use = useMemo(() => {
     const n = { baler_set: 0, seeder: 0, truck: 0 };
@@ -73,7 +77,25 @@ function Controls() {
       {sim && !planning && inputs.baler_set > 0 && trips > 0 && use.truck >= trips && (
         <p className="note limit"><Tip text={`Each truck makes ${String(meta?.params.truck_trips_per_day)} trips a day (an assumption in config/params.yaml) and every baled field needs at least one.`}>Every truck trip is used</Tip>, so more baler sets need more trucks.</p>
       )}
-      <Slider label="Rain" value={inputs.rain_mm} min={0} max={30} onChange={(v) => setInputs({ rain_mm: v })}
+      <div className="weather" aria-label="Rain from the weather service">
+        <div className="weather-top">
+          <b>Rain, last 3 days</b>
+          <select value={inputs.weather_date} onChange={(e) => setInputs({ weather_date: e.target.value })} aria-label="Which weather the plan uses">
+            <option value="">forecast for this day</option>
+            {replayDays.map((d) => <option key={d} value={d}>real rain of {longDate(d)}</option>)}
+          </select>
+        </div>
+        {seen && sim?.inputs.weather_source === "open-meteo" ? (
+          <ul>
+            {villages.map((v) => {
+              const mm = seen[v.id] ?? 0;
+              return <li key={v.id} className={mm >= wetAbove ? "wet" : ""}><span>{v.name}</span><b>{mm.toFixed(1)} mm</b><i>{mm >= wetAbove ? "too wet" : "workable"}</i></li>;
+            })}
+          </ul>
+        ) : <p className="note">{sim ? "The weather service did not answer; the plan assumes no rain." : "Reading the weather…"}</p>}
+        <small>Read from Open-Meteo for each village before every plan. Nobody enters it.</small>
+      </div>
+      <Slider label="Extra rain" value={inputs.rain_mm} min={0} max={30} onChange={(v) => setInputs({ rain_mm: v })}
               show={`${inputs.rain_mm} mm`} mark={{ at: wetAbove, label: `too wet above ${wetAbove} mm` }}
               hint={
                 <>
@@ -82,7 +104,7 @@ function Controls() {
                     <option value="all">the whole block</option>
                     {villages.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
                   </select>
-                  {" "}· fields are too wet above {wetAbove} mm
+                  {" "}· a what-if on top of the weather above
                 </>
               } />
       {inputs.confirmed.length > 0 && (

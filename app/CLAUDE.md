@@ -91,7 +91,8 @@ GET  /plan?date=&policy=           plan (strawlink|baseline)
 POST /replan                       invoke planner Lambda with current state → store plan
 POST /events/rain                  {village_id|all, mm, date} → Events + replan
 POST /events/confirm               {field_id, date, source} → forecast override + replan
-POST /simulate                     {date, baler_set, seeder, truck, rain_mm, rain_village, confirmed[]}
+GET  /weather?date=&like=          rain per village as the planner reads it (Open-Meteo); like= replays a past day
+POST /simulate                     {date, baler_set, seeder, truck, rain_mm, rain_village, weather_date, confirmed[]}
                                    → plan + field statuses for that what-if; stores nothing
 POST /simulate/missed-call         {phone} → confirm harvest = today for that field
 POST /fields/{id}/ask              before harvest: send the forecast window, ask the farmer to say when he cuts
