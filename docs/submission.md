@@ -11,7 +11,7 @@ Copy the parts the submission form asks for. Anything in [square brackets] is fo
 **Links**
 - Live demo: https://main.d16side0ke5w9y.amplifyapp.com
 - Code: https://github.com/strawlink-1/strawlink
-- Video: https://youtu.be/IEd7r5U8gP8
+- Video: https://www.youtube.com/watch?v=Y5Tyvh-I5oY
 
 ## The problem
 

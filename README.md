@@ -4,7 +4,7 @@
 
 WeMakeDevs × AWS Environmental Hacks 2026 — Air track.
 
-**Video (3 min):** https://youtu.be/IEd7r5U8gP8
+**Video (3 min):** https://www.youtube.com/watch?v=Y5Tyvh-I5oY
 
 **Live:** https://main.d16side0ke5w9y.amplifyapp.com · API: https://u1feqhbpaa.execute-api.ap-south-1.amazonaws.com
 
