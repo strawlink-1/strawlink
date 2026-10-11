@@ -1,4 +1,4 @@
-# StrawLink — submission text (draft)
+# StrawLink — submission text
 
 Copy the parts the submission form asks for. Anything in [square brackets] is for you to fill in.
 
@@ -10,7 +10,7 @@ Copy the parts the submission form asks for. Anything in [square brackets] is fo
 
 **Links**
 - Live demo: https://main.d16side0ke5w9y.amplifyapp.com
-- Code: [repository link — make sure it is public]
+- Code: https://github.com/strawlink-1/strawlink
 - Video: [link]
 
 ## The problem
@@ -26,14 +26,17 @@ one village while fields wait in the next.
 StrawLink plans straw clearance for one block of 200 fields west of Sangrur.
 
 - **Forecasts each field's harvest date** from Sentinel-2 satellite images.
-- **Listens to farmers:** a WhatsApp message or a missed call overrides the forecast.
+- **Writes to the farmer first:** before the harvest, a WhatsApp message in Punjabi gives the
+  window the forecast expects for his field.
+- **Listens to farmers:** a WhatsApp message, a voice note in Punjabi, Hindi or English, or a missed
+  call overrides the forecast, and the day is planned again.
 - **Chooses how each field is cleared:** baled and trucked to a plant with room, or sown straight
   through with a Super Seeder.
 - **Ranks fields with a fair queue:** tonnes × urgency × a bonus for not burning last season × dry.
   Burn history never raises a field's priority, and nothing reports a farmer to anyone.
 - **Plans every machine's day** with OR-Tools, and re-plans when it rains or a farmer confirms.
 - **Shows it as a simulator:** move a slider — day, baler sets, Super Seeders, trucks, rain — and
-  the planner re-plans in about three seconds. Run the day and watch machines drive the block's
+  the planner re-plans in a few seconds. Run the day and watch machines drive the block's
   real roads, clear fields and carry bales to plants.
 - **Shows who is downwind** of the fields no machine reaches, and what burning that straw would emit.
 - **Issues a clearance certificate** with a QR code when a field is cleared.
@@ -45,9 +48,10 @@ StrawLink plans straw clearance for one block of 200 fields west of Sangrur.
 - **Models:** harvest and burn labels from NDVI and NBR time series; LightGBM quantile models for
   the harvest date; an OR-Tools routing model for the daily plan.
 - **AWS:** API Gateway (HTTP API) → Lambda (FastAPI) → DynamoDB and S3; a separate planner Lambda;
-  S3-triggered loader Lambda; EventBridge Scheduler for the daily re-plan; Amazon Bedrock for
-  Punjabi translation and the farmer assistant (Strands Agents); Amplify Hosting for the web app.
-  One SAM template, deployed to `ap-south-1`.
+  S3-triggered loader Lambda; EventBridge Scheduler for the daily re-plan; a worker Lambda that
+  answers WhatsApp messages; Amazon Transcribe for voice notes; Amazon Bedrock (Nova Pro) for
+  understanding and translating messages and for the farmer assistant (Strands Agents); Amplify
+  Hosting for the web app; Systems Manager for secrets. One SAM template, deployed to `ap-south-1`.
 - **Web app:** React, TypeScript and three.js. One 3D map of the block shared by six pages.
 
 ## What is real and what is not
@@ -82,7 +86,9 @@ StrawLink plans straw clearance for one block of 200 fields west of Sangrur.
 
 - NASA FIRMS fire points to correct the burn labels, then re-run the backtest.
 - Wider, calibrated forecast ranges.
-- Real WhatsApp through Twilio, and a real machine directory for one block.
+- WhatsApp beyond Twilio's sandbox (today it reaches only phones that joined it), and a real
+  machine directory for one block.
+- The satellite pipeline as a scheduled job on AWS (today it runs offline and uploads to S3).
 - Surveyed field boundaries from a land-records source.
 
 ## Team
