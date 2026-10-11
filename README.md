@@ -24,6 +24,8 @@ StrawLink is that plan, for one block of 200 fields west of Sangrur:
 4. **Rank** fields with a fair queue: tonnes × urgency × a bonus for not burning last season × dry.
    Burn history never raises a field's priority, and nothing here reports a farmer to anyone.
 5. **Plan** every machine's day with OR-Tools, and re-plan when it rains or a farmer confirms.
+   Rain is not entered by anyone: before every plan it is read from Open-Meteo for each village,
+   and fields in a village that is too wet wait until it dries.
 6. **Test** it honestly: the 2025 season replayed day by day against first-come booking.
 
 ## See it
@@ -31,7 +33,9 @@ StrawLink is that plan, for one block of 200 fields west of Sangrur:
 ![The Simulator: sliders on the left, the day playing on a 3D map of the block](docs/img/simulator.png)
 
 The web app opens on a **Simulator**. Move a slider — day, baler sets, Super Seeders, trucks,
-rain — and the real planner re-plans in about four seconds. Press *Run the day* and watch tractors
+extra rain — and the real planner re-plans in about four seconds. The rain box shows what the
+weather service reports for each village, and can replay the real rain of a past day
+(27 Sep 2022: two villages too wet, two workable). Press *Run the day* and watch tractors
 and trucks drive the block's real roads, clear fields and carry bales to the plants.
 
 | Page | What it shows |

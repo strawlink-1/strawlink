@@ -276,39 +276,108 @@ async function scene(name, run) {
   console.log(`  ${F} frames = ${(F / FPS).toFixed(1)} s of film, shot in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
 }
 
+// ---------------------------------------------------------------- pictures over the app: a small label, the real phone screen
+const SHOTS = { slot: "slot.jpg", ask: "ask.jpg" }; // stills of the phone's screen recording, in app/.film/phone
+/** Make those stills available to cards on this page, as the CSS classes shot-slot and shot-ask. */
+async function loadShots() {
+  const css = Object.entries(SHOTS).map(([k, f]) => `.shot-${k}{background-image:url(data:image/jpeg;base64,${readFileSync(join(OUT, "phone", f)).toString("base64")})}`).join("");
+  await js(`(() => { const s = document.createElement("style"); s.textContent = ${JSON.stringify(css)}; document.head.appendChild(s); })(); 0`);
+}
+/** A small label in the corner, saying what the picture is (never repeating the narration). */
+const chip = (text, k = 6) => `<div data-k="${k}" style="position:absolute;left:40px;top:30px;background:rgba(13,20,16,.88);border:1px solid #3a4d42;border-radius:999px;padding:7px 16px 7px 14px;font-size:17px;font-weight:600;color:#f6f7f2;white-space:nowrap"><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#f2b632;margin-right:9px"></i>${text}</div>`;
+const phone = (shot, k = 5, h = 574, w = Math.round(h * 0.456)) => `<div data-k="${k}" style="position:absolute;right:92px;top:28px;width:${w}px;height:${h}px;border-radius:30px;padding:9px;background:#0c120e;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 0 1.5px #3a4d42;box-sizing:border-box"><div class="shot-${shot}" style="width:100%;height:100%;border-radius:22px;background-size:cover;background-position:top center"></div></div>`;
+/** The same shot, k times closer, about the centre of the frame (for a slow push-in). */
+const closer = (cam, k) => ({ s: cam.s * k, x: W / 2 - (W / 2 - cam.x) * k, y: H / 2 - (H / 2 - cam.y) * k });
+/** Move the 3D camera in (or out, dir = 1) by a number of wheel clicks, off camera. */
+async function wheelSteps(n, dir = -1) {
+  const c = toScreen(await stageCentre());
+  for (let i = 0; i < n; i++) { await b.send("Input.dispatchMouseEvent", { type: "mouseWheel", x: c.x, y: c.y, deltaX: 0, deltaY: dir * 9 }); await skip(40); }
+  await skip(700);
+}
+/** Fill the frame with the map (no panels), for the page that is open now. */
+const stageCover = async () => Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
+
 /** Real seconds for the map's satellite ground (and other network things) to arrive, off camera. */
 async function settle(steps = 30) { for (let i = 0; i < steps; i++) { await js(`__film.step(50); 0`); await b.sleep(90); } }
 
 b = await launch();
 try {
-  // 1 · the problem, told over the real 2025 season on this block (fields darken as they burn)
+  // 1 · the problem, over the 2025 season replayed on this block: fields turn gold as they are cut and dark as
+  // they burn. No words on screen beyond a small label and the date: the voice and the captions carry the words.
   await scene("01-problem", async () => {
     await load("/results", `+(${DAY}?.max ?? 0) > 20`);
     const max = await js(`+${DAY}.max`);
     await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
-    Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
-    setCard("", "left");
+    await stageCover();
+    const DATE = `([...document.querySelectorAll("#below *")].find((e) => e.children.length === 0 && /^\\d{1,2} \\w{3,5} 2025$/.test(e.textContent.trim()))?.textContent.trim() ?? "")`;
+    const label = async () => { const d = await js(DATE); return chip(`2025 on this block, replayed from satellite images · dark fields burned${d ? ` · ${d}` : ""}`); };
+    console.log("  date on screen:", await js(DATE));
+    setCard(await label());
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(5);
-    tw(S.card, { bg: 0.66 }, 26);
-    sweep(0, max, need("p1", "p2", "p3") + 10);
-    await say("p1", () => wordsIn("October in Punjab.", "Rice is harvested. Three weeks to sow wheat.", "Behind: the 2025 season on this block, read from satellite images."), { lead: 8 });
-    await say("p2", () => wordsIn("The straw is in the way."));
-    await say("p3", () => wordsIn("Not picked up in time<br>means burned.", "", "Dark fields: burned in 2025, as seen in the imagery."));
+    tw(S.card, { bg: 0.06 }, 24);
+    const total = need("p1", "p2", "p3") + 14;
+    sweep(0, max, total);
+    hook(total, async () => { S.card.html = await label(); });
+    show(6, 12);
+    tw(S.cam, closer(S.cam, 1.14), total);
+    await say("p1", null, { lead: 8 });
+    await say("p2");
+    await say("p3");
     await frames(6);
   });
 
-  // 2 · the idea: knows, plans, tells
+  // 2 · the idea, shown on the product itself: the day running, the forecast, a machine at work, the farmer's phone
   await scene("02-idea", async () => {
-    await load("/forecast", `+(${DAY}?.max ?? 0) > 10`);
+    await load("/simulator", SIM_READY);
+    await skip(2000);
+    await loadShots();
+    await setTime(8 * 60 + 30); await setSpeed(16); await play(true);
+    await stageCover();
     setCard(CARD.title);
     Object.assign(S.card, { o: 1, bg: 1 });
     await frames(4);
-    await say("i1", async (n) => { show(0, 14); await frames(40); show(1, 14); await frames(Math.max(1, n - 40 - 9)); hideAll(); });
-    setCard(CARD.idea);
-    await say("i2", async (n) => { show(0); await frames(4); show(1); await frames(Math.round(n * 0.39) - 4); show(2); await frames(Math.round(n * 0.22)); show(3); });
-    show(4, 12);
+    await say("i1", async (n) => {
+      show(0, 12); await frames(24); show(1, 12);
+      await frames(44);
+      hideAll(10); tw(S.card, { bg: 0 }, 20); // the title lifts off the block at work
+      await frames(22);
+      await orbit(-110, 0, Math.max(12, n - 96));
+    });
+    // "It knows which fields will be ready": the forecast season, fields turning gold (a cut: nothing is filmed while the page changes)
+    await play(false);
+    await js(`__ov.q("#tabs a", "Forecast").click(); 0`);
+    await until(`!!document.querySelector(".scrub-marks")`, { label: "forecast page" });
+    await settle(14);
+    const fmax = await js(`+${DAY}.max`);
+    const planDay = await js(`(() => { const m = [...document.querySelectorAll(".scrub-marks span")].find((e) => e.textContent.includes("plan")); return m ? Math.round(parseFloat(m.style.left) / 100 * ${fmax}) : Math.round(${fmax} * 0.6); })()`);
+    await js(`__ov.set(${DAY}, 0); 0`);
+    await skip(600);
+    await wheelSteps(38);
+    await stageCover();
+    setCard(chip("The forecast: each field's harvest date, read from satellite images"));
+    S.card.k[6] = 1;
+    await say("i2", async (n) => {
+      const a = Math.round(n * 0.39), mid = Math.round(n * 0.22);
+      sweep(0, planDay + 2, a - 4);
+      await frames(a);
+      // "plans a machine for each one": today's plan, a baler at work
+      await js(`__ov.q("#tabs a", "Simulator").click(); 0`);
+      await until(SIM_READY);
+      await settle(10);
+      const m = await findMoment((nm, t) => nm.startsWith("Baler") && t.startsWith("baling"));
+      if (m) { await follow(m.name); await setSpeed(9); await skip(1900); await wheelNow(-900); await play(true); }
+      await stageCover();
+      setCard(chip("The plan: a machine and a time for every field, every morning"));
+      S.card.k[6] = 1;
+      await frames(mid);
+      // "and tells the farmer exactly when": the real message, on a real phone
+      setCard(chip("The message: the farmer's slot on WhatsApp, in Punjabi and English") + phone("slot"));
+      S.card.k[6] = 1;
+      tw(S.card, { bg: 0.45 }, 12);
+      show(5, 12);
+    });
     await frames(20);
   });
 
@@ -477,20 +546,26 @@ try {
     await frames(8);
   });
 
-  // 7 · the 2025 replay
+  // 7 · the 2025 replay: the page, the whole block as the season ends, the result, the peak weeks close up,
+  // and the message that goes out before the harvest
   await scene("07-test", async () => {
     await load("/results", `+(${DAY}?.max ?? 0) > 20`);
     const max = await js(`+${DAY}.max`);
     await js(`__ov.set(${DAY}, 0); 0`);
     await skip(1500);
+    await loadShots();
     console.log("  bars on screen:", await js(`(document.querySelector(".bars")?.closest(".group")?.textContent ?? "").slice(0, 300)`));
-    sweep(0, max, need("t1", "t2", "t3"));
-    setCard("", "left");
+    const cover = camFor(await rectOf(`document.getElementById("stage")`), { cover: true });
+    setCard("");
+    Object.assign(S.card, { o: 1, bg: 0 });
     await frames(6);
+    sweep(0, max, need("t1", "t2") - 10);
     await say("t1");
-    tw(S.card, { o: 1, bg: 0.7 }, 10);
-    await say("t2", () => wordsIn("185 of 200", "fields burned in 2025.", "Seen in satellite images. Burn detection from imagery over-counts."));
-    hideAll(6); tw(S.card, { o: 0 }, 10);
+    zoom(cover, 20);
+    setCard(chip("2025, replayed day by day · dark fields burned · burn detection from imagery over-counts"));
+    show(6, 14);
+    await say("t2");
+    hideAll(6);
     await say("t3", async () => {
       const g = await rectOf(`document.querySelector(".bars").closest(".group")`);
       zoom(camFor(g, { pad: 16, max: 1.9 }), 22);
@@ -498,10 +573,19 @@ try {
       await ringOn(`document.querySelector(".bars")`, { pad: 4 });
       noteAt("75 of the 185 = 40.5 % · first-come booking, same machines: 74 · burn detection from imagery, over-counts", g.x + 4, g.y + g.h + 10);
     });
-    ringOff(); noteOff(); home(22);
-    tw(S.card, { o: 1, bg: 0.7 }, 12);
-    await say("t4", () => wordsIn("Within two days", "of harvest, most of the rest had burned."));
-    await say("t5", () => wordsIn("StrawLink starts<br>before the harvest."));
+    ringOff(); noteOff();
+    // the weeks when most fields were cut and burned, close up
+    zoom(cover, 18);
+    setCard(chip("Gold: harvested · dark: burned, often within two days"));
+    show(6, 12);
+    sweep(Math.round(max * 0.3), Math.round(max * 0.78), need("t4") - 4);
+    await say("t4", async () => { await wheel(-200, 20); });
+    // before the harvest, StrawLink writes first
+    setCard(chip("Before the harvest, the first message goes to the farmer") + phone("ask", 5, 372, 262));
+    S.card.k[6] = 1;
+    tw(S.card, { bg: 0.45 }, 12);
+    show(5, 12);
+    await say("t5");
     await frames(8);
   });
 
@@ -510,21 +594,32 @@ try {
     await load("/simulator", SIM_READY);
     await skip(1500);
     await setTime(8 * 60 + 20); await setSpeed(20); await play(true);
-    Object.assign(S.cam, camFor(await rectOf(`document.getElementById("stage")`), { cover: true }));
+    await stageCover();
     setCard(CARD.impact);
-    Object.assign(S.card, { o: 1, bg: 0.84 });
+    Object.assign(S.card, { o: 1, bg: 0.8 });
     await frames(6);
-    // her three sentences run on without a break, so each card leaves inside its own line
+    // her three sentences run on without a break, so each picture leaves inside its own line
     await say("w1", async (n) => {
       const a = Math.round(n * 0.3), c = Math.round(n * 0.22), d = Math.round(n * 0.2);
       show(0); await frames(a); show(1, 14); await frames(c); show(2); await frames(d); show(3, 16);
       await frames(Math.max(1, n - a - c - d - 8)); hideAll(7);
     });
-    setCard(CARD.adapt);
+    // "give it another block's data": the app's own list of what is real, approximate and synthetic (a cut)
+    await play(false);
+    tweens = tweens.filter((t) => t.obj !== S.cam);
+    Object.assign(S.cam, HOME);
+    setCard(chip("Every input is a file: fields, machines, plants, assumptions"));
+    Object.assign(S.card, { o: 1, bg: 0 });
+    await js(`__ov.apply(${JSON.stringify(S)}); 0`);
+    await js(`__ov.q("button.quiet", "What is real here?")?.click(); 0`);
+    await until(`!!document.querySelector(".sheet")`, { max: 8000, label: "the what-is-real sheet" });
+    await skip(500);
     await say("w2", async (n) => {
-      const a = Math.round(n * 0.25), c = Math.round(n * 0.2);
-      show(0); await frames(a); show(1); await frames(6); show(2); await frames(6); show(3); await frames(c); show(4, 12);
-      await frames(Math.max(1, n - a - 12 - c - 9)); hideAll(8); tw(S.card, { bg: 1 }, 8);
+      show(6, 10);
+      const r = await rectOf(`document.querySelector(".sheet")`);
+      if (r) zoom(camFor({ x: r.x, y: r.y - 44, w: r.w, h: Math.min(r.h, 400) + 44 }, { pad: 18, max: 1.5 }), 18);
+      await frames(Math.max(1, n - 9));
+      hideAll(6); tw(S.card, { bg: 1 }, 8);
     });
     setCard(CARD.end);
     await say("w3", async () => { show(0, 14); await frames(24); show(1, 14); });
